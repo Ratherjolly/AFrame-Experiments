@@ -8,11 +8,15 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
-	    <a-asset-item id="bear-obj" src="/Objects/LancerBear.obj"></a-asset-item>
+		<a-asset-item id="brawler-obj" src="/Objects/BrawlerSmoothFists.obj"></a-asset-item>
+		<a-asset-item id="bear-obj" src="/Objects/LancerBear.obj"></a-asset-item>
 	  </a-assets>
+		
+		<a-entity obj-model="obj: #brawler-obj;"></a-entity>
+		<!--
 		<a-entity obj-model="obj: #bear-obj;"></a-entity>
-	  <!--<a-entity id="Attraction" position='0 0 0.5' scale="0.5 0.5 0.5" material="opacity: 0.5;" obj-loader="src:url(./Objects/LancerBear.obj);"></a-entity>
-<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
+		<a-entity id="Attraction" position='0 0 0.5' scale="0.5 0.5 0.5" material="opacity: 0.5;" obj-loader="src:url(./Objects/LancerBear.obj);"></a-entity>
+		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
 		<a-marker-camera  url='http://nevertimestudios.com/AFRAME/img/ARBattleRock.png' ></a-marker-camera>
 		-->
 		
