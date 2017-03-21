@@ -11,14 +11,37 @@
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
 	  </a-assets>
-		
-		<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
 		<!--
-		Other models
+		<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
 		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
 		<a-entity position='0 0 0.5' material='opacity: 0.5;' scale="0.01 0.01 0.01" obj-model="obj: #bear-obj;"></a-entity>
-		-->
 		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>
+		-->
+		
+		
+		
+		
+		<!-- handle unknown marker -->
+		<a-marker type='unknown'>
+			<a-box depth="1" height="1" width="1" position='0 0 0.5' material='opacity: 0.5; side:double; color:blue;'></a-box>
+		</a-marker>
+
+		<!-- handle brawler marker -->
+		<a-marker url='./markers/ARBattleRock.png'>
+			<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
+		</a-marker>
+		
+		<!-- handle bear marker -->
+		<a-marker url='./markers/ARBattleRock2.png'>
+			<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #bear-obj;"></a-entity>
+		</a-marker>
+		
+		<!-- add a simple camera -->
+		<a-entity camera></a-entity>
+		
+		
+		
+		
 		
 	</a-scene>
 </body>
