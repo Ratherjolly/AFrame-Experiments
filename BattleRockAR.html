@@ -11,46 +11,48 @@
 		// click-listener component to pass window clicks to an entity.
 		AFRAME.registerComponent('click-listener', {
 		  init: function () {
+			  
 		    var el = this.el;
 		    const mdl = document.querySelector('#ModelId');
-		  	window.addEventListener('click', function () {
-					var MI = document.getElementById('ModelIndex');
-                    
-                    sTxt.setAttribute('text-geometry', 'value:');
+			  
+		window.addEventListener('click', function () {
+			console.log("CLICK!!!");
+			var MI = document.getElementById('ModelIndex');
+                    	sTxt.setAttribute('text-geometry', 'value:');
 
-                    var i = 0;
-                    i += parseFloat(MI.innerHTML);
-                        i += 1;
+			    var i = 0;
+			    i += parseFloat(MI.innerHTML);
+				i += 1;
 
-                    if (i > _mdlCnt)
-                        i = 1;
-                    MI.innerHTML = i;
-                    if (i==1) {
-                        mdl.setAttribute('obj-loader', 'url(./Objects/LancerBear.obj)');
-                        mdl.setAttribute('obj-model', 'obj:Objects/LancerBear.obj');
-                        mdl.setAttribute('scale', '0.02 0.02 0.02');
-                        mdl.setAttribute('position', '0 0 0');
-                        txt.setAttribute('text-geometry', 'value: Bear Lancer');
-                        txt.setAttribute('position', '-1.5 0 1.5');
-                    }
-                    else if (i==2) {
-                        mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerObj.obj)');
-                        mdl.setAttribute('obj-model', 'obj:Objects/BrawlerObj.obj');
-                        mdl.setAttribute('scale', '0.5 0.5 0.5');
-                        mdl.setAttribute('position', '0 0 0');
-                        txt.setAttribute('text-geometry', 'value: The Brawler');
-                        txt.setAttribute('position', '-1.8 0 1.5');
-                    }
+			    if (i > _mdlCnt)
+				i = 1;
+			    MI.innerHTML = i;
+			    if (i==1) {
+				mdl.setAttribute('obj-loader', 'url(./Objects/LancerBear.obj)');
+				mdl.setAttribute('obj-model', 'obj:Objects/LancerBear.obj');
+				mdl.setAttribute('scale', '0.02 0.02 0.02');
+				mdl.setAttribute('position', '0 0 0');
+				txt.setAttribute('text-geometry', 'value: Bear Lancer');
+				txt.setAttribute('position', '-1.5 0 1.5');
+			    }
+			    else if (i==2) {
+				mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerObj.obj)');
+				mdl.setAttribute('obj-model', 'obj:Objects/BrawlerObj.obj');
+				mdl.setAttribute('scale', '0.5 0.5 0.5');
+				mdl.setAttribute('position', '0 0 0');
+				txt.setAttribute('text-geometry', 'value: The Brawler');
+				txt.setAttribute('position', '-1.8 0 1.5');
+			    }
 
-                    else if (i==3) {
-                        mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
-                        mdl.setAttribute('obj-model', 'obj:Objects/DynamoSitting1.obj');
-                        mdl.setAttribute('scale', '0.05 0.05 0.05');
-                        mdl.setAttribute('position', '0 0 -2.5');
-                        txt.setAttribute('text-geometry', 'value: KCCD');
-                        txt.setAttribute('position', '-1.5 0 1.5');
-                    }
-		    });
+			    else if (i==3) {
+				mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
+				mdl.setAttribute('obj-model', 'obj:Objects/DynamoSitting1.obj');
+				mdl.setAttribute('scale', '0.05 0.05 0.05');
+				mdl.setAttribute('position', '0 0 -2.5');
+				txt.setAttribute('text-geometry', 'value: KCCD');
+				txt.setAttribute('position', '-1.5 0 1.5');
+			    }
+			    });
 		  }
 		});
 	</script>
@@ -81,6 +83,7 @@
 			</a-entity>
 			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 			<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
+			<div id="ModelIndex">0</div>
 		</a-marker>
 		
 		<!-- handle bear marker 
