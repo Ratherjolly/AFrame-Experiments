@@ -10,10 +10,11 @@
 		AFRAME.registerComponent('click-listener', {
 		  init: function () {
 			  
-		    var el = this.el;
-		    const mdl = document.querySelector('#ModelId');
-			const txt = document.querySelector('#ModelTxt');
+		var el = this.el;
+	    	const mdl = document.querySelector('#ModelId');
+		const txt = document.querySelector('#ModelTxt');
                 const sTxt = document.querySelector('#StartTxt');
+		const _mdlCnt = 2;
 			  
 		window.addEventListener('click', function () {
 			console.log("CLICK!!!");
