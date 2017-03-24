@@ -31,7 +31,7 @@
 			    MI.innerHTML = i;
 			    if (i==1) {
 				mdl.setAttribute('obj-loader', 'url(./Objects/LancerBear.obj)');
-				mdl.setAttribute('obj-model', 'obj:Objects/LancerBear.obj');
+				mdl.setAttribute('obj-model', 'obj: #brawler-obj;');//'obj:Objects/LancerBear.obj');
 				mdl.setAttribute('scale', '0.01 0.01 0.01');
 				mdl.setAttribute('position', '0 0 0');
 				txt.setAttribute('text-geometry', 'value: Bear Lancer');
@@ -39,7 +39,7 @@
 			    }
 			    else if (i==2) {
 				mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerSmoothFists.obj)');
-				mdl.setAttribute('obj-model', 'obj:Objects/BrawlerSmoothFists.obj');
+				mdl.setAttribute('obj-model', 'obj: #bear-obj;');
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 				mdl.setAttribute('position', '0 0 0');
 				txt.setAttribute('text-geometry', 'value: The Brawler');
@@ -48,7 +48,7 @@
 
 			    else if (i==3) {
 				mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
-				mdl.setAttribute('obj-model', 'obj:Objects/DynamoSitting1.obj');
+				mdl.setAttribute('obj-model', 'obj: #cat-obj;');
 				mdl.setAttribute('scale', '0.03 0.03 0.03');
 				mdl.setAttribute('position', '0 0 -2.5');
 				txt.setAttribute('text-geometry', 'value: KCCD');
@@ -64,6 +64,7 @@
 	  <a-assets>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
+	  	<a-asset-item id="cat-obj" src="./Objects/DynamoSitting1.obj"></a-asset-item>
 	  </a-assets>
 		<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 		<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
