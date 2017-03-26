@@ -33,7 +33,7 @@
 				mdl.setAttribute('scale', '0.01 0.01 0.01');
 				mdl.setAttribute('position', '0 0 0');
 				txt.setAttribute('text-geometry', 'value: Bear Lancer');
-				txt.setAttribute('position', '-1.5 0 1.5');
+				//txt.setAttribute('position', '-1.5 0 1.5');
 			    }
 			    else if (i==2) {
 				//mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerSmoothFists.obj)');
@@ -41,7 +41,7 @@
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 				mdl.setAttribute('position', '0 0 0');
 				txt.setAttribute('text-geometry', 'value: The Brawler font: #optimerBoldFont"');
-				txt.setAttribute('position', '-1.8 0 1.5');
+				//txt.setAttribute('position', '-1.8 0 1.5');
 			    }
 			    else if (i==3) {
 				//mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
@@ -49,7 +49,7 @@
 				mdl.setAttribute('scale', '0.05 0.05 0.05');
 				//mdl.setAttribute('position', '0 0 -2.5');
 				txt.setAttribute('text-geometry', 'value: KCCD font: #optimerBoldFont"');
-				txt.setAttribute('position', '-1.5 0 1.5');
+				//txt.setAttribute('position', '-1.5 0 1.5');
 			    }
 		    });
 		  }
@@ -59,7 +59,7 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
-		  <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+		<a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
 	  	<a-asset-item id="cube-obj" src="./Objects/TheCube1.obj"></a-asset-item>
@@ -78,7 +78,7 @@
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
 			<a-entity id="StartTxt" text-geometry="value: WELCOME "></a-entity>
-    			<a-entity id="ModelTxt" text-geometry=" font: #optimerBoldFont"></a-entity>
+    			<a-entity id="ModelTxt"></a-entity>
 			<div id="ModelIndex">0</div>
 		</a-marker>
 		
