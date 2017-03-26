@@ -12,13 +12,11 @@
 			  
 		var el = this.el;
 	    	const mdl = document.querySelector('#ModelId');
-		//const txt = document.querySelector('#ModelTxt');
-                //const sTxt = document.querySelector('#StartTxt');
+		const txt = document.querySelector('#ModelTxt');
+                const sTxt = document.querySelector('#StartTxt');
 		const _mdlCnt = 3;
 			  
 		window.addEventListener('click', function () {
-			var txt = document.querySelector('#ModelTxt');
-			var sTxt = document.querySelector('#StartTxt');
 			
 			var MI = document.getElementById('ModelIndex');
                     	sTxt.setAttribute('text-geometry', 'value:');
@@ -31,29 +29,35 @@
 				i = 1;
 			    MI.innerHTML = i;
 			    if (i==1) {
-				//mdl.setAttribute('obj-loader', 'url(./Objects/LancerBear.obj)');
-				mdl.setAttribute('obj-model', 'obj: #bear-obj;');//'obj:Objects/LancerBear.obj');
-				mdl.setAttribute('scale', '0.01 0.01 0.01');
-				mdl.setAttribute('position', '0 0 0');
-				txt.setAttribute('text-geometry', 'value: Bear Lancer');
-				//txt.setAttribute('position', '-1.5 0 1.5');
+						//mdl.setAttribute('obj-loader', 'url(./Objects/LancerBear.obj)');
+						mdl.setAttribute('obj-model', 'obj: #bear-obj;');//'obj:Objects/LancerBear.obj');
+						mdl.setAttribute('scale', '0.01 0.01 0.01');
+						mdl.setAttribute('position', '0 0 0');
+						txt.setAttribute('text-geometry', 'value: Bear Lancer');
+						txt.setAttribute('position', '-1.5 0 1.5');
 			    }
 			    else if (i==2) {
-				//mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerSmoothFists.obj)');
-				mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
-				mdl.setAttribute('scale', '0.25 0.25 0.25');
-				mdl.setAttribute('position', '0 0 0');
-				txt.setAttribute('text-geometry', 'value: The Brawler');
-				//txt.setAttribute('position', '-1.8 0 1.5');
+						//mdl.setAttribute('obj-loader', 'url(./Objects/BrawlerSmoothFists.obj)');
+						mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
+						mdl.setAttribute('scale', '0.25 0.25 0.25');
+						mdl.setAttribute('position', '0 0 0');
+						txt.setAttribute('text-geometry', 'value: The Brawler');
+						txt.setAttribute('position', '-1.8 0 1.5');
 			    }
 			    else if (i==3) {
-				//mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
-				mdl.setAttribute('obj-model', 'obj: #cube-obj;');
-				mdl.setAttribute('scale', '0.05 0.05 0.05');
-				//mdl.setAttribute('position', '0 0 -2.5');
-				txt.setAttribute('text-geometry', 'value: KCCD');
-				//txt.setAttribute('position', '-1.5 0 1.5');
+						//mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
+						mdl.setAttribute('obj-model', 'obj: #cube-obj;');
+						mdl.setAttribute('scale', '0.05 0.05 0.05');
+						txt.setAttribute('text-geometry', 'value: KCCD');
+						txt.setAttribute('position', '-1.5 0 1.5');
 			    }
+				else if (i==4) {
+						//mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
+						mdl.setAttribute('scale', '0.05 0.05 0.05');
+						txt.setAttribute('text-geometry', 'value: KCCD');
+						txt.setAttribute('position', '-1.5 0 1.5');
+			    }
+			
 		    });
 		  }
 		});
@@ -80,17 +84,16 @@
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
-			<a-entity id="StartTxt" rotation='0 180 0' text-geometry="value: WELCOME font: #optimerBoldFont"></a-entity>
-    			<a-entity id="ModelTxt"></a-entity>
+			<a-entity id="StartTxt" rotation='0 180 0' text-geometry="value: EMOCLEW font: #optimerBoldFont"></a-entity>
+    	<a-entity id="ModelTxt"></a-entity>
 			<div id="ModelIndex">0</div>
 		</a-marker>
 		
-		<!--
-		<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
+		<!--<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
 		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
 		<a-entity position='0 0 0.5' material='opacity: 0.5;' scale="0.01 0.01 0.01" obj-model="obj: #bear-obj;"></a-entity>
-		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>
-		-->
+		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>-->
+		
 		<!-- handle bear marker 
 		<a-marker url='./markers/ARBattleRock2.png'>
 			<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #bear-obj;"></a-entity>
