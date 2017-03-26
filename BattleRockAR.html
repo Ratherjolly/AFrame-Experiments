@@ -55,8 +55,38 @@
 		  }
 		});
 	</script>
+	<script>
+	// reference to canvas
+	var can = document.getElementById("full");
+
+	function resizeCanvas() {
+	  can.style.width = window.innerWidth + "px";
+	  // artifical delay so innerHeight is correct
+	  setTimeout(function() {
+	    can.style.height = window.innerHeight + "px";
+	  }, 0);
+	};
+
+	// Webkit/Blink will fire this on load, but Gecko doesn't.
+	window.onresize = resizeCanvas;
+
+	// So we fire it manually...
+	resizeCanvas();
+	</script>
+	<style>
+		body {
+  margin: 0;
+  overflow: hidden;
+}
+canvas#full {
+  background-image: url("http://aniode.com/blog/wp-content/uploads/2015/02/fire1.gif");
+}
+	</style>
+	
+	
 </head>
 <body style='margin : 0px; overflow: hidden;'>
+	<canvas id="full"></canvas>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
