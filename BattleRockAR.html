@@ -17,7 +17,6 @@
 		const _mdlCnt = 3;
 			  
 		window.addEventListener('click', function () {
-			console.log("CLICK!!!");
 			var MI = document.getElementById('ModelIndex');
                     	sTxt.setAttribute('text-geometry', 'value:');
 			
@@ -41,7 +40,7 @@
 				mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 				mdl.setAttribute('position', '0 0 0');
-				txt.setAttribute('text-geometry', 'value: The Brawler');
+				txt.setAttribute('text-geometry', 'value: The Brawler font: #optimerBoldFont"');
 				txt.setAttribute('position', '-1.8 0 1.5');
 			    }
 			    else if (i==3) {
@@ -49,7 +48,7 @@
 				mdl.setAttribute('obj-model', 'obj: #cube-obj;');
 				mdl.setAttribute('scale', '0.05 0.05 0.05');
 				//mdl.setAttribute('position', '0 0 -2.5');
-				txt.setAttribute('text-geometry', 'value: KCCD');
+				txt.setAttribute('text-geometry', 'value: KCCD font: #optimerBoldFont"');
 				txt.setAttribute('position', '-1.5 0 1.5');
 			    }
 		    });
@@ -67,12 +66,7 @@
 	  </a-assets>
 		<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 		<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
-		<!--
-		<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
-		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
-		<a-entity position='0 0 0.5' material='opacity: 0.5;' scale="0.01 0.01 0.01" obj-model="obj: #bear-obj;"></a-entity>
-		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>
-		-->
+		
 		<!-- handle unknown marker -->
 		<a-marker type='unknown'>
 			<!--<a-box depth="1" height="1" width="1" position='0 0 0.5' material='opacity: 0.5; side:double; color:blue;'></a-box>-->
@@ -83,13 +77,17 @@
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
-			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
-			<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
-			<a-entity text-geometry="value: What's up"></a-entity>
-    <a-entity text-geometry="value: Dog?; font: #optimerBoldFont"></a-entity>
-			<div id="ModelIndex">2</div>
+			<a-entity id="StartTxt" text-geometry="value: WELCOME "></a-entity>
+    <a-entity id="ModelTxt" text-geometry=" font: #optimerBoldFont"></a-entity>
+			<div id="ModelIndex">0</div>
 		</a-marker>
 		
+		<!--
+		<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
+		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
+		<a-entity position='0 0 0.5' material='opacity: 0.5;' scale="0.01 0.01 0.01" obj-model="obj: #bear-obj;"></a-entity>
+		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>
+		-->
 		<!-- handle bear marker 
 		<a-marker url='./markers/ARBattleRock2.png'>
 			<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #bear-obj;"></a-entity>
@@ -97,10 +95,6 @@
 		
 		<!-- add a simple camera -->
 		<a-entity camera click-listener></a-entity>
-		
-		
-		
-		
 		
 	</a-scene>
 </body>
