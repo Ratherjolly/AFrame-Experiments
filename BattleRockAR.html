@@ -67,7 +67,7 @@
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
-			<a-entity geometry="primitive:plane;width:2;height:2;" material="shader:gif;src:url(./images/fire1.gif);opacity:.8"></a-entity>
+			<a-entity geometry="primitive:plane;width:2;height:2;" material="shader:gif;src:url(./images/fire1.gif);opacity:.8" look-at="#camera"></a-entity>
 			<div id="ModelIndex">0</div>
 		</a-marker>
 		
@@ -87,7 +87,7 @@
 		</a-marker>-->
 		
 		<!-- add a simple camera -->
-		<a-entity camera click-listener></a-entity>
+		<a-entity id="camera" camera click-listener></a-entity>
 		
 	</a-scene>
 </body>
