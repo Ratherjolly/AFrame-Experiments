@@ -4,7 +4,7 @@
 	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
 	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
-	<script src="https://unpkg.com/aframe-text-geometry-component@0.5.x/dist/aframe-text-geometry-component.min.js" data-component-description="Geometry-based text for A-Frame" data-component-names="text-geometry" data-component-url="https://npmjs.com/package/aframe-text-geometry-component" data-package-name="aframe-text-geometry-component"></script>
+	<script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
 	<script>
 		// click-listener component to pass window clicks to an entity.
 		AFRAME.registerComponent('click-listener', {
@@ -60,6 +60,7 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
+		  <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
 	  	<a-asset-item id="cube-obj" src="./Objects/TheCube1.obj"></a-asset-item>
@@ -84,6 +85,8 @@
 			</a-entity>
 			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 			<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
+			<a-entity text-geometry="value: What's up"></a-entity>
+    <a-entity text-geometry="value: Dog?; font: #optimerBoldFont"></a-entity>
 			<div id="ModelIndex">2</div>
 		</a-marker>
 		
