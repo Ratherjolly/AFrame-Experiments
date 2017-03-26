@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+	<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
 	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
 	<script>
@@ -103,7 +104,8 @@ canvas#full {
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
-			<canvas id="full"></canvas>
+			<a-entity geometry="primitive:box;" material="shader:gif;src:url('http://aniode.com/blog/wp-content/uploads/2015/02/fire1.gif');color:green;opacity:.8"></a-entity>
+			<!--<canvas id="full"></canvas>-->
 			<div id="ModelIndex">0</div>
 		</a-marker>
 		
