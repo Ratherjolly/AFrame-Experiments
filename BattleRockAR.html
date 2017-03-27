@@ -54,38 +54,26 @@
             const mScene = document.getElementById('TheScene');
             const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
            var catCnt = 6;
-            var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
 
             removeElementsByClass('flames');
 
             for(var i = 0; i<catCnt; i++){
                 var tempArr = shuffleArray(posArr);
-                var geometry = null;
-                var material = null;
-                var diff = Math.floor(Math.random() * 3)+1;
+				
 				material = 'shader:gif;src:url(img/cat_lg.gif);opacity:.8';
-                if(diff == 1){
-                    geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
-                }
-                else if(diff == 2){
-                    geometry = 'primitive:circle;segments:9;radius:2.0sawsaw;';
-                }
-                else if(diff == 3){
-                    geometry = 'primitive:circle;segments:9;radius:1.0sawsaw;';
-                }
+                geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
+                
                 var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
 
                 var temp = document.createElement('a-entity');
                 setAttributes(temp, {
-                    "geometry": geometry,
-                    "material": material,
-                    "alongpath": tempPos,
-                    "damage": damage,
-                    "collect": points,
-                    "class": "cats",
+                    "geometry": "primitive:circle;segments:9;radius:3.0sawsaw;",
+                    "material": "shader:gif;src:url(img/cat_lg.gif);opacity:.8",
+                    "class": "flames",
                     "scale":"1 1 1",
                     "look-at":"#camera"
                 });
+				console.log(temp);
                 mScene.appendChild(temp);
             }
         };
