@@ -84,10 +84,15 @@
             }
             return array;
         };
-		function removeElementsByClass(className) {
+	function removeElementsByClass(className) {
             var elements = document.getElementsByClassName(className);
             while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
+            }
+        };
+	function setAttributes(el, attrs) {
+            for (var key in attrs) {
+                el.setAttribute(key, attrs[key]);
             }
         };
 	</script>
