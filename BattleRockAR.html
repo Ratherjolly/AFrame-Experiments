@@ -38,78 +38,70 @@
 			    else if (i==3) {
 						mdl.setAttribute('obj-model', 'obj: #cube-obj;');
 						mdl.setAttribute('scale', '0.05 0.05 0.05');
-						openNav();
+						Init();
 			    }
 				else if (i==4) {
 						mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
 						mdl.setAttribute('scale', '0.05 0.05 0.05');
-					closeNav();
+						removeElementsByClass('flames');
 			    }
 		    });
 		  }
 		});
 	</script>
 	<script>
-		function openNav() {
-			document.getElementById("myNav").style.width = "100%";
-		}
+	function Init() {
+            const mScene = document.getElementById('TheScene');
+            const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
+           var catCnt = 6;
+            var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
 
-		/* Close when someone clicks on the "x" symbol inside the overlay */
-		function closeNav() {
-			document.getElementById("myNav").style.width = "0%";
-		}
+            removeElementsByClass('flames');
+
+            for(var i = 0; i<catCnt; i++){
+                var tempArr = shuffleArray(posArr);
+                var geometry = null;
+                var material = null;
+                var diff = Math.floor(Math.random() * 3)+1;
+				material = 'shader:gif;src:url(img/cat_lg.gif);opacity:.8';
+                if(diff == 1){
+                    geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
+                }
+                else if(diff == 2){
+                    geometry = 'primitive:circle;segments:9;radius:2.0sawsaw;';
+                }
+                else if(diff == 3){
+                    geometry = 'primitive:circle;segments:9;radius:1.0sawsaw;';
+                }
+                var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
+
+                var temp = document.createElement('a-entity');
+                setAttributes(temp, {
+                    "geometry": geometry,
+                    "material": material,
+                    "alongpath": tempPos,
+                    "damage": damage,
+                    "collect": points,
+                    "class": "cats",
+                    "scale":"1 1 1",
+                    "look-at":"#camera"
+                });
+                mScene.appendChild(temp);
+            }
+        };
+		function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        };
 	</script>
-	<style>
-		.overlay {
-			height: 0%;
-			width: 100%;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-			background-color: rgb(0,0,0);
-			background-color: rgba(0,0,0, 0.9);
-			overflow-y: hidden;
-			transition: 0.5s;
-		}
-
-		.overlay-content {
-			position: relative;
-			top: 25%;
-			width: 100%;
-			text-align: center;
-			margin-top: 30px;
-		}
-		.overlay a {
-			padding: 8px;
-			text-decoration: none;
-			font-size: 36px;
-			color: #818181;
-			display: block;
-			transition: 0.3s;
-		}
-		.overlay a:hover, .overlay a:focus {
-			/*color: #f1f1f1;*/
-		}
-		.overlay .closebtn {
-			position: absolute;
-			top: 20px;
-			right: 45px;
-			font-size: 60px;
-		}
-		@media screen and (max-height: 450px) {
-		  .overlay {overflow-y: auto;}
-		  .overlay a {font-size: 20px}
-		  .overlay .closebtn {
-			font-size: 40px;
-			top: 15px;
-			right: 35px;
-		  }
-		}
-		</style>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene embedded artoolkit='sourceType: webcam;'>
+	<a-scene embedded artoolkit='sourceType: webcam;' id="TheScene">
 	  <a-assets>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
@@ -127,12 +119,6 @@
 			<a-entity geometry="primitive:plane;width:2;height:2;" material="shader:gif;src:url(./images/fire1.gif);opacity:.8" look-at="#camera"></a-entity>
 			<div id="ModelIndex">0</div>
 		</a-marker>
-		
-		<div id="myNav" class="overlay">
-		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		  <div class="overlay-content">
-		  </div>
-		</div>
 		
 		<!-- handle unknown marker 
 		<a-marker type='unknown'>
