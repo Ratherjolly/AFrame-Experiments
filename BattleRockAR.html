@@ -53,14 +53,13 @@
 	function Init() {
             const mScene = document.getElementById('TheScene');
             const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
-           var catCnt = 6;
-
-            removeElementsByClass('flames');
+           	var catCnt = 6;
+            //removeElementsByClass('flames');
 
             for(var i = 0; i<catCnt; i++){
                 var tempArr = shuffleArray(posArr);
 				
-		material = 'shader:gif;src:url(img/cat_lg.gif);opacity:.8';
+				material = 'shader:gif;src:url(img/cat_lg.gif);opacity:.8';
                 geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
                 
                 var temp = document.createElement('a-entity');
@@ -84,13 +83,13 @@
             }
             return array;
         };
-	function removeElementsByClass(className) {
+		function removeElementsByClass(className) {
             var elements = document.getElementsByClassName(className);
             while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
         };
-	function setAttributes(el, attrs) {
+		function setAttributes(el, attrs) {
             for (var key in attrs) {
                 el.setAttribute(key, attrs[key]);
             }
