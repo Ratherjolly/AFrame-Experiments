@@ -11,9 +11,9 @@
 <body>
   <a-scene>
       <a-assets>
-          <img id="3dImage" src="./images/3dImage.png">
+          <a-asset-item id="3dImage" src="./images/3dImage.png"></a-asset-item>
       </a-assets>
-    <a-sky src="3dImage" rotation="0 -130 0"></a-sky>
+    <a-sky src="#3dImage" rotation="0 -130 0"></a-sky>
     <a-camera position="0 0 0" id="camera">
             <a-cursor color="#4CC3D9"></a-cursor>
     </a-camera>
