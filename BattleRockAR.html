@@ -91,7 +91,6 @@
 	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-	<canvas id="canvas"></canvas>
 	<a-scene stats embedded id="TheScene" artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
 	<!--<a-scene embedded artoolkit='sourceType: webcam;' id="TheScene">-->
 	  <a-assets>
@@ -108,10 +107,8 @@
 		<!--	<a-entity position="1 2 -10" 
                 particle-system="color: #EF0000,#44CC00"></a-entity>
       			<a-entity position="-1 -2 -10" 
-                particle-system="color: #EF0000,#44CC00"></a-entity>
+                particle-system="color: #EF0000,#44CC00"></a-entity>-->
   
-  			<a-entity position="-1 -2 -10"  
-            particle-system="preset:snow; color:#EF0000,#44CC00"></a-entity>-->
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
 				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
