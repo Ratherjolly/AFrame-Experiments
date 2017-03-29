@@ -69,7 +69,7 @@
                 mScene.appendChild(temp);
             }
         };
-		function shuffleArray(array) {
+	function shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var temp = array[i];
@@ -78,212 +78,347 @@
             }
             return array;
         };
-		function removeElementsByClass(className) {
+	function removeElementsByClass(className) {
             var elements = document.getElementsByClassName(className);
             while (elements.length > 0) {
                 elements[0].parentNode.removeChild(elements[0]);
             }
         };
-		function setAttributes(el, attrs) {
+	function setAttributes(el, attrs) {
             for (var key in attrs) {
                 el.setAttribute(key, attrs[key]);
             }
         };
-	</script>
-	<script>
-  //var body =  document.getElementById("bodyId").style.background = "#000000"; 
-  
-  var stopLoop=1; // flag used to stop the frame "loop"
-  
-  var paletteFireRed = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    		  0,0,0,0,0,0,4,4,4,4,4,4,4,8,8,8,8,8,12,12,12,12,16,16,16,16,20,20,20,24,24,
-    		  24,28,28,32,32,32,36,36,40,40,44,44,48,48,52,52,56,56,60,60,64,68,68,72,72,
-    		  76,80,80,84,88,88,92,92,96,100,100,104,108,108,112,116,120,120,124,128,128,
-    		  132,136,136,140,144,144,148,152,152,156,160,160,164,164,172,172,172,176,176,
-    		  180,184,184,188,188,192,192,196,196,200,200,204,204,208,208,208,212,212,216,
-    		  216,220,220,220,220,224,224,224,228,228,228,228,232,232,232,232,236,236,236,
-    		  236,236,240,240,240,240,240,240,240,244,244,244,244,244,244,244,244,244,244,
-    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
-    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
-    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
-    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
-    		  248,248,248,248,248];
-    		 
-  var paletteFireGreen=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,4,8,8,8,8,
-    		  8,8,8,8,8,12,12,12,12,12,12,16,16,16,16,16,16,20,20,20,20,20,24,24,24,24,28,
-    		  28,28,28,32,32,32,32,36,36,36,36,40,40,40,44,44,44,48,48,48,52,52,52,56,56,
-    		  56,60,60,60,64,64,64,68,68,72,72,72,76,76,80,80,80,84,84,84,88,88,92,92,92,
-    		  96,96,100,100,104,104,104,108,108,112,112,116,116,116,120,120,124,124,128,
-    		  128,128,132,132,136,136,140,140,140,144,144,148,148,148,152,152,156,156,160,
-    		  160,163,164,164,168,168,168,172,172,172,176,176,180,180,180,184,184,184,188,
-    		  188,188,192,192,192,196,196,200,200,200,200,200,204,204,204,208,208,208,208,
-    		  212,212,212,212,216,216,216,216,220,220,220,220,220,224,224,224,224,224,228,
-    		  228,228,228,228,228,232,232,232,232,232,232,236,236,236,236,236,236,236,236,
-    		  240,240,240,240,240,240];
-    		 
-  var paletteFireBlue=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    		  0,0,0,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,
-    		  4,4,8,8,8,2,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,12,12,12,12,12,12,12,12,12,12,
-    		  12,12,12,12,12,12,12,16,16,16,16,16,16,16,16,16,16,16,16,16,16,20,20,20,20,
-    		  20,20,20,20,20,20,20,20,24,24,24,24,24,24,24,24,24,24,24,24,28,28,28,28,28,
-    		  28,28,28,28,28,32,32,32,32,32,32,32,32,32,32,36,36,36,36,36,36,36,36,36,40,
-    		  40,40,40,40,40,40,40,44,44,44,44,44];
-              
-  var canvas = document.getElementById("myCanvas");
-  var ctx = canvas.getContext("2d");
-   
-  var width=canvas.width;
-  var height=canvas.height;
-  
-  var imgData = ctx.createImageData(width, height);
-  // imgData is the image buffer we are writting to each frame
-  // the data array is a signle dimension contiguous array
-  // each 4 bytes represent a pixel (RGB and Aplha)
-  // one row after another row, concatenated together
-  // for example pixel at location X=5, Y=10 in an image of size 30,30 
-  // occupies positions (10*30+5)*4 = 1220 to 1223
-  
-  var fireData = []; 
-  // fireData holds the temerature 0(cold)-255(hot) for each pixel
-  // this is also a contiguous array but with only one element per pixel
-  // I will use this array to calculate each frame
-  
-  fireData.length = width*height;
-  
-  var botomOffset=2*width*4;
-  // I don't want to display the ugly random rows, this is to 
-  // offset the display buffer from the temperature buffer to skip the 2 ugly random rows
-  
-  var frameCount=0;
-  var date = new Date();
-  var startSeconds= date.getTime();
-  
-  
-  var sleepBetweenFrames=5;
-  // This affects how many ms the code will sleep between frames, it should probably be recalculated
-  // for a constant frame rate
-  
-  
-  // Clear the temperature data and the alpha chanel of the output buffer
-  for (var i = 0; i < fireData.length; i++)
-  {
-    fireData[i]=0;
-    var pixelPos=i*4;
-    imgData.data[pixelPos+3]=255; 
-  }
+		
+		//-------------------------------------------------
+		$().ready(function() {
+    $('#demo').xmode();
+});
 
-// This is the code which calculates each frame
-function runFramesViaTimeOuts() {
-    setTimeout(function ()
-    {
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() {} // optionally move this outside the declaration and into a closure if you need more speed.
+        F.prototype = o;
+        return new F();
+    };
+}
+
+var Video = {
+    init : function(options, elem) {
+        this.options = $.extend({
+                width  : 320,
+                height : 240
+            },
+            this.options, options);
+        this.elem  = elem;
+        this.$elem = $(elem);
     
-      frameCount++;
-      if (frameCount%150==0)
-      {
-         var date = new Date();
-         var endSeconds=date.getTime();
-         var fps=frameCount/((endSeconds-startSeconds)/1000);
-         document.getElementById("frames").innerHTML =  fps.toFixed(0) + " fps";
+        // Build the needed DOM structure
+        this._build();
+        
+        // Create the layer list
+        this.layers = [];
+        
+        // Setup speed limiter & fps counter
+        this.speed = 1;
+        this.fps = 0,
+        this.last = (new Date)*1 - 1        
 
-         // if frames per second is bellow 48 reduce the sleep time between frames
-         if (fps<48 && sleepBetweenFrames>2)
-         {
-           sleepBetweenFrames--;
-         }
-      }
-      
-      // fill the first two rows with two random temperature values, 255 (hot) or 0 (cold)
-      var fireArrayLimit=fireData.length-(2*width);
-      
-      for (var i=fireArrayLimit; i<fireData.length;i++)
-      {
-        if (Math.random()>0.5) 
+        // Start the loop
+        var t = this;
+        setTimeout(function() {t.flip.apply(t);}, this.speed);
+    },
+    _build : function() {
+        // Create and add the canvas
+        this.$canvas = $('<canvas>').css({'width':'100%', 'height':'100%'});
+        this.$elem.html(this.$canvas);
+        
+        // Setup the canvas sise
+        this.$canvas.attr('width', this.options.width);
+        this.$canvas.attr('height', this.options.height);
+        
+        // Grab the context and buffers (1 blank, and 1 offscreen)
+        this.context = this.$canvas[0].getContext("2d");
+        this.buffer = this.context.createImageData(this.options.width, this.options.height);
+        
+        // add a fps display div
+        this.$fps = $('<div>').css({position:'absolute',top:0,left:0,width:'100%',color:'white'});
+        this.$elem.append(this.$fps);
+    },
+    addLayer : function(layer) {
+        this.layers[this.layers.length] = layer;
+    },
+    flip : function() {
+        // Calculate delta time
+        var now = new Date;
+        var dtime = now - this.last;
+
+        var fps = '';
+        // Combine the layers onto the back buffer
+        for (var l = 0; l < this.layers.length; l++)
         {
-          fireData[i]=255;
+            fps += 'l' + l + ':' + this.layers[l].fps.toFixed(1) + ' ';
+            var layerWidth = this.layers[l].options.width;
+            var layerHeight = this.layers[l].options.height;
+            for (var x = 0; x < layerWidth; x++)
+            {
+                for (var y = 0; y < layerHeight; y++)
+                {
+                    var lindex = (y*this.layers[l].options.width + x)*4;
+                    var r = this.layers[l].buffer[lindex+0];
+                    var g = this.layers[l].buffer[lindex+1];
+                    var b = this.layers[l].buffer[lindex+2];
+                    var a = this.layers[l].buffer[lindex+3];
+                    if (r|g|b|a != 0 && a != 0) {
+                        var bindex = (y*this.options.width + x)*4;
+                        this.buffer.data[bindex+0] = r;
+                        this.buffer.data[bindex+1] = g;
+                        this.buffer.data[bindex+2] = b;
+                        this.buffer.data[bindex+3] = a;
+                    }
+                }
+            }
         }
-        else
-        {
-          fireData[i]=0;
-        }
-      }
+        fps = 'v:' + this.fps.toFixed(1) + ' ' + fps;
+        this.$fps.html(fps);
         
+        // blit the buffer
+        this.context.putImageData(this.buffer, 0, 0);
         
-      // calculate the position of each red, green and blue components
-      // this is done to avoid multiplying by 4 in the main loop
-      // using this trick we can only add 4 to each
-      var rPos=botomOffset;
-      var gPos=botomOffset+1;
-      var bPos=botomOffset+2;
-      var startProcessing=0;
-       
-      // this filters from the output the jagged random values of the first 4 rows
-      var outputLimit=fireData.length-(4*width);
-        
-      for (var i=startProcessing; i<fireArrayLimit;i++)
-      {
-          var iOneRowBelow=i+width;
-        
-          // calculate the average color of the neighboring pixels and substracts a random value
-          // |0 is a faster method which is equivalent to Math.Floor()
-          // magic values chosen based on trial and error to be aesthetically pleasing
-          // I am intentionaly ignoring edge cases near the end of the row because of performance considerations
-          
-          var color=((fireData[iOneRowBelow+1]+fireData[iOneRowBelow+2]+fireData[iOneRowBelow-1]+fireData[i+1]+fireData[iOneRowBelow])/5+0.46-(Math.random()*0.8))|0;
-          fireData[i]=color;
-          
-          if (i<outputLimit) 
-          {
-            // each component written separately to the frame buffer
-            imgData.data[rPos]=paletteFireRed[color];
-            imgData.data[gPos]=paletteFireGreen[color];
-            imgData.data[bPos]=paletteFireBlue[color];
-            rPos+=4;
-            gPos+=4;
-            bPos+=4;
-          }
-      }
-      
-      // draw the frame buffer on the canvas, replacing previous buffer
-      ctx.putImageData(imgData, 0, 0);  
-        
-      // as long as the stop flag is not raised, calculate next frame
-      if (stopLoop==0)
-        runFramesViaTimeOuts();
-        
+        // Calculate fps
+        var thisFrameFPS = 1000 / dtime;
+        this.fps += (thisFrameFPS - this.fps) / 50;
+        this.last = now;
+
+        // Cap the animation speed
+//        if (this.fps > 30)
+//            this.speed++;
+//        else if (this.speed > 0)
+//            this.speed--;
+
+        var t = this;
+        setTimeout(function() {t.flip.apply(t);}, this.speed);
     }
-    ,sleepBetweenFrames);
+};
+
+VideoColor = {
+    r:0,
+    g:0,
+    b:0,
+    a:0
 }
 
-// starts the frame loop
-function runFrameLoop()
-{
-  if (stopLoop==1)
-  {
-    date = new Date();
-    stopLoop=0;
-    startSeconds= date.getTime();
-    frameCount=0;
-    runFramesViaTimeOuts();
-  }
-  
+VideoParticle = {
+    x:0,
+    y:0,
+    xd:0,
+    yd:0,
+    color:0,
+    dead:0
 }
 
-// stops the frame loop
-function stopFrameLoop()
-{
-  document.getElementById("frames").innerHTML =  "0 fps";
-  stopLoop=1; 
-}
+LayerFire = {
+    init : function(options, elem) {
+        this.options = $.extend({
+                width  : 320,
+                height : 240
+            },
+            this.options, options);
+        this.elem  = elem;
+        this.$elem = $(elem);
+        
+        // Create our buffer
+        this.bufferp = [];
+        this.buffer = [];
+        var i = this.options.width * this.options.height * 4;
+        while (i--) {
+            this.bufferp[i] = 0;
+            this.buffer[i] = 0;
+        }
+        
+        // Create the palette
+        this.palette = [];
+        this.makePalette();
+        
+        // Setup speed limiter & fps counter
+        this.speed = 1;
+        this.fps = 0,
+        this.last = (new Date)*1 - 1        
 
-// run frame loop on load
-runFrameLoop();
+        // Start the loop
+        var t = this;
+        setTimeout(function() {t.fire.apply(t);}, this.speed);
+    },
+    makePalette : function ()
+    {
+        // make a nice looking color palette for a flame
+        for (i = 0; i < 256; i++) {
+            this.palette[i] = Object.create(VideoColor);
+        }
+        
+        for (i = 0; i < 32; i++)
+        {
+            /* black to blue, 32 values*/
+            this.palette[i].b = i << 1;
+            this.palette[i].a = 255;
+            
+            /* blue to red, 32 values*/
+            this.palette[i + 32].r = i << 3;
+            this.palette[i + 32].b =  64 - (i << 1);
+            this.palette[i + 32].a = 255;
+            
+            /*red to yellow, 32 values*/
+            this.palette[i + 64].r = 255;
+            this.palette[i + 64].g = i << 3;
+            this.palette[i + 64].a = 255;
+            
+            /* yellow to white, 162 */
+            this.palette[i + 96].r = 255;
+            this.palette[i + 96].g = 255;
+            this.palette[i + 96].b = i << 2;
+            this.palette[i + 96].a = 255;
+            this.palette[i + 128].r = 255;
+            this.palette[i + 128].g = 255;
+            this.palette[i + 128].b = 64 + (i << 2);
+            this.palette[i + 128].a = 255;
+            this.palette[i + 160].r = 255;
+            this.palette[i + 160].g = 255;
+            this.palette[i + 160].b = 128 + (i << 2);
+            this.palette[i + 160].a = 255;
+            this.palette[i + 192].r = 255;
+            this.palette[i + 192].g = 255;
+            this.palette[i + 192].b = 192 + i;
+            this.palette[i + 192].a = 255;
+            this.palette[i + 224].r = 255;
+            this.palette[i + 224].g = 255;
+            this.palette[i + 224].b = 224 + i;
+            this.palette[i + 224].a =  255;
+        } 
+    },
+    fire : function() {
+        // Calculate delta time
+        var now = new Date;
+        var dtime = now - this.last;
 
-</script>
+        var bufferp = this.bufferp;
+        var width = this.options.width;
+        var height = this.options.height;
+        var x, y;
+    
+        // create a ransom flame at the bottom of the screen
+        y = this.options.width * (height- 1);
+        for (x = 0; x < width; x+=3)
+        {
+            var random = 1 + (16 * Math.random() + 1.0);
+            if (random > 11) {
+                /*hot*/
+                bufferp[y + x] = 200; 
+                bufferp[y + x + 1] = 255;
+                bufferp[y + x + 2] = 200;
+            } else {
+                bufferp[y + x] = 50; 
+                bufferp[y + x + 1] = 20;
+                bufferp[y + x + 2] = 50;
+            }
+        }
+         
+        // move the flame up                         
+        var top = height;
+        if (top > 110)
+            top = 110;    
+        for (index = 0; index < top ; ++index)
+        {
+            for (x = 0; x < width; x++)
+            {
+                if (x == 0) /* at the left border*/
+                {
+                    temp = bufferp[y];
+                    temp += bufferp[y + 1];
+                    temp += bufferp[y - width];
+                    temp /= 3;
+                }
+                else if (x == width - 1) /* at the right border*/
+                {
+                    temp = bufferp[y + x];
+                    temp += bufferp[y - width + x];
+                    temp += bufferp[y + x - 1];
+                    temp /= 3;
+                }
+                else
+                {
+                    temp = bufferp[y + x];
+                    temp += bufferp[y + x + 1];
+                    temp += bufferp[y + x - 1];
+                    temp += bufferp[y - width + x];
+                    temp /= 4;
+                }
+                if (temp > 1)
+                    temp -= 1; /* decay */
+                
+                bufferp[y - width + x] = Math.round(temp);
+            }
+            y -= width;
+        }
+        this.bufferp = bufferp;
+        
+        // copy the palette buffer to display buffer
+        for (x = 0; x < width; x++)
+        {
+            for (y = 0; y < height; y++)
+            {
+                var index = (y * width + x) * 4;
+                var c = bufferp[(y * width) + x];
+                //console.log(c);
+                this.buffer[index+0] = this.palette[c].r;
+                this.buffer[index+1] = this.palette[c].g;
+                this.buffer[index+2] = this.palette[c].b;
+                this.buffer[index+3] = this.palette[c].a;
+            }
+        }
+        
+        // Calculate fps
+        var thisFrameFPS = 1000 / dtime;
+        this.fps += (thisFrameFPS - this.fps) / 50;
+        this.last = now;
+
+        // Cap the animation speed
+        if (this.fps > 15)
+            this.speed++;
+        else if (this.speed >0)
+            this.speed--;
+
+        var t = this;
+        setTimeout(function() {t.fire.apply(t);}, this.speed);
+    }
+};
+(function($) {
+    $.fn.xmode = function(options) {
+        if (this.length) {
+            return this.each(function() {
+                // create canvas interface
+                // `this` refers to the element
+                var _video = Object.create(Video);
+                _video.init({}, this);
+//                var _noise = Object.create(LayerNoise);
+//                _noise.init({}, this);
+//                _video.addLayer(_noise);
+                var _fire = Object.create(LayerFire);
+                _fire.init({}, this);
+                _video.addLayer(_fire);
+//                var _explosion = Object.create(LayerExplosion);
+//                _explosion.init({height:100}, this);
+//                _video.addLayer(_explosion);
+//                var _explosionB = Object.create(LayerExplosion);
+//                _explosionB.init({height:100}, this);
+//                _video.addLayer(_explosionB);
+                $.data(this, 'video', _video);
+            });
+        }
+    };
+})(jQuery);
+	</script>
 </head>
-<body style='margin : 0px; overflow: hidden;' id="body">
+<body style='margin : 0px; overflow: hidden;' id="demo">
 	<a-scene stats embedded id="TheScene" artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
 	<!--<a-scene embedded artoolkit='sourceType: webcam;' id="TheScene">-->
 	  <a-assets>
