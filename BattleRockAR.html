@@ -91,7 +91,7 @@
         };
 	</script>
 	<script>
-  document.body.style.background = "#000000"; 
+  document.getElementById('body').style.background = "#000000"; 
   
   var stopLoop=1; // flag used to stop the frame "loop"
   
@@ -287,7 +287,7 @@ runFrameLoop();
 
 </script>
 </head>
-<body style='margin : 0px; overflow: hidden;'>
+<body style='margin : 0px; overflow: hidden;' id="body">
 	<a-scene stats embedded id="TheScene" artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
 	<!--<a-scene embedded artoolkit='sourceType: webcam;' id="TheScene">-->
 	  <a-assets>
