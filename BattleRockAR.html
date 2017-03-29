@@ -37,38 +37,37 @@
 			    else if (i==3) {
 						mdl.setAttribute('obj-model', 'obj: #cube-obj;');
 						mdl.setAttribute('scale', '0.05 0.05 0.05');
-						Init();
+						//Init();
 			    }
 				else if (i==4) {
 						mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
 						mdl.setAttribute('scale', '0.05 0.05 0.05');
-						removeElementsByClass('flames');
+						//removeElementsByClass('flames');
 			    }
 		    });
 		  }
 		});
 	</script>
 	<script>
-	function Init() {
-            const mScene = document.getElementById('TheScene');
-            const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
-           	var catCnt = 6;
-            //removeElementsByClass('flames');
+	//function Init() {
+        //    const mScene = document.getElementById('TheScene');
+        //    const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
+        //   	var catCnt = 6;
+        //    //removeElementsByClass('flames');
 
-            for(var i = 0; i<catCnt; i++){
-                var tempArr = shuffleArray(posArr);
+ 	//	for(var i = 0; i<catCnt; i++){
+        //        var tempArr = shuffleArray(posArr);
                 
-                var temp = document.createElement('a-entity');
-                setAttributes(temp, {
-                    "geometry": "'primitive:circle;segments:9;radius:3.0sawsaw;'",
-                    "material": "'shader:gif;src:url(img/cat_lg.gif);opacity:.8'",
-                    "class": "flames",
-                    "scale":"1 1 1"
-                });
-				console.log(temp);
-                mScene.appendChild(temp);
-            }
-        };
+        //        var temp = document.createElement('a-entity');
+        //        setAttributes(temp, {
+        //            "geometry": "'primitive:circle;segments:9;radius:3.0sawsaw;'",
+        //            "material": "'shader:gif;src:url(img/cat_lg.gif);opacity:.8'",
+        //            "class": "flames",
+        //            "scale":"1 1 1"
+        //        });
+        //        mScene.appendChild(temp);
+        //    }
+        //};
 	function shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
