@@ -90,6 +90,202 @@
             }
         };
 	</script>
+	<script>
+  document.body.style.background = "#000000"; 
+  
+  var stopLoop=1; // flag used to stop the frame "loop"
+  
+  // palette of temperature values
+  // each array is for a separate color component, red, green and blue
+  // the source of this data is lost to time
+  
+  var paletteFireRed = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    		  0,0,0,0,0,0,4,4,4,4,4,4,4,8,8,8,8,8,12,12,12,12,16,16,16,16,20,20,20,24,24,
+    		  24,28,28,32,32,32,36,36,40,40,44,44,48,48,52,52,56,56,60,60,64,68,68,72,72,
+    		  76,80,80,84,88,88,92,92,96,100,100,104,108,108,112,116,120,120,124,128,128,
+    		  132,136,136,140,144,144,148,152,152,156,160,160,164,164,172,172,172,176,176,
+    		  180,184,184,188,188,192,192,196,196,200,200,204,204,208,208,208,212,212,216,
+    		  216,220,220,220,220,224,224,224,228,228,228,228,232,232,232,232,236,236,236,
+    		  236,236,240,240,240,240,240,240,240,244,244,244,244,244,244,244,244,244,244,
+    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
+    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
+    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
+    		  248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,248,
+    		  248,248,248,248,248];
+    		 
+  var paletteFireGreen=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,4,8,8,8,8,
+    		  8,8,8,8,8,12,12,12,12,12,12,16,16,16,16,16,16,20,20,20,20,20,24,24,24,24,28,
+    		  28,28,28,32,32,32,32,36,36,36,36,40,40,40,44,44,44,48,48,48,52,52,52,56,56,
+    		  56,60,60,60,64,64,64,68,68,72,72,72,76,76,80,80,80,84,84,84,88,88,92,92,92,
+    		  96,96,100,100,104,104,104,108,108,112,112,116,116,116,120,120,124,124,128,
+    		  128,128,132,132,136,136,140,140,140,144,144,148,148,148,152,152,156,156,160,
+    		  160,163,164,164,168,168,168,172,172,172,176,176,180,180,180,184,184,184,188,
+    		  188,188,192,192,192,196,196,200,200,200,200,200,204,204,204,208,208,208,208,
+    		  212,212,212,212,216,216,216,216,220,220,220,220,220,224,224,224,224,224,228,
+    		  228,228,228,228,228,232,232,232,232,232,232,236,236,236,236,236,236,236,236,
+    		  240,240,240,240,240,240];
+    		 
+  var paletteFireBlue=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    		  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    		  0,0,0,0,0,0,0,0,0,0,0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,
+    		  4,4,8,8,8,2,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,12,12,12,12,12,12,12,12,12,12,
+    		  12,12,12,12,12,12,12,16,16,16,16,16,16,16,16,16,16,16,16,16,16,20,20,20,20,
+    		  20,20,20,20,20,20,20,20,24,24,24,24,24,24,24,24,24,24,24,24,28,28,28,28,28,
+    		  28,28,28,28,28,32,32,32,32,32,32,32,32,32,32,36,36,36,36,36,36,36,36,36,40,
+    		  40,40,40,40,40,40,40,44,44,44,44,44];
+              
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+   
+  var width=canvas.width;
+  var height=canvas.height;
+  
+  var imgData = ctx.createImageData(width, height);
+  // imgData is the image buffer we are writting to each frame
+  // the data array is a signle dimension contiguous array
+  // each 4 bytes represent a pixel (RGB and Aplha)
+  // one row after another row, concatenated together
+  // for example pixel at location X=5, Y=10 in an image of size 30,30 
+  // occupies positions (10*30+5)*4 = 1220 to 1223
+  
+  var fireData = []; 
+  // fireData holds the temerature 0(cold)-255(hot) for each pixel
+  // this is also a contiguous array but with only one element per pixel
+  // I will use this array to calculate each frame
+  
+  fireData.length = width*height;
+  
+  var botomOffset=2*width*4;
+  // I don't want to display the ugly random rows, this is to 
+  // offset the display buffer from the temperature buffer to skip the 2 ugly random rows
+  
+  var frameCount=0;
+  var date = new Date();
+  var startSeconds= date.getTime();
+  
+  
+  var sleepBetweenFrames=5;
+  // This affects how many ms the code will sleep between frames, it should probably be recalculated
+  // for a constant frame rate
+  
+  
+  // Clear the temperature data and the alpha chanel of the output buffer
+  for (var i = 0; i < fireData.length; i++)
+  {
+    fireData[i]=0;
+    var pixelPos=i*4;
+    imgData.data[pixelPos+3]=255; 
+  }
+
+// This is the code which calculates each frame
+function runFramesViaTimeOuts() {
+    setTimeout(function ()
+    {
+    
+      frameCount++;
+      if (frameCount%150==0)
+      {
+         var date = new Date();
+         var endSeconds=date.getTime();
+         var fps=frameCount/((endSeconds-startSeconds)/1000);
+         document.getElementById("frames").innerHTML =  fps.toFixed(0) + " fps";
+
+         // if frames per second is bellow 48 reduce the sleep time between frames
+         if (fps<48 && sleepBetweenFrames>2)
+         {
+           sleepBetweenFrames--;
+         }
+      }
+      
+      // fill the first two rows with two random temperature values, 255 (hot) or 0 (cold)
+      var fireArrayLimit=fireData.length-(2*width);
+      
+      for (var i=fireArrayLimit; i<fireData.length;i++)
+      {
+        if (Math.random()>0.5) 
+        {
+          fireData[i]=255;
+        }
+        else
+        {
+          fireData[i]=0;
+        }
+      }
+        
+        
+      // calculate the position of each red, green and blue components
+      // this is done to avoid multiplying by 4 in the main loop
+      // using this trick we can only add 4 to each
+      var rPos=botomOffset;
+      var gPos=botomOffset+1;
+      var bPos=botomOffset+2;
+      var startProcessing=0;
+       
+      // this filters from the output the jagged random values of the first 4 rows
+      var outputLimit=fireData.length-(4*width);
+        
+      for (var i=startProcessing; i<fireArrayLimit;i++)
+      {
+          var iOneRowBelow=i+width;
+        
+          // calculate the average color of the neighboring pixels and substracts a random value
+          // |0 is a faster method which is equivalent to Math.Floor()
+          // magic values chosen based on trial and error to be aesthetically pleasing
+          // I am intentionaly ignoring edge cases near the end of the row because of performance considerations
+          
+          var color=((fireData[iOneRowBelow+1]+fireData[iOneRowBelow+2]+fireData[iOneRowBelow-1]+fireData[i+1]+fireData[iOneRowBelow])/5+0.46-(Math.random()*0.8))|0;
+          fireData[i]=color;
+          
+          if (i<outputLimit) 
+          {
+            // each component written separately to the frame buffer
+            imgData.data[rPos]=paletteFireRed[color];
+            imgData.data[gPos]=paletteFireGreen[color];
+            imgData.data[bPos]=paletteFireBlue[color];
+            rPos+=4;
+            gPos+=4;
+            bPos+=4;
+          }
+      }
+      
+      // draw the frame buffer on the canvas, replacing previous buffer
+      ctx.putImageData(imgData, 0, 0);  
+        
+      // as long as the stop flag is not raised, calculate next frame
+      if (stopLoop==0)
+        runFramesViaTimeOuts();
+        
+    }
+    ,sleepBetweenFrames);
+}
+
+// starts the frame loop
+function runFrameLoop()
+{
+  if (stopLoop==1)
+  {
+    date = new Date();
+    stopLoop=0;
+    startSeconds= date.getTime();
+    frameCount=0;
+    runFramesViaTimeOuts();
+  }
+  
+}
+
+// stops the frame loop
+function stopFrameLoop()
+{
+  document.getElementById("frames").innerHTML =  "0 fps";
+  stopLoop=1; 
+}
+
+// run frame loop on load
+runFrameLoop();
+
+</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene stats embedded id="TheScene" artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
