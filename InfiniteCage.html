@@ -3,20 +3,538 @@
 <head>
     <meta charset="utf-8">
     <title>Infinite Cage</title>
+
+    <style>
+        .button {
+            background-color: #e7e7e7;
+            border: 1px solid black;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        div.fixed {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            border-radius: 25px;
+            border: 4px solid black;
+            background-color: rgb(255, 255, 255);
+        }
+
+        div.fixedCenter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-radius: 25px;
+            border: 4px solid black;
+            background-color: rgb(255, 255, 255);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .overlay {
+            height: 0%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.9);
+            overflow-y: hidden;
+            transition: 0.5s;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 1%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+            .overlay a:hover, .overlay a:focus {
+                color: #f1f1f1;
+            }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .overlay {
+                overflow-y: auto;
+            }
+
+                .overlay a {
+                    font-size: 20px;
+                }
+
+                .overlay .closebtn {
+                    font-size: 40px;
+                    top: 15px;
+                    right: 35px;
+                }
+        }
+    </style>
+
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.0.1/dist/aframe-layout-component.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^3.2.0/dist/aframe-animation-component.min.js"></script>
+
+    <script>
+        /*UTILITY FUNCTIONS*/
+        document.addEventListener("DOMContentLoaded", function (event) {
+            openNav();
+        });
+
+        function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {               // current working methods
+            if (document.documentElement.requestFullScreen) {
+                document.documentElement.requestFullScreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullScreen) {
+                document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+            } else {
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+            }
+        };
+
+        function openNav() {
+            document.getElementById("myNav").style.height = "100%";
+        };
+
+        function closeNav() {
+            document.getElementById("myNav").style.height = "0%";
+            Init();
+        };
+        function removeElementsByClass(className) {
+            var elements = document.getElementsByClassName(className);
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+        };
+        function setAttributes(el, attrs) {
+            for (var key in attrs) {
+                el.setAttribute(key, attrs[key]);
+            }
+        };
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        };
+        function countdown() {
+            var seconds = 60;
+            function tick() {
+                var counter = document.getElementById("timerz");
+                seconds--;
+                counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+                if (seconds > 0) {
+                    setTimeout(tick, 1000);
+                } else {
+                    var total = document.getElementById("totals");
+                    var t = 0;
+                    t += parseFloat(total.innerHTML);
+                    console.log(t);
+
+                    if (t > 0)
+                        document.getElementById("losing").style = "";
+                }
+            }
+            tick();
+        };
+    </script>
+
+    <script>
+
+    (function() {
+    'use strict';
+
+    var alongpathComp = {
+      schema: {
+        path     : { default: ''    },
+        closed   : { default: false },
+        dur      : { default: 2000  }
+      },
+
+    init: function() {
+      var ent = this.el;
+      var d = this.data;
+      var points = d.path.split(' ').map(function(p) {
+          p = p.split(',');
+          return new THREE.Vector3(
+              parseFloat(p[0]),
+              parseFloat(p[1]),
+              parseFloat(p[2])
+          );
+      });
+      var ctor = d.closed ? 'CatmullRomCurve3' : 'SplineCurve3';
+      var curve = new THREE[ctor](points);
+
+      var onFrame = function onFrame(t) {
+        window.requestAnimationFrame(onFrame);
+        t = t % d.dur;
+        var i = t / d.dur;
+        try {
+          var p = curve.getPoint(i);
+          ent.setAttribute('position', p);
+        } catch (ex) {}
+      };
+
+      onFrame();
+  },
+
+    update: function (oldData) {},
+    remove: function() {}
+};
+
+    AFRAME.registerComponent('alongpath', alongpathComp);
+    })();
+
+    </script>
+
+    <script>
+        function Init() {
+            const mScene = document.getElementById('TheScene');
+            const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
+           // var health = document.getElementById("health").innerHTML = 100;
+           var catCnt = 6;
+            var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
+
+            removeElementsByClass('cats');
+
+            for(var i = 0; i<catCnt; i++){
+                var tempArr = shuffleArray(posArr);
+                var duration = null;
+                var geometry = null;
+                var damage = null;
+                var points = null;
+                var material = null;
+                var diff = Math.floor(Math.random() * 3)+1;
+
+                /*if(diff == 0){
+                    duration = 28000;
+                    geometry = 'primitive:circle;segments:9;radius:3.5sawsaw;';
+                    damage = 6;
+                    points = 2;
+                    material = 'shader:gif;src:url(img/daytone.gif);opacity:.8';
+                }*/
+                if(diff == 1){
+                    duration = 26000;
+                    geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
+                    damage = 5;
+                    points = 3;
+                    material = 'shader:gif;src:url(img/cat_lg.gif);opacity:.8';
+                }
+                else if(diff == 2){
+                    duration = 24000;
+                    geometry = 'primitive:circle;segments:9;radius:2.0sawsaw;';
+                    damage = 3;
+                    points = 4;
+                    material = 'shader:gif;src:url(img/cat_md.gif);opacity:.8';
+                }
+                else if(diff == 3){
+                    duration = 22000;
+                    geometry = 'primitive:circle;segments:9;radius:1.0sawsaw;';
+                    damage = 2;
+                    points = 5;
+                    material = 'shader:gif;src:url(img/cat_sm.gif);opacity:.8';
+                    //material = '#smCat';
+                }
+                var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
+
+                var temp = document.createElement('a-entity');
+                setAttributes(temp, {
+                    "geometry": geometry,
+                    "material": material,
+                    "alongpath": tempPos,
+                    "damage": damage,
+                    "collect": points,
+                    "class": "cats",
+                    "scale":"1 1 1",
+                    "look-at":"#camera"
+                });
+                mScene.appendChild(temp);
+                //temp.innerHTML = "<a-animation attribute='rotation' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
+            }
+            //document.getElementById('intro').style = "display:none;";
+            document.getElementById('losing').style = "display:none;";
+            document.getElementById('winning').style = "display:none;";
+            document.getElementById('stats').style = "";
+            countdown();
+        };
+
+        AFRAME.registerComponent('collect', {
+            schema: { default: '' },
+            init() {
+                const score = document.getElementById("score");
+                const total = document.getElementById("totals");
+                //var COLORS = ['red', 'green', 'blue'];
+                //this.el.addEventListener('click', function (evt) {
+                    //var randomIndex = Math.floor(Math.random() * COLORS.length);
+                  //  this.setAttribute('material', 'color', COLORS[randomIndex]);
+                    //console.log('I was clicked at: ', evt.detail.intersection.point);
+                //});
+                //this.el.addEventListener('raycaster-intersected', () => {
+                this.el.addEventListener('click', () => {
+                //this.el.addEventListener('click', function(evt) {
+                    //console.log('I was clicked at: ', evt.detail.intersection.point);
+
+                    
+
+                    //score
+                    var p = 0;
+                    p += parseFloat(score.innerHTML);
+                    p += this.data;
+                    score.innerHTML = p;
+                    //total
+                    var t = 0;
+                    t += parseFloat(total.innerHTML);
+                    t -= 1;
+                    total.innerHTML = t;
+
+                    if (t < 1) {
+                        document.getElementById("winning").style = "";
+                    }
+                    var entity = this.el;
+                    entity.parentNode.removeChild(entity);
+                });
+            }
+        //    ,
+        //    update: function () {
+        //        var data = this.data;
+        //        var el = this.el;
+
+        //        if (data.event) {
+        //            el.addEventListener(data.event, function () {
+        //                console.log(data.message);
+        //            });
+        //        }
+        //        else {
+        //            console.log(data.message);
+        //        }
+        //}
+        });
+        /* AFRAME.registerComponent('collides', {
+            schema: { default: '' },
+            init() {
+                this.el.addEventListener('beginContact', () => {
+
+                    var score = document.getElementById("score");
+                    var total = document.getElementById("totals");
+
+                    //score
+                    var p = 0;
+                    p += parseFloat(score.innerHTML);
+                    p += this.data;
+                    score.innerHTML = p;
+                    //total
+                    var t = 0;
+                    t += parseFloat(total.innerHTML);
+                    t -= 1;
+                    total.innerHTML = t;
+
+                    if (t < 1) {
+                        document.getElementById("winning").style = "";
+                    }
+
+                    var entity = this.el;
+                    entity.parentNode.removeChild(entity);
+
+                });
+            }
+        });*/
+
+    </script>
+    <script>
+        // projectile component to have an entity travel straight.
+        AFRAME.registerComponent('projectile', {
+          schema: {
+            speed: { default: -0.4 }
+          },
+
+          tick: function () {
+            this.el.object3D.translateY(this.data.speed);
+          }
+        });
+
+        // spawner component to generate an entity on an event.
+        AFRAME.registerComponent('spawner', {
+          schema: {
+            on: { default: 'click' },
+            mixin: { default: '' }
+          },
+
+          /**
+           * Add event listener.
+           */
+          update: function (oldData) {
+            this.el.addEventListener(this.data.on, this.spawn.bind(this));
+          },
+
+          /**
+           * Spawn new entity at entity's current position.
+           */
+          spawn: function () {
+            var el = this.el;
+            var entity = document.createElement('a-entity');
+            var matrixWorld = el.object3D.matrixWorld;
+            var position = new THREE.Vector3();
+            var rotation = el.getAttribute('rotation');
+            var entityRotation;
+
+            position.setFromMatrixPosition(matrixWorld);
+            entity.setAttribute('position', position);
+
+            // Have the spawned entity face the same direction as the entity.
+            // Allow the entity to further modify the inherited rotation.
+            position.setFromMatrixPosition(matrixWorld);
+            entity.setAttribute('position', position);
+            entity.setAttribute('mixin', this.data.mixin);
+            entity.addEventListener('loaded', function () {
+              entityRotation = entity.getAttribute('rotation');
+              entity.setAttribute('rotation', {
+                x: entityRotation.x + rotation.x,
+                y: entityRotation.y + rotation.y,
+                z: entityRotation.z + rotation.z
+              });
+            });
+            el.sceneEl.appendChild(entity);
+          }
+        });
+
+        // click-listener component to pass window clicks to an entity.
+        AFRAME.registerComponent('click-listener', {
+          init: function () {
+            var el = this.el;
+            window.addEventListener('click', function () {
+              el.emit('click', null, false);
+            });
+          }
+        });
+    </script>
 </head>
 
-<body>
-  <a-scene>
-      <a-assets>
-          <a-asset-item id="3dImage" src="./images/3dImage.png"></a-asset-item>
-      </a-assets>
-    <a-sky src="./images/3dImage.png" rotation="0 -130 0"></a-sky>
-    <a-camera position="0 0 0" id="camera">
+<body id="awesomes">
+    <a-scene id="TheScene">
+
+        <a-assets>
+            <img id="3dImage" src="3dImage.png">
+            <img id="fullscreen" src="img/fullscreen.png">
+            <img id="cat_sm" src="img/cat_sm.gif">
+            <img id="cat_md" src="img/cat_md.gif">
+            <img id="cat_lg" src="img/cat_lg.gif">
+            <img id="stars" src="img/stars.gif">
+            <img id="daytone" src="img/daytone.gif">
+
+            <a-mixin id="laser"
+                     geometry="primitive: cylinder; radius: 0.05; translate: 0 -2 0"
+                     material="color: green; metalness: 0.2; opacity: 0.4; roughness: 0.3"
+                     rotation="90 0 0"></a-mixin>
+        </a-assets>
+
+        <!--Sky-->
+        <a-sky src="3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
+
+        <!--Camera-->
+        <a-camera position="0 0 0" id="camera" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
-    </a-camera>
-  </a-scene>
- 
+        </a-camera>
+    </a-scene>
+
+    <div class="fixedCenter" id="winning" style="display:none;">
+        <p style="text-align:center;">
+            You survived!<br />
+            Golly, I'm so happy right now, even this little fur ball is gettin on my good side!<br />
+            <img src="img/cat_0.gif" alt="The best gif ever.  That's all you need to know" style="Height:100px">
+            <br />
+            So, That's it! ...unless you want more?<br />
+            <button class="button" type="button" onclick="Init()">Lock n Load, again!</button>
+        </p>
+    </div>
+
+    <div class="fixedCenter" id="losing" style="display:none;">
+        <p style="text-align:center;">
+            Gross. I think the Kitty Cat's have turned your body into a birthing nest!<br />
+            Sorry, I wasn't looking at for you, still a bit preoccupied at the moment<br />
+            <img src="img/chuckcat.gif" alt="Chuck Norris" style="Height:100px"><br /><br />
+            Lucky for you, I'm a brain Operator!  Would you like to try this life thing again?<br />
+            <button class="button" type="button" onclick="Init()">Lock n Load, Better This Time!</button>
+        </p>
+    </div>
+
+    <div class="fixed" id="stats" style="display:none;">
+        <h4 style="text-align:center;">
+            SCORE:<div id="score" style="display:inline-block;">0</div><br />
+            <!--HEALTH:<div id="health" style="display:inline-block;">100</div>-->
+            Timer:<div id="timerz" style="display:inline-block;"></div>
+        </h4>
+    </div>
+    <div id="totals" style="display:none">0</div>
+
+    <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
+        <img src="img/fullscreen.png" style="width:100%;" />
+    </a>
+
+    <div id="myNav" class="overlay">
+        <h1 style="padding-top:0px; text-align:center; left:50%; top:0%; color:white;">Infinite Cage</h1>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content" style="color:white; margin-top:0px;">
+            <img src="img/cage.png" alt="The best gif ever.  That's all you need to know" style="Height:100px;">
+            <h4>
+                In a World ruled by cats,<br />
+                Kittens are no longer born, they are grown.<br />
+                Fight off the Cat Pollen before they <br />
+                turn it into an unholy birthing nest.
+            </h4>
+            <button class="button" type="button" onclick="closeNav()">Lock n Load!</button>
+            <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
+                <img src="img/fullscreen.png" style="width:100%;" />
+            </a>
+        </div>
+    </div>
+
+
 </body>
 </html>
