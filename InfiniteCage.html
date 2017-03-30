@@ -436,7 +436,7 @@
                 var distance = 15.0;
                 //var start = entity.getPosition();
                 var end = new THREE.Vector3();
-                end.copy(entity.forward).scale(distance).add(position);
+                end.copy(entity.forward).scale(distance).add(entity.getAttribute('position'));
                 entity.innerHTML = "<a-animation attribute='position' to='"+end.getComponent(0) + " " + end.getComponent(1) + " " +end.getComponent(2)+"' dur='8000' direction='alternate' repeat='0'></a-animation>";
             
             });
