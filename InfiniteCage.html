@@ -421,6 +421,7 @@
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
             entity.setAttribute('mixin', this.data.mixin);
+            
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');
               entity.setAttribute('rotation', {
@@ -429,6 +430,7 @@
                 z: entityRotation.z + rotation.z
               });
             });
+            entity.innerHTML = "<a-animation attribute='position' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
             el.sceneEl.appendChild(entity);
           }
         });
