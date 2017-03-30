@@ -440,7 +440,10 @@
                 var distance = 15.0;
                 //var start = entity.getPosition();
                 var end = new THREE.Vector3();
-                end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                parseFloat((position.forward* distance).x);
+                end = position.forward* distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                console.log(parseFloat(end.getComponent(1)));
+                console.log(parseFloat((position.forward* distance).x));
                 var posStr = parseFloat(end.getComponent(0)) + " " + parseFloat(end.getComponent(1)) + " " +parseFloat(end.getComponent(2));
                 entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='8000' direction='alternate' repeat='0'></a-animation>";
             
