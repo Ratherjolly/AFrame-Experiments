@@ -421,9 +421,13 @@
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
             entity.setAttribute('mixin', this.data.mixin);
-            
+            console.log("mworld: "+matrixWorld);
+            console.log("position: "+position);
+
+              
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');
+              console.log("P!!! "+entity.getAttribute('position'));
               entity.setAttribute('rotation', {
                 x: entityRotation.x + rotation.x,
                 y: entityRotation.y + rotation.y,
