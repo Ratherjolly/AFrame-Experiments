@@ -425,7 +425,7 @@
               
             console.log("mworld: "+matrixWorld);
               
-              console.log("position X: "+parseFloat(position.x));
+              console.log("position X: "+parseFloat(position.x)+ ", Y: "+parseFloat(position.y)+", Z: "+parseFloat(position.z));
               console.log("position Y: "+parseFloat(position.y));
               console.log("position Z: "+parseFloat(position.z));
               
@@ -441,8 +441,8 @@
                 //var start = entity.getPosition();
                 var end = new THREE.Vector3();
                 parseFloat((position.forward* distance).x);
-                end = position.forward* distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
-                console.log(parseFloat((position.forward* distance).x));
+                end = position.forward* -distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                console.log(parseFloat(end.x));
                 var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
                 entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='8000' direction='alternate' repeat='0'></a-animation>";
             
