@@ -460,13 +460,13 @@
     <a-scene id="TheScene">
 
         <a-assets>
-            <img id="3dImage" src="3dImage.png">
-            <img id="fullscreen" src="img/fullscreen.png">
-            <img id="cat_sm" src="img/cat_sm.gif">
-            <img id="cat_md" src="img/cat_md.gif">
-            <img id="cat_lg" src="img/cat_lg.gif">
-            <img id="stars" src="img/stars.gif">
-            <img id="daytone" src="img/daytone.gif">
+            <img id="3dImage" src="images/3dImage.png">
+            <img id="fullscreen" src="images/fullscreen.png">
+            <img id="cat_sm" src="images/cat_sm.gif">
+            <img id="cat_md" src="images/cat_md.gif">
+            <img id="cat_lg" src="images/cat_lg.gif">
+            <img id="stars" src="images/stars.gif">
+            <img id="daytone" src="images/daytone.gif">
 
             <a-mixin id="laser"
                      geometry="primitive: cylinder; radius: 0.05; translate: 0 -2 0"
@@ -475,7 +475,7 @@
         </a-assets>
 
         <!--Sky-->
-        <a-sky src="3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
+        <a-sky src="#3dImage" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
 
         <!--Camera-->
         <a-camera position="0 0 0" id="camera" spawner="mixin: laser; on: click" click-listener>
@@ -514,14 +514,14 @@
     <div id="totals" style="display:none">0</div>
 
     <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
-        <img src="img/fullscreen.png" style="width:100%;" />
+        <img src="images/fullscreen.png" style="width:100%;" />
     </a>
 
     <div id="myNav" class="overlay">
         <h1 style="padding-top:0px; text-align:center; left:50%; top:0%; color:white;">Infinite Cage</h1>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content" style="color:white; margin-top:0px;">
-            <img src="img/cage.png" alt="The best gif ever.  That's all you need to know" style="Height:100px;">
+            <img src="images/cage.png" alt="The best gif ever.  That's all you need to know" style="Height:100px;">
             <h4>
                 In a World ruled by cats,<br />
                 Kittens are no longer born, they are grown.<br />
@@ -530,7 +530,7 @@
             </h4>
             <button class="button" type="button" onclick="closeNav()">Lock n Load!</button>
             <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
-                <img src="img/fullscreen.png" style="width:100%;" />
+                <img src="images/fullscreen.png" style="width:100%;" />
             </a>
         </div>
     </div>
