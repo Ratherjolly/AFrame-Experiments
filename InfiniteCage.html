@@ -416,14 +416,6 @@
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
               
-              
-            var distance = 15.0;
-            //var start = entity.getPosition();
-            var end = new THREE.Vector3();
-            end.copy(entity.forward).scale(distance).add(position);
-            var endStr = end.x + " " + end.y + " " +end.z;
-              
-              
             // Have the spawned entity face the same direction as the entity.
             // Allow the entity to further modify the inherited rotation.
             position.setFromMatrixPosition(matrixWorld);
@@ -432,6 +424,12 @@
             console.log("mworld: "+matrixWorld);
             console.log("position: "+position);
 
+            var distance = 15.0;
+            //var start = entity.getPosition();
+            var end = new THREE.Vector3();
+            end.copy(entity.forward).scale(distance).add(position);
+            var endStr = end.x + " " + end.y + " " +end.z;
+              
               
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');
