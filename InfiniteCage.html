@@ -18,7 +18,6 @@
             cursor: pointer;
             border-radius: 12px;
         }
-
         div.fixed {
             position: fixed;
             bottom: 0;
@@ -28,7 +27,6 @@
             border: 4px solid black;
             background-color: rgb(255, 255, 255);
         }
-
         div.fixedCenter {
             position: fixed;
             top: 0;
@@ -38,12 +36,10 @@
             border: 4px solid black;
             background-color: rgb(255, 255, 255);
         }
-
         body {
             margin: 0;
             font-family: 'Lato', sans-serif;
         }
-
         .overlay {
             height: 0%;
             width: 100%;
@@ -56,7 +52,6 @@
             overflow-y: hidden;
             transition: 0.5s;
         }
-
         .overlay-content {
             position: relative;
             top: 1%;
@@ -64,7 +59,6 @@
             text-align: center;
             margin-top: 30px;
         }
-
         .overlay a {
             padding: 8px;
             text-decoration: none;
@@ -73,32 +67,27 @@
             display: block;
             transition: 0.3s;
         }
-
             .overlay a:hover, .overlay a:focus {
                 color: #f1f1f1;
             }
-
         .overlay .closebtn {
             position: absolute;
             top: 20px;
             right: 45px;
             font-size: 60px;
         }
-
         @media screen and (max-height: 450px) {
             .overlay {
                 overflow-y: auto;
             }
-
-                .overlay a {
-                    font-size: 20px;
-                }
-
-                .overlay .closebtn {
-                    font-size: 40px;
-                    top: 15px;
-                    right: 35px;
-                }
+            .overlay a {
+                font-size: 20px;
+            }
+            .overlay .closebtn {
+                font-size: 40px;
+                top: 15px;
+                right: 35px;
+            }
         }
     </style>
 
@@ -395,7 +384,7 @@
           },
 
           tick: function () {
-            this.el.object3D.translateY(this.data.speed);
+            this.el.object3D.position.set(this.data.x,this.data.speed,this.data.z);//.translateY(this.data.speed);
           }
         });
 
