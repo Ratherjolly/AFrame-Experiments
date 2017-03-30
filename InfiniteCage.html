@@ -415,7 +415,15 @@
 
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
-
+              
+              
+            var distance = 15.0;
+            var start = entity.getPosition();
+            var end = new pc.Vec3();
+            end.copy(entity.forward).scale(distance).add(start);
+            var endStr = end.x + " " + end.y + " " +end.z;
+              
+              
             // Have the spawned entity face the same direction as the entity.
             // Allow the entity to further modify the inherited rotation.
             position.setFromMatrixPosition(matrixWorld);
@@ -434,7 +442,7 @@
                 z: entityRotation.z + rotation.z
               });
             });
-            entity.innerHTML = "<a-animation attribute='position' to='0 0 200' dur='8000' direction='alternate' repeat='0'></a-animation>";
+            entity.innerHTML = "<a-animation attribute='position' to='"+endStr+"' dur='8000' direction='alternate' repeat='0'></a-animation>";
             el.sceneEl.appendChild(entity);
           }
         });
