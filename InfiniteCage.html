@@ -423,11 +423,9 @@
             entity.setAttribute('position', position);
             entity.setAttribute('mixin', this.data.mixin);
               
-            console.log("mworld: "+matrixWorld);
+            console.log("mworld: "+parseFloat(matrixWorld));
               
               console.log("position X: "+parseFloat(position.x)+ ", Y: "+parseFloat(position.y)+", Z: "+parseFloat(position.z));
-              console.log("position Y: "+parseFloat(position.y));
-              console.log("position Z: "+parseFloat(position.z));
               
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');
@@ -438,9 +436,8 @@
                 z: entityRotation.z + rotation.z
               });
                 var distance = 2.0;
-                //var start = entity.getPosition();
                 var end = new THREE.Vector3();
-                parseFloat((position.forward* distance).x);
+                console.log(parseFloat((position.forward* distance).x));
                 end = position.forward* -distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
                 console.log(parseFloat(end.x));
                 var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
