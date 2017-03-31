@@ -433,7 +433,7 @@
                 //end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
                 
                 var outPosition = new THREE.Vector3();
-                outPosition.getPositionFromMatrix( matrixWorld );
+                outPosition.setFromMatrixPosition( matrixWorld );
                 //alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
                 
                 var distance = 1.1;
@@ -441,7 +441,7 @@
                 end = position.forward * distance;
                 
                 //end.setFromMatrixPosition(matrixWorld);
-                end.getPositionFromMatrix(matrixWorld);
+                end.setFromMatrixPosition(matrixWorld);
                 alert(end.x + ',' + end.y + ',' + end.z);
                 
                 var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
@@ -487,7 +487,7 @@
             -->
             
             <a-mixin id="laser"
-                     geometry="primitive: box;" width="0.5" height="0.5" depth="1"
+                     geometry="primitive: box;" width="0.1" height="0.1" depth="0.5"
                      material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3"
                      rotation="90 0 0"></a-mixin>
         </a-assets>
