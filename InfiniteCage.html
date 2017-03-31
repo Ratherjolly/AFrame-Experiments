@@ -427,13 +427,13 @@
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
               });
-                var distance = 1.1;
-                var end = new THREE.Vector3();
+                //var distance = 1.1;
+                //var end = new THREE.Vector3();
                 //end.getPositionFromMatrix( position.matrixWorld );
-                end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                //end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
                 
-                var outPosition = new THREE.Vector3();
-                outPosition.setFromMatrixPosition( matrixWorld );
+                //var outPosition = new THREE.Vector3();
+                //outPosition.setFromMatrixPosition( matrixWorld );
                 //alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
                 
                 //var distance = 1.1;
@@ -443,11 +443,11 @@
                 //end.setFromMatrixPosition(matrixWorld);
                 //end.setFromMatrixPosition(matrixWorld);
                 
-                var twinGlobalPos = new THREE.Vector3().setFromMatrixPosition(end).add(end);
-                alert(twinGlobalPos.x + ',' + twinGlobalPos.y + ',' + twinGlobalPos.z);
+                //var twinGlobalPos = new THREE.Vector3().setFromMatrixPosition(end).add(end);
+                //alert(twinGlobalPos.x + ',' + twinGlobalPos.y + ',' + twinGlobalPos.z);
                 
-                var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
-                entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
+                //var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
+                //entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
             });
             el.sceneEl.appendChild(entity);
           }
