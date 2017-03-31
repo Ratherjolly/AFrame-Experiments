@@ -458,11 +458,42 @@
           init: function () {
             var el = this.el;
             window.addEventListener('click', function () {
-                console.log("click-listener CALLED");
-                el.emit('click', null, false);
+                <!--console.log("click-listener CALLED");
+                el.emit('click', null, false);-->
+                shoot()
             });
           }
         });
+        function shoot() {
+            var tip = avatar.querySelector('.gun-tip');
+            var position = tip.getAttribute('position');
+            var worldDirection = new THREE.Vector3();
+            tip.object3D.getWorldDirection(worldDirection);
+            worldDirection.multiplyScalar(-1);
+
+            var worldPos = new THREE.Vector3();
+            worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
+            var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
+
+            var moveForward = function() {
+              var currentPosition = bullet.getAttribute('position');
+              var newPosition = worldDirection
+                                  .clone()
+                                  .multiplyScalar(bulletSpeed)
+                                  .add(currentPosition);
+              bullet.setAttribute('position', newPosition);
+            };
+
+            NAF.utils.whenEntityLoaded(bullet, function() {
+              var moveInterval = setInterval(moveForward, 100);
+
+              var removeBullet = function() {
+                clearInterval(moveInterval);
+                bullet.parentElement.removeChild(bullet);
+              };
+              setTimeout(removeBullet, 3000);
+            })
+          }
     </script>
 </head>
 
