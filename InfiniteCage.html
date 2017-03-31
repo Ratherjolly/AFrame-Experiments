@@ -443,8 +443,8 @@
                 //end.setFromMatrixPosition(matrixWorld);
                 //end.setFromMatrixPosition(matrixWorld);
                 
-                var twinGlobalPos = new THREE.Vector3().setFromMatrixPosition(end).add(entity);
-                alert(end.x + ',' + end.y + ',' + end.z);
+                var twinGlobalPos = new THREE.Vector3().setFromMatrixPosition(end).add(end);
+                alert(twinGlobalPos.x + ',' + twinGlobalPos.y + ',' + twinGlobalPos.z);
                 
                 var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
                 entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
