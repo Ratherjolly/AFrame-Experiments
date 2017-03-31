@@ -437,8 +437,8 @@
                 //alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
                 
                 var distance = 1.1;
-                var end = new THREE.Vector3();
-                end = position.forward * distance;
+                //var end = new THREE.Vector3();
+                var end = new THREE.Vecotor3(position.forward * distance);
                 
                 //end.setFromMatrixPosition(matrixWorld);
                 end.setFromMatrixPosition(matrixWorld);
