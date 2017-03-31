@@ -456,6 +456,23 @@
         // click-listener component to pass window clicks to an entity.
         AFRAME.registerComponent('click-listener', {
           init: function () {
+              <script>
+      var avatar;
+      var bulletSpeed = 3;
+
+      // Define custom schema for syncing avatar components
+      var avatarSchema = {
+        template: '#avatar-template',
+        components: [
+          'position',
+          'rotation',
+          {
+            selector: '.head',
+            component: 'material'
+          }
+        ]
+      };
+      NAF.schemas.add(avatarSchema);
             var el = this.el;
             window.addEventListener('click', function () {
                 console.log("click-listener CALLED");
