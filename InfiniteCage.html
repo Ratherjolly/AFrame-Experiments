@@ -434,16 +434,24 @@
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
               });
-                var distance = 1.1;
-                var end = new THREE.Vector3();
+                //var distance = 1.1;
+                //var end = new THREE.Vector3();
                 //end.getPositionFromMatrix( position.matrixWorld );
                 
-                end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                //end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
                 
                 
                 var outPosition = new THREE.Vector3();
                 outPosition.getPositionFromMatrix( matrixWorld );
-                alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
+                //alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
+                
+                
+                var distance = 1.1;
+                var end = new THREE.Vector3();
+                end = position.forward * distance; 
+                end.setFromMatrixPosition(matrixWorld);
+                end.getPositionFromMatrix(matrixWorld);
+                alert(end.x + ',' + end.y + ',' + end.z);
                 
                 
                 
