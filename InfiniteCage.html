@@ -424,8 +424,7 @@
             entity.setAttribute('mixin', this.data.mixin);
               
             console.log("mworld: "+parseFloat(matrixWorld));
-              
-              console.log("position X: "+parseFloat(position.x)+ ", Y: "+parseFloat(position.y)+", Z: "+parseFloat(position.z));
+            console.log("position X: "+parseFloat(position.x)+ ", Y: "+parseFloat(position.y)+", Z: "+parseFloat(position.z));
               
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');
@@ -435,13 +434,23 @@
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
               });
-                var distance = 0.1;
+                var distance = 1.1;
                 var end = new THREE.Vector3();
-                //console.log(parseFloat((position.forward* distance).x));
-                end = position.forward* distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                //end.getPositionFromMatrix( position.matrixWorld );
+                
+                end = position.forward * distance; //end.copy(entity.forward).scale(distance);//.add(entity.getAttribute('position'));
+                
+                
+                var outPosition = new THREE.Vector3();
+                outPosition.getPositionFromMatrix( end.matrixWorld );
+                alert(outPosition.x + ',' + outPosition.y + ',' + outPosition.z);
+                
+                
+                
+                
+                
                 var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
                 entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
-            
             });
             el.sceneEl.appendChild(entity);
           }
@@ -452,7 +461,8 @@
           init: function () {
             var el = this.el;
             window.addEventListener('click', function () {
-              el.emit('click', null, false);
+                console.log("click-listener CALLED");
+                el.emit('click', null, false);
             });
           }
         });
