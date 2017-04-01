@@ -245,28 +245,28 @@
 
                 /*if(diff == 0){
                     duration = 28000;
-                    geometry = 'primitive:circle;segments:9;radius:3.5sawsaw;';
+                    geometry = 'primitive:circle;segments:8;radius:3.5sawsaw;';
                     damage = 6;
                     points = 2;
                     material = 'shader:gif;src:url(images/daytone.gif);opacity:.8';
                 }*/
                 if(diff == 1){
                     duration = 26000;
-                    geometry = 'primitive:circle;segments:9;radius:3.0sawsaw;';
+                    geometry = 'primitive:circle;segments:8;radius:3.0sawsaw;';
                     damage = 5;
                     points = 3;
                     material = 'shader:gif;src:url(images/cat_lg.gif);opacity:.8';
                 }
                 else if(diff == 2){
                     duration = 24000;
-                    geometry = 'primitive:circle;segments:9;radius:2.0sawsaw;';
+                    geometry = 'primitive:circle;segments:8;radius:2.0sawsaw;';
                     damage = 3;
                     points = 4;
                     material = 'shader:gif;src:url(images/cat_md.gif);opacity:.8';
                 }
                 else if(diff == 3){
                     duration = 22000;
-                    geometry = 'primitive:circle;segments:9;radius:1.0sawsaw;';
+                    geometry = 'primitive:circle;segments:8;radius:1.0sawsaw;';
                     damage = 2;
                     points = 5;
                     material = 'shader:gif;src:url(images/cat_sm.gif);opacity:.8';
@@ -283,7 +283,7 @@
                     "collect": points,
                     "class": "cats",
                     "scale":"1 1 1",
-                    "look-at":"#camera"
+                    "look-at":"#player"
                 });
                 mScene.appendChild(temp);
                 //temp.innerHTML = "<a-animation attribute='rotation' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
@@ -385,6 +385,7 @@
           },
 
           tick: function () {
+              console.log(this.data.x,this.data.speed,this.data.z);
             this.el.object3D.position.set(this.data.x,this.data.speed,this.data.z);//.translateY(this.data.speed);
           }
         });
@@ -464,22 +465,64 @@
                 //alert(twinGlobalPos.x + ',' + twinGlobalPos.y + ',' + twinGlobalPos.z);
                 
                 //var posStr = parseFloat(end.x) + " " + parseFloat(end.y) + " " +parseFloat(end.z);
-                //entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
+                entity.innerHTML = "<a-animation attribute='position' to='"+posStr+"' dur='500000' direction='alternate' repeat='0'></a-animation>";
             });
             el.sceneEl.appendChild(entity);
           }
         });
 
-        // click-listener component to pass window clicks to an entity.
         AFRAME.registerComponent('click-listener', {
           init: function () {
             var el = this.el;
             window.addEventListener('click', function () {
-                //el.emit('click', null, false);
-               // shoot();
+              el.emit('click', null, false);
             });
           }
         });
+        AFRAME.registerComponent('collider', {
+      schema: {
+        target: { default: '' }
+      },
+
+      /**
+       * Fetch targets.
+       */
+      init: function () {
+        var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
+        this.targets = [];
+        for (var i = 0; i < targetEls.length; i++) {
+          this.targets.push(targetEls[i].object3D);
+        }
+        this.el.object3D.updateMatrixWorld();
+      },
+
+      tick: function (t) {
+        var collisionResults;
+        var directionVector;
+        var el = this.el;
+        var sceneEl = el.sceneEl;
+        var mesh = el.getObject3D('mesh');
+        var object3D = el.object3D;
+        var raycaster;
+        var vertices = mesh.geometry.vertices;
+        var bottomVertex = vertices[0].clone();
+        var topVertex = vertices[vertices.length - 1].clone();
+
+        // Calculate absolute positions of start and end of entity.
+        bottomVertex.applyMatrix4(object3D.matrixWorld);
+        topVertex.applyMatrix4(object3D.matrixWorld);
+
+        // Direction vector from start to end of entity.
+        directionVector = topVertex.clone().sub(bottomVertex).normalize();
+
+        // Raycas for collision.
+        raycaster = new THREE.Raycaster(bottomVertex, directionVector, 1);
+        collisionResults = raycaster.intersectObjects(this.targets, true);
+        collisionResults.forEach(function (target) {
+          target.object.el.emit('collider-hit', {target: el});
+        });
+      }
+    });
     </script>
 </head>
 
@@ -494,6 +537,27 @@
             <img id="cat_lg" src="./images/cat_lg.gif">
             <img id="daytone" src="./images/daytone.gif">
             
+            
+            <script id="enemies" type="text/x-nunjucks-template">
+          <a-animation attribute="rotation" dur="8000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
+
+          <a-entity layout="type: circle; radius: 10">
+            {% for i in range(10) %}
+              <a-image class="enemy" look-at="#player" position="0 1 0" src="#enemy-sprite"
+                       transparent="true">
+                <a-animation attribute="opacity" begin="collider-hit" dur="400" ease="linear"
+                             from="1" to="0"></a-animation>
+                <a-animation attribute="scale" begin="collider-hit" dur="400" ease="linear"
+                             to="0 0 0"></a-animation>
+              </a-image>
+            {% endfor %}
+          </a-entity>
+            <a-mixin id="laser"
+                 geometry="primitive: cylinder; height: 1; radius: 0.075"
+                 material="color: green; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
+                 rotation="90 0 0"
+                 projectile="speed: -0.5" collider="target: .enemy"></a-mixin>
+            
             <!--
             <a-mixin id="laser"
                      geometry="primitive: cylinder; radius: 0.05; translate: 0 -2 0"
@@ -503,12 +567,12 @@
                      geometry="primitive: cylinder; radius: 0.05; buffer: false;skipCache: true;mergeTo:#target"
                      material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3"
                      rotation="90 0 0"></a-mixin>
-            -->
+            
             
             <a-mixin id="laser"
                      geometry="primitive: box;" width="0.1" height="0.1" depth="0.5"
                      material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3"
-                     rotation="90 0 0"></a-mixin>
+                     rotation="90 0 0"></a-mixin>-->
         </a-assets>
 <script id="bullet-template" type="text/html">
           <a-sphere class="bullet"
@@ -519,53 +583,8 @@
         
         <!--Sky-->
         <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
-<script id="avatar-template" type="text/html">
-          <a-entity class="avatar">
-            <a-sphere class="head"
-              color="#5985ff"
-              scale="0.45 0.5 0.4"
-              random-color
-            ></a-sphere>
-            <a-entity class="face"
-              position="0 0.05 0"
-            >
-              <a-sphere class="eye"
-                color="#efefef"
-                position="0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-              <a-sphere class="eye"
-                color="#efefef"
-                position="-0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-            </a-entity>
-            <a-entity class="gun">
-              <a-box
-                position="0.51 -0.13 -0.29"
-                scale="0.19 0.23 0.67"
-                color="#000"
-              ></a-box>
-              <a-entity class="gun-tip"
-                position="0.51 -0.10 -0.64"
-              ></a-entity>
-            </a-entity>
-          </a-entity>
-        </script>
         <!--Camera-->
-        <a-camera position="0 0 0" id="camera" spawner="mixin: laser; on: click" click-listener>
+        <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
             <a-entity id="target" position="0 -0.5 0"></a-entity>
         </a-camera>
