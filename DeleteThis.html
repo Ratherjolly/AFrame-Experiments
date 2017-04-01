@@ -5,6 +5,13 @@
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+            document.body.onkeyup = function(e){
+          if(e.keyCode == 32){
+            shoot();
+          }
+        }
+        });
       var avatar;
       var bulletSpeed = 3;
       // Define custom schema for syncing avatar components
@@ -19,11 +26,8 @@
           }
         ]
       };
-      document.body.onkeyup = function(e){
-          if(e.keyCode == 32){
-            shoot();
-          }
-        }
+      
+      
       //NAF.schemas.add(avatarSchema);
       // Called by Networked-Aframe when connected to server
       function onConnect () {
