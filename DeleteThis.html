@@ -51,9 +51,16 @@
       }
       function shoot() {
         var el = this.el;
-        var tip = document.querySelector('.gun-tip');
+            var entity = document.createElement('a-entity');
+            var matrixWorld = el.object3D.matrixWorld;
+            var position = new THREE.Vector3();
+            var rotation = el.getAttribute('rotation');
+            var entityRotation;
+            position.setFromMatrixPosition(matrixWorld);
+            entity.setAttribute('position', position);
+        //var tip = document.querySelector('.gun-tip');
 
-        var position = el.getAttribute('position');
+        //var position = el.getAttribute('position');
         var worldDirection = new THREE.Vector3();
         el.object3D.getWorldDirection(worldDirection);
         worldDirection.multiplyScalar(-1);
