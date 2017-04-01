@@ -434,7 +434,7 @@
                 worldDirection.multiplyScalar(-1);
                 var worldPos = new THREE.Vector3();
                 console.log("2");
-                worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
+                worldPos.setFromMatrixPosition(el.object3D.matrixWorld);
                 console.log("3");
                 var newPosition = worldDirection
                               .clone()
