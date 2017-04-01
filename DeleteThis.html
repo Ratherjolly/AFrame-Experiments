@@ -1,7 +1,6 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
 
@@ -20,7 +19,7 @@
           }
         ]
       };
-      NAF.schemas.add(avatarSchema);
+      //NAF.schemas.add(avatarSchema);
       // Called by Networked-Aframe when connected to server
       function onConnect () {
         // Get random angle
@@ -49,7 +48,7 @@
         worldDirection.multiplyScalar(-1);
         var worldPos = new THREE.Vector3();
         worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
-        var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
+        //var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
         var moveForward = function() {
           var currentPosition = bullet.getAttribute('position');
           var newPosition = worldDirection
@@ -58,7 +57,7 @@
                               .add(currentPosition);
           bullet.setAttribute('position', newPosition);
         };
-        NAF.utils.whenEntityLoaded(bullet, function() {
+        bullet.addEventListener('loaded', function () {
           var moveInterval = setInterval(moveForward, 100);
           var removeBullet = function() {
             clearInterval(moveInterval);
