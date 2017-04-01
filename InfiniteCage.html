@@ -427,6 +427,23 @@
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
               });
+                
+                var worldDirection = new THREE.Vector3();
+                el.object3D.getWorldDirection(worldDirection);
+                console.log("1");
+                worldDirection.multiplyScalar(-1);
+                var worldPos = new THREE.Vector3();
+                console.log("2");
+                worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
+                console.log("3");
+                var newPosition = worldDirection
+                              .clone()
+                              .multiplyScalar(3)
+                              .add(position);
+                newPosition.setFromMatrixPosition(worldDirection);
+                console.log("4");
+                alert(newPosition.x + ',' + newPosition.y + ',' + newPosition.z);
+                console.log("5");
                 //var distance = 1.1;
                 //var end = new THREE.Vector3();
                 //end.getPositionFromMatrix( position.matrixWorld );
@@ -456,60 +473,13 @@
         // click-listener component to pass window clicks to an entity.
         AFRAME.registerComponent('click-listener', {
           init: function () {
-      var avatar;
-      var bulletSpeed = 3;
-
-      // Define custom schema for syncing avatar components
-      var avatarSchema = {
-        template: '#avatar-template',
-        components: [
-          'position',
-          'rotation',
-          {
-            selector: '.head',
-            component: 'material'
-          }
-        ]
-      };
-      NAF.schemas.add(avatarSchema);
             var el = this.el;
             window.addEventListener('click', function () {
-                console.log("click-listener CALLED");
                 //el.emit('click', null, false);
-                shoot();
+               // shoot();
             });
           }
         });
-        function shoot() {
-            var tip = avatar.querySelector('.gun-tip');
-            var position = tip.getAttribute('position');
-            var worldDirection = new THREE.Vector3();
-            tip.object3D.getWorldDirection(worldDirection);
-            worldDirection.multiplyScalar(-1);
-
-            var worldPos = new THREE.Vector3();
-            worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
-            var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
-
-            var moveForward = function() {
-              var currentPosition = bullet.getAttribute('position');
-              var newPosition = worldDirection
-                                  .clone()
-                                  .multiplyScalar(bulletSpeed)
-                                  .add(currentPosition);
-              bullet.setAttribute('position', newPosition);
-            };
-
-            NAF.utils.whenEntityLoaded(bullet, function() {
-              var moveInterval = setInterval(moveForward, 100);
-
-              var removeBullet = function() {
-                clearInterval(moveInterval);
-                bullet.parentElement.removeChild(bullet);
-              };
-              setTimeout(removeBullet, 3000);
-            })
-          }
     </script>
 </head>
 
