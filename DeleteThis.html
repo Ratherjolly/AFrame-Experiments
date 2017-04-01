@@ -50,15 +50,16 @@
         }
       }
       function shoot() {
+        var el = this.el;
         var tip = document.querySelector('.gun-tip');
-        console.log("awesome");
-        var position = tip.getAttribute('position');
+
+        var position = el.getAttribute('position');
         var worldDirection = new THREE.Vector3();
-        tip.object3D.getWorldDirection(worldDirection);
+        el.object3D.getWorldDirection(worldDirection);
         worldDirection.multiplyScalar(-1);
         var worldPos = new THREE.Vector3();
         worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
-        console.log("awesome2");
+
         //var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
         var moveForward = function() {
           console.log("awesome3");
