@@ -42,28 +42,34 @@
       }
       function shoot() {
         var tip = avatar.querySelector('.gun-tip');
+        console.log("awesome");
         var position = tip.getAttribute('position');
         var worldDirection = new THREE.Vector3();
         tip.object3D.getWorldDirection(worldDirection);
         worldDirection.multiplyScalar(-1);
         var worldPos = new THREE.Vector3();
         worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
+        console.log("awesome2");
         //var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
         var moveForward = function() {
+          console.log("awesome3");
           var currentPosition = bullet.getAttribute('position');
           var newPosition = worldDirection
                               .clone()
                               .multiplyScalar(bulletSpeed)
                               .add(currentPosition);
           bullet.setAttribute('position', newPosition);
+          console.log("awesome4");
         };
         bullet.addEventListener('loaded', function () {
+          console.log("awesome5");
           var moveInterval = setInterval(moveForward, 100);
           var removeBullet = function() {
             clearInterval(moveInterval);
             bullet.parentElement.removeChild(bullet);
           };
           setTimeout(removeBullet, 3000);
+          console.log("awesome6");
         })
       }
       function randomPointOnCircle(radius, angleRad) {
