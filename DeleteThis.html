@@ -1,202 +1,153 @@
-<html>
-  <head>
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
-    <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+<script src="https://rawgit.com/ngokevin/aframe-layout-component/master/dist/aframe-layout-component.min.js"></script>
+<script src="https://rawgit.com/ngokevin/aframe-template-component/master/dist/aframe-template-component.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function (event) {
-            document.body.onkeyup = function(e){
-          if(e.keyCode == 32){
-            shoot();
-          }
-        }
-        });
-      var avatar;
-      var bulletSpeed = 3;
-      // Define custom schema for syncing avatar components
-      var avatarSchema = {
-        template: '#avatar-template',
-        components: [
-          'position',
-          'rotation',
-          {
-            selector: '.head',
-            component: 'material'
-          }
-        ]
-      };
-      
-      
-      //NAF.schemas.add(avatarSchema);
-      // Called by Networked-Aframe when connected to server
-      function onConnect () {
-        // Get random angle
-        var angleRad = Math.random()*Math.PI*2;
-        // Get position around a circle
-        var position = randomPointOnCircle(3, angleRad);
-        var positionStr = position.x + ' 1.3 ' + position.y;
-        // Get rotation towards center of circle
-        var angleDeg = angleRad * 180 / Math.PI;
-        var angleToCenter = -1 * angleDeg + 90;
-        var rotationStr = '0 ' + angleToCenter + ' 0';
-        // Create avatar with this position and rotation
-        //avatar = NAF.entities.createAvatar('#avatar-template', positionStr, rotationStr);
-        // Detect trigger pulled (spacebar)
-        document.body.onkeyup = function(e){
-          if(e.keyCode == 32){
-            shoot();
-          }
-        }
-      }
-      function shoot() {
-        var el = this.el;
-            var entity = document.createElement('a-entity');
-            var matrixWorld = el.object3D.matrixWorld;
-            var position = new THREE.Vector3();
-            var rotation = el.getAttribute('rotation');
-            var entityRotation;
-            position.setFromMatrixPosition(matrixWorld);
-            entity.setAttribute('position', position);
-        //var tip = document.querySelector('.gun-tip');
+<script>
+// collider component to check for collisions.
+AFRAME.registerComponent('collider', {
+  schema: {
+    target: { default: '' }
+  },
 
-        //var position = el.getAttribute('position');
-        var worldDirection = new THREE.Vector3();
-        el.object3D.getWorldDirection(worldDirection);
-        worldDirection.multiplyScalar(-1);
-        var worldPos = new THREE.Vector3();
-        worldPos.setFromMatrixPosition(tip.object3D.matrixWorld);
+  /**
+   * Calculate targets.
+   */
+  init: function () {
+    var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
+    this.targets = [];
+    for (var i = 0; i < targetEls.length; i++) {
+      this.targets.push(targetEls[i].object3D);
+    }
+    this.el.object3D.updateMatrixWorld();
+  },
 
-        //var bullet = NAF.entities.createNetworkEntity('#bullet-template', worldPos, '0 0 0');
-        var moveForward = function() {
-          console.log("awesome3");
-          var currentPosition = bullet.getAttribute('position');
-          var newPosition = worldDirection
-                              .clone()
-                              .multiplyScalar(bulletSpeed)
-                              .add(currentPosition);
-          bullet.setAttribute('position', newPosition);
-          console.log("awesome4");
-        };
-        bullet.addEventListener('loaded', function () {
-          console.log("awesome5");
-          var moveInterval = setInterval(moveForward, 100);
-          var removeBullet = function() {
-            clearInterval(moveInterval);
-            bullet.parentElement.removeChild(bullet);
-          };
-          setTimeout(removeBullet, 3000);
-          console.log("awesome6");
-        })
-      }
-      function randomPointOnCircle(radius, angleRad) {
-        x = Math.cos(angleRad)*radius;
-        y = Math.sin(angleRad)*radius;
-        return {x: x, y: y};
-      }
+  /**
+   * Check for collisions (for cylinder).
+   */
+  tick: function (t) {
+    var collisionResults;
+    var directionVector;
+    var el = this.el;
+    var mesh = el.getObject3D('mesh');
+    var object3D = el.object3D;
+    var raycaster;
+    var vertices = mesh.geometry.vertices;
+    var bottomVertex = vertices[0].clone();
+    var topVertex = vertices[vertices.length - 1].clone();
+
+    // Calculate absolute positions of start and end of entity.
+    bottomVertex.applyMatrix4(object3D.matrixWorld);
+    topVertex.applyMatrix4(object3D.matrixWorld);
+
+    // Direction vector from start to end of entity.
+    directionVector = topVertex.clone().sub(bottomVertex).normalize();
+
+    // Raycast for collision.
+    raycaster = new THREE.Raycaster(bottomVertex, directionVector, 1);
+    collisionResults = raycaster.intersectObjects(this.targets, true);
+    collisionResults.forEach(function (target) {
+      // Tell collided entity about the collision.
+      target.object.el.emit('collider-hit', {target: el});
+    });
+  }
+});  
+  
+// projectile component to have an entity travel straight.
+AFRAME.registerComponent('projectile', {
+  schema: {
+    speed: { default: -0.4 }
+  },
+
+  tick: function () {
+    this.el.object3D.translateY(this.data.speed);
+  }
+});  
+  
+// spawner component to generate an entity on an event.
+AFRAME.registerComponent('spawner', {
+  schema: {
+    on: { default: 'click' },
+    mixin: { default: '' }
+  },
+
+  /**
+   * Add event listener.
+   */
+  update: function (oldData) {
+    this.el.addEventListener(this.data.on, this.spawn.bind(this));
+  },
+
+  /**
+   * Spawn new entity at entity's current position.
+   */
+  spawn: function () {
+    var el = this.el;
+    var entity = document.createElement('a-entity');
+    var matrixWorld = el.object3D.matrixWorld;
+    var position = new THREE.Vector3();
+    var rotation = el.getAttribute('rotation');
+    var entityRotation;
+
+    position.setFromMatrixPosition(matrixWorld);
+    entity.setAttribute('position', position);
+
+    // Have the spawned entity face the same direction as the entity.
+    // Allow the entity to further modify the inherited rotation.
+    position.setFromMatrixPosition(matrixWorld);
+    entity.setAttribute('position', position);
+    entity.setAttribute('mixin', this.data.mixin);
+    entity.addEventListener('loaded', function () {
+      entityRotation = entity.getComputedAttribute('rotation');
+      entity.setAttribute('rotation', {
+        x: entityRotation.x + rotation.x,
+        y: entityRotation.y + rotation.y,
+        z: entityRotation.z + rotation.z
+      });
+    });
+    el.sceneEl.appendChild(entity);
+  }
+});
+
+// click-listener component to pass window clicks to an entity.
+AFRAME.registerComponent('click-listener', {
+  init: function () {
+    var el = this.el;
+    window.addEventListener('click', function () {
+      el.emit('click', null, false);
+    });
+  }
+});
+</script>
+
+<a-scene>
+  <a-assets>
+    <img id="enemy-sprite" crossorigin="" src="https://ucarecdn.com/f11bb3e6-ceb4-427c-bcaa-351cabac37d5/">
+
+    <script id="enemies" type="text/x-nunjucks-template">
+      <a-entity layout="type: circle; radius: 5" position="0 0.5 0">
+        <a-animation attribute="rotation" dur="30000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
+
+        {% for x in range(num) %}
+          <a-image class="enemy" look-at="#player" src="#enemy-sprite" transparent="true">
+            <!-- Attach collision handler animations. -->
+            <a-animation attribute="opacity" begin="collider-hit" dur="400"  
+                         ease="linear" from="1" to="0"></a-animation>
+            <a-animation attribute="scale" begin="collider-hit" dur="400"
+                         ease="linear" to="0 0 0"></a-animation>
+          </a-image>
+        {% endfor %}
+      </a-entity>
     </script>
-  </head>
-  <body>
+    
+    <!-- Attach collider to laser. -->
+    <a-mixin id="laser"
+             geometry="primitive: cylinder; radius: 0.05; translate: 0 -2 0"
+             material="color: green; metalness: 0.2; opacity: 0.4; roughness: 0.3"
+             rotation="90 0 0" projectile collider="target: .enemy"></a-mixin>
+  </a-assets>
 
-    <a-scene shooter-input network-scene="
-      room: shooter;
-      debug: true;
-      audio: false;
-    ">
-      <a-assets>
+  <a-entity template="src: #enemies" data-num="10"></a-entity>
 
-        <img id="grid" src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png" crossorigin="anonymous">
-        <img id="sky" src="https://img.gs/bbdkhfbzkk/2048x2048,stretch/http://i.imgur.com/WqlqEkq.jpg" crossorigin="anonymous" />
+  <a-camera id="player" position="0 1.8 0" spawner="mixin: laser; on: click" click-listener></a-camera>
 
-        <!-- Templates -->
-
-        <!-- Avatar -->
-        <script id="avatar-template" type="text/html">
-          <a-entity class="avatar">
-            <a-sphere class="head"
-              color="#5985ff"
-              scale="0.45 0.5 0.4"
-              random-color
-            ></a-sphere>
-            <a-entity class="face"
-              position="0 0.05 0"
-            >
-              <a-sphere class="eye"
-                color="#efefef"
-                position="0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-              <a-sphere class="eye"
-                color="#efefef"
-                position="-0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-            </a-entity>
-            <a-entity class="gun">
-              <a-box
-                position="0.51 -0.13 -0.29"
-                scale="0.19 0.23 0.67"
-                color="#000"
-              ></a-box>
-              <a-entity class="gun-tip"
-                position="0.51 -0.10 -0.64"
-              ></a-entity>
-            </a-entity>
-          </a-entity>
-        </script>
-
-        <!-- Bullet -->
-        <script id="bullet-template" type="text/html">
-          <a-sphere class="bullet"
-            scale="0.1 0.1 0.1"
-            color="#fff"
-          ></a-sphere>
-        </script>
-
-        <!-- /Templates -->
-      </a-assets>
-
-      <a-camera></a-camera>
-
-      <a-entity position="0 0 0"
-        geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
-        material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"></a-entity>
-
-      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
-      <a-entity light="color: #ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
-
-      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
-      <a-entity id="particles" particle-system="preset: snow"></a-entity>
-    </a-scene>
-
-    <!-- GitHub Corner. -->
-    <a href="https://github.com/haydenjameslee/networked-aframe" class="github-corner">
-      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-      </svg>
-    </a>
-    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
-    </style>
-
-    <script>
-      // On mobile remove elements that are resource heavy
-      var isMobile = AFRAME.utils.device.isMobile();
-      if (isMobile) {
-        var particles = document.getElementById('particles');
-        particles.parentNode.removeChild(particles);
-      }
-    </script>
-  <body>
-</html>
+  <a-sky src="https://ucarecdn.com/49f8cfbc-ee57-444b-b954-3beb1709080c/"></a-sky>
+</a-scene>
