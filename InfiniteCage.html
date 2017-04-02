@@ -187,13 +187,13 @@
                     material = 'shader:gif;src:url(images/cat_sm.gif);opacity:.8';
                     //material = '#smCat';
                 }
-                var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
-
+                //var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
+                var tempPos = tempArr[0]+' '+tempArr[1]+' '+tempArr[3];
                 var temp = document.createElement('a-entity');
                 setAttributes(temp, {
                     "geometry": geometry,
                     "material": material,
-                    "alongpath": tempPos,
+                    "position": tempPos,//"alongpath": tempPos,
                     "damage": damage,
                     "collect": points,
                     "class": "cats",
@@ -202,6 +202,8 @@
                 });
                 mScene.appendChild(temp);
                 //temp.innerHTML = "<a-animation attribute='rotation' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
+                temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
+
             }
             //document.getElementById('intro').style = "display:none;";
             document.getElementById('losing').style = "display:none;";
@@ -225,8 +227,6 @@
                 this.el.addEventListener('click', () => {
                 //this.el.addEventListener('click', function(evt) {
                     //console.log('I was clicked at: ', evt.detail.intersection.point);
-
-                    
 
                     //score
                     var p = 0;
