@@ -158,17 +158,17 @@
                         e.target.parentElement.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='800'></a-animation>";
                     }
                     else{
+                        var entity = e.target.parentElement;
                         //HEALTH==========================
-                        var health = document.getElementById("health").innerHTML = parseFloat(100);
+                        var health = document.getElementById("health");
                         var h = 0;
                         h += parseFloat(health.innerHTML);
-                        console.log(h);
-                        h -= 25;
-                        console.log(h);
+                        h -= 1;
                         health.innerHTML = h;
-                        console.log(health.innerHTML);
+                        if (h < 1) {
+                            document.getElementById("losing").style = "";
+                        }
                         //REMOVE============================
-                        var entity = e.target.parentElement;
                         entity.parentNode.removeChild(entity);
                     }
                 },false);
