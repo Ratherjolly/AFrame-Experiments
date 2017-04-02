@@ -163,7 +163,7 @@
                         var health = document.getElementById("health");
                         var h = 0;
                         h += parseFloat(health.innerHTML);
-                        h -= 1;
+                        h -= 15; //-= parseFloat(entity.GetElement("damage"));
                         health.innerHTML = h;
                         if (h < 1) {
                             document.getElementById("losing").style = "";
