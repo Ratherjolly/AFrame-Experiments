@@ -153,11 +153,13 @@
                     
                     if(e.target.parentElement.innerHTML.includes("position")){
                         console.log(e.target.parentElement.innerHTML);
-                        e.target.parentElement.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='2000'></a-animation>";
+                        e.target.parentElement.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='1600'></a-animation>";
                     }
                     else{
                         console.log(e.target.parentElement.innerHTML);
-                        e.target.parentElement.remove();
+                        //e.target.parentNode.remove();
+                        var entity = e.target.parentElement;
+                        entity.parentNode.removeChild(entity);
                     }
                 },false);
             }
