@@ -87,7 +87,10 @@
     <script>
         function Init() {
             const mScene = document.getElementById('TheScene');
-            const posArr = [-18,-16,-14,-12,-10,-8,8,10,12,14,16,18];
+            const posArr = [-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8];
+            const FarPosArr = [-20,-18,-16,-14,-12,12,14,16,18,20];
+            
+            
            // var health = document.getElementById("health").innerHTML = 100;
            var catCnt = 6;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
@@ -100,13 +103,7 @@
                 var points = null;
                 var material = null;
                 var diff = Math.floor(Math.random() * 3)+1;
-                /*if(diff == 0){
-                    duration = 28000;
-                    geometry = 'primitive:circle;segments:8;radius:3.5sawsaw;';
-                    damage = 6;
-                    points = 2;
-                    material = 'shader:gif;src:url(images/daytone.gif);opacity:.8';
-                }*/
+                //CHOOSE CAT TYPE==========================
                 if(diff == 1){
                     duration = 20000;
                     geometry = 'primitive:circle;segments:8;radius:3.0sawsaw;';
@@ -129,8 +126,21 @@
                     material = 'shader:gif;src:url(images/cat_sm.gif);opacity:.8';
                     //material = '#smCat';
                 }
-                //var tempPos = 'path:'+tempArr[0]+','+tempArr[1]+',-20 '+tempArr[3]+','+tempArr[4]+','+tempArr[5]+' '+tempArr[6]+','+tempArr[7]+','+tempArr[8]+ '0,0,0; closed:true; dur:'+duration;
+                //CHOOSE LOCATION TYPE==========================
+                var FarVect = Math.floor(Math.random() * 3)+1;
+                if(FarVect == 1){
+                    var tempPos = FarPosArr[0]+' '+tempArr[1]+' '+tempArr[3];
+                }
+                else if(FarVect == 2){
+                    var tempPos = tempArr[0]+' '+FarPosArr[1]+' '+tempArr[3];
+                }
+                else if(FarVect == 3){
+                    var tempPos = tempArr[0]+' '+tempArr[1]+' '+FarPosArr[3];
+                }
+                
+                var tempArr = shuffleArray(FarVector);
                 var tempPos = tempArr[0]+' '+tempArr[1]+' '+tempArr[3];
+                
                 var temp = document.createElement('a-entity');
                 setAttributes(temp, {
                     "geometry": geometry,
