@@ -154,19 +154,19 @@
                 temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
                 
                 temp.addEventListener("animationend",function(e){
-                    
-                    console.log(e.target.parentElement.innerHTML);
-                    
                     if(e.target.parentElement.innerHTML.includes("position")){
                         e.target.parentElement.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='800'></a-animation>";
                     }
                     else{
-                        //HEALTH
+                        //HEALTH==========================
                         var h = 0;
                         h += parseFloat(health.innerHTML);
+                        console.log(h);
                         h -= 25;
+                        console.log(h);
                         health.innerHTML = h;
-                        //REMOVE
+                        console.log(health.innerHTML);
+                        //REMOVE============================
                         var entity = e.target.parentElement;
                         entity.parentNode.removeChild(entity);
                     }
