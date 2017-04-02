@@ -89,7 +89,7 @@
             const posArr = [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10];
             const FarPosArr = [-20,-18,-16,-14,14,16,18,20];
             
-            var health = document.getElementById("health").innerHTML = parseFloat(100);
+            //var health = document.getElementById("health").innerHTML = parseFloat(100);
             var catCnt = 6;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
             removeElementsByClass('cats');
@@ -159,6 +159,7 @@
                     }
                     else{
                         //HEALTH==========================
+                        var health = document.getElementById("health").innerHTML = parseFloat(100);
                         var h = 0;
                         h += parseFloat(health.innerHTML);
                         console.log(h);
