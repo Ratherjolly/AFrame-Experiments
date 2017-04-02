@@ -148,8 +148,7 @@
                 mScene.appendChild(temp);
                 temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
                 temp.addEventListener("animationend",function(e){
-                    console.log(e);
-                    console.log(e.);
+                    console.log(e.target.innerHTML);
                     e.target.parentElement = "<a-animation attribute='scale' to='0 0 0' dur='2000'></a-animation>";
                 },false);
             }
