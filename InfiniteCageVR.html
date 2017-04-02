@@ -151,15 +151,16 @@
                     
                     console.log(e.target.parentElement.innerHTML);
                     
-                    if(e.target.parentElement.innerHTML == "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>")
+                    if(e.target.parentElement.innerHTML.includes("position")){
+                        console.log(e.target.parentElement.innerHTML);
                         e.target.parentElement.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='2000'></a-animation>";
+                    }
                     else{
-                        console.log("HURTSSSSS!"+e.target.parentElement.innerHTML);
+                        console.log(e.target.parentElement.innerHTML);
                         e.target.parentElement.remove();
                     }
                 },false);
             }
-            //document.getElementById('intro').style = "display:none;";
             document.getElementById('losing').style = "display:none;";
             document.getElementById('winning').style = "display:none;";
             document.getElementById('stats').style = "";
