@@ -90,7 +90,7 @@
     <script>
         function Init() {
             const mScene = document.getElementById('TheScene');
-            const posArr = [-20,-18,-16,-14,-12,-10,10,12,14,16,18,20];
+            const posArr = [-18,-16,-14,-12,-10,-8,8,10,12,14,16,18];
            // var health = document.getElementById("health").innerHTML = 100;
            var catCnt = 6;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
@@ -147,9 +147,10 @@
                 });
                 mScene.appendChild(temp);
                 //temp.innerHTML = "<a-animation attribute='rotation' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
-                temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"' direction='alternate'></a-animation>";
+                temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
                 temp.addEventListener("animationend",function(e){
                     console.log("log at end of monkey animation");
+                    temp.innerHTML = "<a-animation attribute='scale' to='0 0 0' dur='2000'></a-animation>";
                 },false);
             }
             //document.getElementById('intro').style = "display:none;";
