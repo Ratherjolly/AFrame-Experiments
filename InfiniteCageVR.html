@@ -90,7 +90,7 @@
     <script>
         function Init() {
             const mScene = document.getElementById('TheScene');
-            const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
+            const posArr = [-20,-18,-16,-14,-12,-10,10,12,14,16,18,20];
            // var health = document.getElementById("health").innerHTML = 100;
            var catCnt = 6;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
@@ -111,21 +111,21 @@
                     material = 'shader:gif;src:url(images/daytone.gif);opacity:.8';
                 }*/
                 if(diff == 1){
-                    duration = 26000;
+                    duration = 20000;
                     geometry = 'primitive:circle;segments:8;radius:3.0sawsaw;';
                     damage = 5;
                     points = 3;
                     material = 'shader:gif;src:url(images/cat_lg.gif);opacity:.8';
                 }
                 else if(diff == 2){
-                    duration = 24000;
+                    duration = 18000;
                     geometry = 'primitive:circle;segments:8;radius:2.0sawsaw;';
                     damage = 3;
                     points = 4;
                     material = 'shader:gif;src:url(images/cat_md.gif);opacity:.8';
                 }
                 else if(diff == 3){
-                    duration = 22000;
+                    duration = 16000;
                     geometry = 'primitive:circle;segments:8;radius:1.0sawsaw;';
                     damage = 2;
                     points = 5;
@@ -138,7 +138,7 @@
                 setAttributes(temp, {
                     "geometry": geometry,
                     "material": material,
-                    "position": tempPos,//"alongpath": tempPos,
+                    "position": tempPos,
                     "damage": damage,
                     "collect": points,
                     "class": "cats",
@@ -147,7 +147,10 @@
                 });
                 mScene.appendChild(temp);
                 //temp.innerHTML = "<a-animation attribute='rotation' to='0 360 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
-                temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='8000' direction='alternate' repeat='indefinite'></a-animation>";
+                temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"' direction='alternate'></a-animation>";
+                temp.addEventListener("animationend",function(e){
+                    console.log("log at end of monkey animation");
+                },false);
             }
             //document.getElementById('intro').style = "display:none;";
             document.getElementById('losing').style = "display:none;";
@@ -167,6 +170,30 @@
                     //console.log('I was clicked at: ', evt.detail.intersection.point);
                 //});
                 //this.el.addEventListener('raycaster-intersected', () => {
+                this.el.addEventListener('click', () => {
+                //this.el.addEventListener('click', function(evt) {
+                    //console.log('I was clicked at: ', evt.detail.intersection.point);
+                    //score
+                    var p = 0;
+                    p += parseFloat(score.innerHTML);
+                    p += this.data;
+                    score.innerHTML = p;
+                    //total
+                    var t = 0;
+                    t += parseFloat(total.innerHTML);
+                    t -= 1;
+                    total.innerHTML = t;
+                    if (t < 1) {
+                        document.getElementById("winning").style = "";
+                    }
+                    var entity = this.el;
+                    entity.parentNode.removeChild(entity);
+                });
+            }
+            AFRAME.registerComponent('animationend', {
+            schema: { default: '' },
+            init() {
+                
                 this.el.addEventListener('click', () => {
                 //this.el.addEventListener('click', function(evt) {
                     //console.log('I was clicked at: ', evt.detail.intersection.point);
