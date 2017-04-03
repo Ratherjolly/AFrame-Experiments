@@ -35,28 +35,73 @@
     </script>
   </head>
   <body>
-<a-scene antialias="true">
-  <!-- Camera with gaze cursor -->
-  <a-entity position="0 1.8 5">
-      <a-entity camera look-controls wasd-controls>
-          <!-- Cursor should only interact with .box class entities -->
-          <a-entity raycaster="objects: .box"
-                    cursor
-                    geometry="primitive: ring; radiusOuter: 0.015;
-                              radiusInner: 0.01; segmentsTheta: 32"
-                    material="color: #283644; shader: flat"
-                    position="0 0 -0.75">
-          </a-entity>
-      </a-entity>
+<a-scene>
+    <a-entity position="" scale="0.1 0.1 0.1">
+    <a-animation attribute="rotation" repeat="indefinite" easing="linear" dur="128000" to="0 360 0"></a-animation>
+    <a-animation fill="both" direction="alternate" repeat="indefinite" from="0 -0.6 -2" easing="ease" dur="300" to="0 -0.65 -2" attribute="position"></a-animation>
+  
+      <a-entity position="11 0 8" id="molekules2">
+      <a-animation direction="alternate" repeat="indefinite" begin="500" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
+      <a-sphere color="#ebebeb" radius="1.5"></a-sphere>
+      <a-cylinder color="#ebebeb" radius="0.075" height="4" position="0 2 0" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
+      <a-sphere color="#ebebeb" radius="1" material="color:#ebebeb" position="0 3 0"></a-sphere>
+    </a-entity>
+  
+          <a-entity position="15 -10 -7" id="molekules3">
+      <a-animation direction="alternate" repeat="indefinite" begin="50" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
+      <a-sphere color="#ebebeb" radius="1.5"></a-sphere>
+      <a-cylinder color="#ebebeb" radius="0.075" height="4" position="0 2 0" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
+      <a-sphere color="#ebebeb" radius="1" material="color:#ebebeb" position="0 3 0"></a-sphere>
+    </a-entity>
+  
+    </a-entity>
+
+
+  <a-entity position="0.3 -1.6 0" id="molekules1">
+    <a-event name="mouseenter" color="blue"></a-event>
+    <a-animation direction="alternate" repeat="indefinite" begin="150" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
+    <a-sphere color="#ebebeb" radius="0.3" material="color:#ebebeb"></a-sphere>
+    <a-cylinder color="#ebebeb" radius="0.075" height="0.5" position="0 0.5 0" material="color:#ebebeb" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
+    <a-sphere color="#ebebeb" radius="0.3" material="color:#ebebeb" position="0 0.7 0"></a-sphere>
   </a-entity>
   
-  <a-text text="class='sphere'" position="3.5 1.25 -1" scale="2 2 2"></a-text>
-  <a-sphere class='sphere' position="2 1.25 -1" radius="0.7" color="#EF2D5E"></a-sphere>
-  
-  <a-text text="class='box'" position="-5 1.25 -1" scale="2 2 2"></a-text>
-  <a-box class='box' position="-2 1.25 -1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box>
+    </a-entity>
+  <a-sky color="#000000" id="environment">
+  </a-sky>
+  <!-- Camera -->
+  <a-entity position="0 0 0" id="camera" camera look-controls="enabled: true" cursor-visible="enabled: false" wasd-controls="enabled: false; acceleration: 1000">
+    <a-entity id="cursor" cursor="fuse: true;  maxDistance: 100000; timeout: 100" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: blue" opacity="0.7" position="0 0 -1">
 
-  <a-sky color="white"></a-sky>
+      <a-animation begin="cursorstart" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1.2 1.2 1.2" dur="300" sound="src: #clicksound; autoplay: false; on:click" end="fusing" repeat="1"></a-animation>
+  
+      </a-entity>
+    <a-ring position="0 0 -0.6" material="color: #ffffff" geometry="primitive:ring;radiusOuter:1.5;radiusInner:0.99;segments-theta:250;segments-phi:250" visible="true" id="kanone"></a-ring>
+
+
+    <a-sphere color="red" radius="0.3" id="ball">
+      <a-animation attribute="radius" from="1" to="0.0" begin="visible"></a-animation>
+      <a-animation begin="shoot" dur="500" from="-9 -6 -8" to="0 0 -8" attribute="position"></a-animation>
+    </a-sphere>
+    
+        <a-image position="0 1 -4" material="color:darkblue;shader:flat;" rotation="0 0 90" geometry="primitive:plane;width:2;height:0.3" id="bluelight" visible="false">
+      <a-animation attribute="position" from="0 1 -4" to="0 10 -4" dur="300" fill="forwards" direction="forward" begin="startlicht"></a-animation>
+      <a-animation attribute="visible" to="true" begin="visible"></a-animation>
+          
+              </a-image>
+
+  </a-entity>
+    
+  
+  
+    
+    
+    
+    
+    
+    
+    
+  
+  
 </a-scene>
   </body>
 </html>
