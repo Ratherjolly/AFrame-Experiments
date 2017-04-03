@@ -237,7 +237,9 @@
             //this.el.object3D.translateY(this.data.speed);
               //console.log(this.data.x,this.data.speed,this.data.z);
             this.el.object3D.position.set(this.data.x,parseFloat(this.data.y+this.data.speed),this.data.z);//.translateY(this.data.speed);
-            console.log(this.el.object3D.position);
+            
+            if(parseFloat(this.data.x)<20 && parseFloat(this.data.Y)<20 & parseFloat(this.data.z)<20 )
+                console.log(this.el.object3D.position);
           }
         });
         AFRAME.registerComponent('spawner', {
@@ -259,6 +261,7 @@
             //var matrixWorld = el.object3D.matrixWorld;
             //var position = new THREE.Vector3();
             //var rotation = this.el.getAttribute('rotation');
+              
             var el = this.el;
             var entity = document.createElement('a-entity');
             var matrixWorld = el.object3D.matrixWorld;
@@ -266,8 +269,8 @@
             var rotation = el.getAttribute('rotation');
             var entityRotation;
  
-             position.setFromMatrixPosition(matrixWorld);
-             entity.setAttribute('position', position);
+             //position.setFromMatrixPosition(matrixWorld);
+             //entity.setAttribute('position', position);
               
               
             position.setFromMatrixPosition(matrixWorld);
