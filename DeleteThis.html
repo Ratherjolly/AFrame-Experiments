@@ -4,316 +4,59 @@
     <meta charset="utf-8">
     <title>A-INVADERS</title>
     <meta name="description" content="A-INVADERS">
-    <style>
-      body {
-  background-color: black;
-}
-
-.screen {
-  position: relative;
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  z-index: 99999;
-  text-align: center;
-  padding-top: 15%;
-  color: white;
-  font-family: monospace;
-}
-
-.end-screen {
-  display: none;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 110px;
-  text-shadow: 1px 1px #ef2d5e,
-               2px 2px #ef2d5e,
-               3px 3px #ef2d5e;
-}
-
-.start, .end {
-  font-weight: bold;
-  margin-top: 45px;
-  font-size: 35px;
-}
-
-.instructions {
-  margin-top: 45px;
-  font-size: 20px;
-}
-
-.blink {
-  animation: blink 2.5s linear infinite;
-}
-
-@keyframes blink {
-  0% { opacity: 0.0; }
-  50% { opacity: 1.0; }
-  100% { opacity: 0.0; }
-}
-
-.score {
-  color: white;
-  position: fixed;
-  top: 10px;
-  font-family: monospace;
-  font-size: 20px;
-  z-index: 99999;
-}
-
-.end a {
-  color: #ef2d5e;
-  text-decoration: none;
-}
-
-.end a::hover {
-  text-decoration: underline;
-}
-    </style>
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script>
-      AFRAME.registerComponent('spawner', {
-  schema: {
-    on: { default: 'click' },
-    mixin: { default: '' }
-  },
+     var bluelight = document.querySelector('#bluelight');
+     var molekules1 = document.querySelector('#molekules1');
+     var molekules2 = document.querySelector('#molekules2');
+     var molekules3 = document.querySelector('#molekules3');
 
-  update: function () {
-    var el = this.el;
-    var spawn = this.spawn.bind(this);
-    if (this.on === this.data.on) { return; }
-    el.removeEventListener(this.on, spawn);
-    el.addEventListener(this.data.on, spawn);
-    this.on = this.data.on;
-  },
+     var cursor = document.querySelector('#cursor')
+     var ball = document.querySelector('#ball');
+     var shoot = document.querySelector('#shoot');
 
-  spawn: function () {
-    var el = this.el;
-    var matrixWorld = el.object3D.matrixWorld;
-    var position = new THREE.Vector3();
-    position.setFromMatrixPosition(matrixWorld);
-    var entity = document.createElement('a-entity');
-    entity.setAttribute('position', position);
-    entity.setAttribute('mixin', this.data.mixin);
-    el.sceneEl.appendChild(entity);
-  }
-});
-      AFRAME.registerComponent('laser-behavior', {
-  schema: {
-    speed: { default: 1 }
-  },
+     function shootfkt() {
 
-  init: function () {
-    this.el.sceneEl.addBehavior(this);
-  },
+       cursor.emit('cursorstart');
 
-  update: function () {
-    var object3D = this.el.object3D;
-    object3D.translateY(this.data.speed);
-  }
-});
-    AFRAME.registerComponent('collider', {
-  schema: {},
+       ball.emit('shoot');
+       ball.emit('visible');
 
-  init: function() {
-    this.el.sceneEl.addBehavior(this);
-  },
+       setTimeout(function() {
+         bluelight.emit('startlicht');
+         bluelight.emit('visible');
 
-  update: function () {
-    var sceneEl = this.el.sceneEl;
-    var mesh = this.el.getObject3D('mesh');
-    var object3D = this.el.object3D
-    var originPoint = this.el.object3D.position.clone();
-    //mesh.geometry.attributes.position.array[0].clone();//vertices[0].clone();
-    for (var vertexIndex = 0; vertexIndex < mesh.geometry.attributes.position.array.length; vertexIndex++) {
-      var localVertex = mesh.geometry.attributes.position.array[vertexIndex].clone();
-      var globalVertex = localVertex.applyMatrix4( object3D.matrix );
-      var directionVector = globalVertex.sub( object3D.position );
+       }, 300);
 
-      var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-      var collisionResults = ray.intersectObjects( sceneEl.object3D.children, true );
-      collisionResults.forEach(hit);
-    }
-    function hit(collision) {
-      if (collision.object === object3D) {
-        return;
-      }
-      if (collision.distance < directionVector.length()) {
-        if (!collision.object.el) { return; }
-        collision.object.el.emit('hit'); 
-      }
-    }
-  }
-});
-      
-      AFRAME.registerComponent('explode', {
-  schema: { on: { default: ''} },
-
-  update: function (previousData) {
-    var el = this.el;
-    var explode = this.handler = this.explode.bind(this);
-    if (previousData) {
-      el.removeEventListener(previousData.on, explode);
-    }
-    el.addEventListener(this.data.on, explode);
-  },
-
-  explode: function () {
-    var object3D = this.el.getObject3D('mesh');
-    var scene = this.el.sceneEl.object3D;
-    var duration = 8000;
-
-    // explode geometry into objects
-    var pieces = explode(object3D.geometry, object3D.material);
-
-    object3D.material.visible = false;
-
-    // animate objects
-    for ( var i = 0; i < pieces.children.length; i ++ ) {
-
-      var object = pieces.children[ i ];
-
-      object.geometry.computeFaceNormals();
-      var normal = object.geometry.faces[0].normal.clone();
-      var targetPosition = object.position.clone().add(normal.multiplyScalar(300));
-      //removeBoxFromList( object3D );
-      new TWEEN.Tween( object.position )
-        .to( targetPosition, duration )
-        .onComplete( deleteBox )
-        .start();
-
-      object.material.opacity = 0;
-      new TWEEN.Tween( object.material )
-        .to( { opacity: 1 }, duration )
-        .start();
-
-      var rotation = 2 * Math.PI;
-      var targetRotation = { x: rotation, y: rotation, z:rotation };
-      new TWEEN.Tween( object.rotation )
-        .to( targetRotation, duration )
-        .start();
-
-    }
-
-    function deleteBox() {
-      object3D.remove( pieces )
-      scene.remove( object3D );
-    }
-
-    object3D.add(pieces);
-    this.el.removeEventListener(this.data.on, this.handler);
-
-    function explode( geometry, material ) {
-      var pieces = new THREE.Group();
-      var material = material.clone();
-      material.side = THREE.DoubleSide;
-
-      for (var i = 0; i < geometry.faces.length; i ++) {
-        var face = geometry.faces[ i ];
-
-        var vertexA = geometry.vertices[ face.a ].clone();
-        var vertexB = geometry.vertices[ face.b ].clone();
-        var vertexC = geometry.vertices[ face.c ].clone();
-
-        var geometry2 = new THREE.Geometry();
-        geometry2.vertices.push( vertexA, vertexB, vertexC );
-        geometry2.faces.push( new THREE.Face3( 0, 1, 2 ) );
-
-        var mesh = new THREE.Mesh( geometry2, material );
-        mesh.position.sub( geometry2.center() );
-        pieces.add( mesh );
-      }
-      //sort the pieces
-      pieces.children.sort( function ( a, b ) {
-        return a.position.z - b.position.z;
-        //return a.position.x - b.position.x;     // sort x
-        //return b.position.y - a.position.y;   // sort y
-      } );
-      pieces.rotation.set( 0, 0, 0 )
-      return pieces;
-    }
-
-    function removeBoxFromList( box ) {
-      var objects = scene.children;
-      for (var i = 0; i < objects.length; i++) {
-        if (objects[i] === box) {
-          objects.splice(i, 1);
-          return;
-        }
-      }
-    }
-
-  }
-});
+     }
+     molekules1.addEventListener('click', shootfkt);
+     molekules2.addEventListener('click', shootfkt);
+     molekules3.addEventListener('click', shootfkt);
     </script>
   </head>
   <body>
-    <div class="score">Score: 0</div>
-    <div class="screen title-screen">
-      <div class="title">A-INVADERS</div>
-      <div class="start blink">Click to Start</div>
-      <div class="instructions">AD keys to move and click to shoot</div>
-    </div>
-    <div class="screen end-screen">
-      <div class="end">Congratulations you saved the world!</div>
-      <div class="end">Made with <a href="http://www.aframevr.io">A-FRAME</a></div>
-    </div>
-    <a-scene stats="false">
-      <a-assets>
-        <a-mixin id="cube"
-                 geometry="primitive: box; height: 2; width: 2; depth: 2;"
-                 material="color: #167341; roughness: 1.0; metalness: 0.2;"></a-mixin>
-        <a-mixin id="laser"
-                 geometry="primitive: box; height: 2; width: 0.1; depth: 0.1"
-                 material="color: yellow;"
-                 laser-behavior collider></a-mixin>
-        <a-mixin id="enemy" explode="on: hit"></a-mixin>
-      </a-assets>
-      <a-entity position="0 0 20">
-        <a-entity camera="fov: 45"></a-entity>
+<a-scene antialias="true">
+  <!-- Camera with gaze cursor -->
+  <a-entity position="0 1.8 5">
+      <a-entity camera look-controls wasd-controls>
+          <!-- Cursor should only interact with .box class entities -->
+          <a-entity raycaster="objects: .box"
+                    cursor
+                    geometry="primitive: ring; radiusOuter: 0.015;
+                              radiusInner: 0.01; segmentsTheta: 32"
+                    material="color: #283644; shader: flat"
+                    position="0 0 -0.75">
+          </a-entity>
       </a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="-17.5 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="-14 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="-10.5 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="-7 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="-3.5 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="0 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="3.5 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="7 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="10.5 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="14 5 -10"></a-entity>
-      <a-entity mixin="cube enemy" material="color: red" position="17.5 5 -10"></a-entity>
-      <!-- Cube -->
-      <a-entity mixin="cube"
-                wasd-controls="acceleration: 400; wsEnabled: false"
-                position="0 -10 -10"
-                spawner="mixin: laser; on: mousedown"
-                cursor></a-entity>
-    </a-scene>
-    <script>
-      var titleEl = document.querySelector('.title-screen');
-      var endEl = document.querySelector('.end-screen');
-      var enemies = document.querySelectorAll('[mixin="cube enemy"]');
-      var deadEnemies = [];
-      var scoreEl = document.querySelector('.score');
-      var score = 0;
-      var increaseCounter = function(e) {
-        var enemy = e.currentTarget;
-        if (deadEnemies.indexOf(enemy) != -1) { return; }
-        deadEnemies.push(enemy);
-        score+=1;
-        scoreEl.innerHTML = 'Score: ' + score;
-        if (enemies.length === deadEnemies.length) {
-          endEl.style.display = 'block';
-        }
-      }
-      titleEl.addEventListener('click', function() { titleEl.style.display = 'none'; });
-      enemies = Array.prototype.slice.call(enemies);
-      enemies.forEach(function(enemyEl) {
-        enemyEl.addEventListener('hit', increaseCounter);
-      });
-    </script>
+  </a-entity>
+  
+  <a-text text="class='sphere'" position="3.5 1.25 -1" scale="2 2 2"></a-text>
+  <a-sphere class='sphere' position="2 1.25 -1" radius="0.7" color="#EF2D5E"></a-sphere>
+  
+  <a-text text="class='box'" position="-5 1.25 -1" scale="2 2 2"></a-text>
+  <a-box class='box' position="-2 1.25 -1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box>
+
+  <a-sky color="white"></a-sky>
+</a-scene>
   </body>
 </html>
