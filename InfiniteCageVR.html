@@ -236,7 +236,7 @@
           tick: function () {
             //this.el.object3D.translateY(this.data.speed);
               //console.log(this.data.x,this.data.speed,this.data.z);
-            this.el.object3D.position.set(this.data.x,this.data.y+this.data.speed,this.data.z);//.translateY(this.data.speed);
+            this.el.object3D.position.set(this.data.x,parseFloat(this.data.y+this.data.speed),this.data.z);//.translateY(this.data.speed);
             console.log(this.el.object3D.position);
           }
         });
@@ -284,7 +284,7 @@
               console.log(entityRotation);
             });
             el.sceneEl.appendChild(entity);
-            entity.play();
+           // entity.play();
           }
         });
         
