@@ -323,7 +323,11 @@
             <img id="cat_md" src="./images/cat_md.gif">
             <img id="cat_lg" src="./images/cat_lg.gif">
             <img id="daytone" src="./images/daytone.gif">
-            
+            <a-mixin id="laser"
+                 geometry="primitive: cylinder; height: 1; radius: 0.075"
+                 material="color: green; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
+                 rotation="90 0 0"
+                 projectile="speed: -0.5" collider="target: .enemy"></a-mixin>
             <a-mixin id="box" geometry="primitive: box; depth: 0.1, height: 0.3; width: 0.1"
                           material="color: #DDD; opacity: 0.4; shader: flat"
                           intersect-color-change></a-mixin>
@@ -335,36 +339,17 @@
             <a-mixin id="raycaster" raycaster="objects: [mixin~='box']"
                                 raycaster-helper material="opacity: 0.8"></a-mixin>
             <a-mixin id="color1" material="color: #0B88A8"></a-mixin>
-            <a-mixin id="color2" material="color: #A6DC8C"></a-mixin>
         </a-assets>
         <!--Sky-->
         <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
         <!--Camera-->
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
-            <!-- Bullet, rotated to be parallel with the ground. -->
-<a-entity id="bullet" geometry="primitive: cylinder; height: 0.1" rotation="-90 0 0">
-  <!-- Raycaster, targets enemies, made to be as long as the bullet, positioned to the start of the bullet, rotated to align with the bullet. -->
-  <a-entity raycaster="objects: .enemies; far: 0.1" position="0 -0.5 0" rotation="90 0 0"></a-entity>
-</a-entity>
             <a-entity id="left-hand" position="-0.5 -0.2 -0.5">
             <a-entity mixin="color1 finger" position=".1 0 0" rotation="10 20 0">
               <a-entity mixin="color1 raycaster"></a-entity>
             </a-entity>
-            <a-entity mixin="color2 finger" position=".2 0 0" rotation="10 10 0">
-              <a-entity mixin="color2 raycaster"></a-entity>
-            </a-entity>
           </a-entity>
-
-          <a-entity id="right-hand" position="0 -0.2 -0.5">
-            <a-entity mixin="color5 finger" position=".1 0 0" rotation="10 10 0">
-              <a-entity mixin="color5 raycaster"></a-entity>
-            </a-entity>
-            <a-entity mixin="color6 finger" position=".2 0 0" rotation="10 0 0">
-              <a-entity mixin="color6 raycaster"></a-entity>
-            </a-entity>
-          </a-entity>
-            
         </a-camera>
     </a-scene>
 
