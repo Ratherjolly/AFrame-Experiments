@@ -263,6 +263,7 @@
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
             entity.setAttribute('mixin', this.data.mixin);
+            
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');//entity.getComputedAttribute('rotation');
               entity.setAttribute('rotation', {
@@ -270,6 +271,7 @@
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
               });
+              console.log(entityRotation);
             });
             el.sceneEl.appendChild(entity);
             entity.play();
@@ -376,7 +378,7 @@
                  projectile="speed: -0.5" collider="target: .cats"></a-mixin>
         </a-assets>
         <!--Sky-->
-        <a-sky src="./images/3dImage2.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
+        <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
         <!--Camera-->
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
