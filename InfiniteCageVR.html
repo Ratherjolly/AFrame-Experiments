@@ -234,10 +234,10 @@
           },
 
           tick: function () {
-              //console.log("AWESOME");
             //this.el.object3D.translateY(this.data.speed);
               //console.log(this.data.x,this.data.speed,this.data.z);
             this.el.object3D.position.set(this.data.x,this.data.y+this.data.speed,this.data.z);//.translateY(this.data.speed);
+            console.log(this.el.object3D.position);
           }
         });
         AFRAME.registerComponent('spawner', {
@@ -265,7 +265,7 @@
             entity.setAttribute('mixin', this.data.mixin);
             
             entity.addEventListener('loaded', function () {
-              entityRotation = entity.getAttribute('rotation');//entity.getComputedAttribute('rotation');
+              entityRotation = entity.getComputedAttribute('rotation');//entity.getAttribute('rotation');
               entity.setAttribute('rotation', {
                 x: entityRotation.x + rotation.x,
                 y: entityRotation.y + rotation.y,
