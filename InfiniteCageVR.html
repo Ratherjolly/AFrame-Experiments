@@ -228,6 +228,18 @@
             });
           }
         });
+        AFRAME.registerComponent('projectile', {
+          schema: {
+            speed: { default: -0.4 }
+          },
+
+          tick: function () {
+              console.log("AWESOME")!
+            //this.el.object3D.translateY(this.data.speed);
+              console.log(this.data.x,this.data.speed,this.data.z);
+            this.el.object3D.position.set(this.data.x,this.data.speed,this.data.z);//.translateY(this.data.speed);
+          }
+        });
         
         
         AFRAME.registerComponent('collect', {
