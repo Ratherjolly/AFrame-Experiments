@@ -369,7 +369,7 @@
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
-                 projectile="speed: -0.5" collider="target: .cats"></a-mixin>
+                 projectile="speed: -0.4" collider="target: .cats"></a-mixin>
             <a-mixin
           id="textMarker"
           geometry="primitive: plane; width: 0.02; height: 0.02"
@@ -385,10 +385,6 @@
                       position="0 0 -1"
                       geometry="primitive: ring"
                       material="color: black; shader: flat">
-              <a-animation begin="click" easing="ease-in" attribute="scale"
-                           fill="backwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
-              <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
-                           fill="forwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
             </a-entity>
             <a-entity position="0 0 -2" text="value: Infinite Cage1-1;color:red;"></a-entity>
         </a-camera>
