@@ -368,13 +368,33 @@
                  material="color: green; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
                  projectile="speed: -0.5" collider="target: .cats"></a-mixin>
+            <a-mixin
+          id="textMarker"
+          geometry="primitive: plane; width: 0.02; height: 0.02"
+          material="color: red"
+        ></a-mixin>
         </a-assets>
         <!--Sky-->
         <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
         <!--Camera-->
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
+            <a-entity text="value: Infinite Cage;"></a-entity>
         </a-camera>
+        
+        <a-entity mixin="textMarker" position="-2.5 1 0.01"></a-entity>
+      <a-entity position="-2.5 1 0"
+                text="anchor: left; width: 1.5; color: white; value: [LEFT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+      </a-entity>
+      <a-entity mixin="textMarker" position="0 1 0.01"></a-entity>
+      <a-entity position="0 1 0"
+                text="anchor: center; width: 1.5; color: white; value: [CENTER ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+      </a-entity>
+      <a-entity mixin="textMarker" position="2.5 1 0.01"></a-entity>
+      <a-entity position="2.5 1 0"
+                text="anchor: right; width: 1.5; color: white; value: [RIGHT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+      </a-entity>
+        
     </a-scene>
 
     
