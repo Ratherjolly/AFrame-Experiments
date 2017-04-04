@@ -381,7 +381,10 @@
         <!--Camera-->
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="#4CC3D9"></a-cursor>
-            <a-entity text="value: Infinite Cage;color:red;"></a-entity>
+            <a-entity position="0 -1 -1" text="value: Infinite Cage -1-1;color:red;"></a-entity>
+            <a-entity position="0 1 -1" text="value: Infinite Cage1-1;color:red;"></a-entity>
+            <a-entity position="0 -1 1" text="value: Infinite Cage-11;color:red;"></a-entity>
+            <a-entity position="0 1 1" text="value: Infinite Cage11;color:red;"></a-entity>
         </a-camera>
         
         <a-entity mixin="textMarker" position="-2.5 1 0.01"></a-entity>
