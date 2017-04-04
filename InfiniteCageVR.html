@@ -188,8 +188,9 @@
             //console.log(this.el);
            // console.log(this.el.object3D);
               this.el.object3D.translateY( this.data.speed);
-            if(parseFloat(this.data.x)<20 && parseFloat(this.data.y)<20 & parseFloat(this.data.z)<20 )
-                console.log(this.el.object3D.position);
+            if(parseFloat(this.data.x)<20 && parseFloat(this.data.y)<20 & parseFloat(this.data.z)<20 ){
+                console.log("DESTROY/REUSE OBJECT");
+            }
           }
         });
         
