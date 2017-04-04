@@ -185,10 +185,10 @@
               //console.log(this.data.x,this.data.speed,this.data.z);
             //this.el.object3D.position.set(this.data.x,parseFloat(this.data.y+this.data.speed),this.data.z);//.translateY(this.data.speed);
             //console.log(this);
-            console.log(this.el);
-            console.log(this.el.object3D);
+            //console.log(this.el);
+           // console.log(this.el.object3D);
               this.el.object3D.translateY( this.data.speed);
-            if(parseFloat(this.data.x)<20 && parseFloat(this.data.Y)<20 & parseFloat(this.data.z)<20 )
+            if(parseFloat(this.data.x)<20 && parseFloat(this.data.y)<20 & parseFloat(this.data.z)<20 )
                 console.log(this.el.object3D.position);
           }
         });
