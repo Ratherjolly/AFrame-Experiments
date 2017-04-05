@@ -361,12 +361,12 @@
             const score = document.getElementById("score");
             const total = document.getElementById("totals");
             
-            var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
+            /*var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
             this.targets = [];
             for (var i = 0; i < targetEls.length; i++) {
               this.targets.push(targetEls[i].object3D);
             }
-            this.el.object3D.updateMatrixWorld();
+            this.el.object3D.updateMatrixWorld();*/
           },
         tick: function (t) {
           var el = this.el;
@@ -374,7 +374,7 @@
           var mesh = el.getObject3D('mesh');
           var object3D = el.object3D;
           var originPoint = el.object3D.position.clone();
-
+            console.log(object3D);
           for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
             var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
@@ -383,7 +383,6 @@
             var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
             console.log(collisionResults.forEach(hit));
             collisionResults.forEach(hit);
-            
           }
 
           function hit(collision) {
