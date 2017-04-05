@@ -269,7 +269,7 @@
         //            console.log(data.message);
         //        }
         //}
-        });
+        //});
         /* AFRAME.registerComponent('collides', {
             schema: { default: '' },
             init() {
@@ -382,19 +382,19 @@
             }
               //points
               var p = 0;
-                    p += parseFloat(score.innerHTML);
-                    p += this.data;
-                    score.innerHTML = p;
-                    //total
-                    var t = 0;
-                    t += parseFloat(total.innerHTML);
-                    t -= 1;
-                    total.innerHTML = t;
-                    if (t < 1) {
-                        document.getElementById("winning").style = "";
-                    }
-                    var entity = this.el;
-                    entity.parentNode.removeChild(entity);
+            p += parseFloat(score.innerHTML);
+            p += this.data;
+            score.innerHTML = p;
+            //total
+            var t = 0;
+            t += parseFloat(total.innerHTML);
+            t -= 1;
+            total.innerHTML = t;
+            if (t < 1) {
+                document.getElementById("winning").style = "";
+            }
+            var entity = this.el;
+            entity.parentNode.removeChild(entity);
           }
         }
       });
