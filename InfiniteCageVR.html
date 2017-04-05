@@ -341,7 +341,8 @@
               console.log(mesh.geometry.metadata.parameters.radiusTop);
             var bottomVertex = mesh.geometry.metadata.parameters.radialSegments;//vertices[0].clone();
             var topVertex = mesh.geometry.metadata.parameters.radiusTop;//vertices[vertices.length - 1].clone();
-
+            console.log(bottomVertex);
+            console.log(topVertex);
             // Calculate absolute positions of start and end of entity.
             bottomVertex.applyMatrix4(object3D.matrixWorld);
             topVertex.applyMatrix4(object3D.matrixWorld);
