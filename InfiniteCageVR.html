@@ -309,12 +309,11 @@
             });
           }
         });
+        /*
         AFRAME.registerComponent('collider', {
           schema: {
             target: { default: '' }
           },
-
-          /*Fetch targets*/
           init: function () {
             var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
             this.targets = [];
@@ -357,7 +356,34 @@
               target.object.el.emit('collider-hit', {target: el});
             });
           }
-        });
+        });*/
+          AFRAME.registerComponent('collider', {
+        schema: {},
+
+        tick: function (t) {
+          var el = this.el;
+          var sceneEl = el.sceneEl;
+          var mesh = el.getObject3D('mesh');
+          var object3D = el.object3D;
+          var originPoint = el.object3D.position.clone();
+
+          for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
+            var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
+            var globalVertex = localVertex.applyMatrix4(object3D.matrix);
+            var directionVector = globalVertex.sub(object3D.rotation);                         
+            var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
+            var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
+            collisionResults.forEach(hit);
+          }
+
+          function hit(collision) {
+            if (collision.object === object3D) { return; }
+            if (collision.distance < directionVector.length()) {
+              collision.object.el.emit('collider-hit', { target: collision.object });
+            }
+          }
+        }
+      });
     </script>
 </head>
 
