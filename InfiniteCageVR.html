@@ -7,8 +7,6 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-<!--<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-layout-component@4.0.1/dist/aframe-layout-component.min.js"></script>-->
 
     <script>
         /*UTILITY FUNCTIONS*/
@@ -181,8 +179,7 @@
           },
 
           tick: function () {
-            //console.log(this.el);
-            // console.log(this.el.object3D);
+            //console.log(this.el); // console.log(this.el.object3D);
               this.el.object3D.translateY( this.data.speed);
             if(parseFloat(this.data.x)<20 && parseFloat(this.data.y)<20 & parseFloat(this.data.z)<20 ){
                 console.log("DESTROY/REUSE OBJECT");
@@ -200,7 +197,6 @@
           update: function (oldData) {
             this.el.addEventListener(this.data.on, this.spawn.bind(this));
           },
-
           //Spawn new entity at entity's current position.
           spawn: function () {
             var el = this.el;
@@ -227,7 +223,7 @@
             //entity.play();
           }
         });
-        
+        /*
         AFRAME.registerComponent('collect', {
             schema: { default: '' },
             init() {
@@ -259,7 +255,7 @@
                     var entity = this.el;
                     entity.parentNode.removeChild(entity);
                 });
-            }
+            }*/
         //    ,
         //    update: function () {
         //        var data = this.data;
@@ -300,7 +296,7 @@
         });*/
     </script>
     <script>
-        AFRAME.registerComponent('click-listener', {
+        /*AFRAME.registerComponent('click-listener', {
           init: function () {
             var el = this.el;
             window.addEventListener('click', function () {
@@ -309,7 +305,7 @@
             });
           }
         });
-        /*
+        
         AFRAME.registerComponent('collider', {
           schema: {
             target: { default: '' }
@@ -357,9 +353,12 @@
             });
           }
         });*/
-          AFRAME.registerComponent('collider', {
+      AFRAME.registerComponent('collider', {
         schema: {},
-
+          init: function () {
+            const score = document.getElementById("score");
+            const total = document.getElementById("totals");
+          },
         tick: function (t) {
           var el = this.el;
           var sceneEl = el.sceneEl;
@@ -381,6 +380,21 @@
             if (collision.distance < directionVector.length()) {
               collision.object.el.emit('collider-hit', { target: collision.object });
             }
+              //points
+              var p = 0;
+                    p += parseFloat(score.innerHTML);
+                    p += this.data;
+                    score.innerHTML = p;
+                    //total
+                    var t = 0;
+                    t += parseFloat(total.innerHTML);
+                    t -= 1;
+                    total.innerHTML = t;
+                    if (t < 1) {
+                        document.getElementById("winning").style = "";
+                    }
+                    var entity = this.el;
+                    entity.parentNode.removeChild(entity);
           }
         }
       });
