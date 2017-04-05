@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.3.2/dist/aframe-physics-system.min.js"></script>
 
     <script>
         /*UTILITY FUNCTIONS*/
@@ -143,7 +144,8 @@
                     "collect": points,
                     "class": "cats",
                     "scale":"1 1 1",
-                    "look-at":"#player"
+                    "look-at":"#player",
+                    "dynamic-body":""
                 });
                 mScene.appendChild(temp);
                 temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
@@ -424,7 +426,7 @@
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
-                 projectile="speed: -0.4" collider="target: .cats"></a-mixin>
+                 projectile="speed: -0.4" collider="target: .cats" dynamic-body></a-mixin>
             <a-mixin
           id="textMarker"
           geometry="primitive: plane; width: 0.02; height: 0.02"
