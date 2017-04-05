@@ -333,7 +333,11 @@
             var object3D = el.object3D;
             var raycaster;
             var vertices = mesh.geometry.metadata.vertices;//mesh.geometry.vertices;
-              console.log(vertices);
+              
+              console.log(mesh.geometry);
+              console.log(mesh.geometry.vertices);
+              console.log(mesh.geometry.metadata);
+              console.log(mesh.geometry.metadata.vertices);
             var bottomVertex = vertices[0].clone();
             var topVertex = vertices[vertices.length - 1].clone();
 
