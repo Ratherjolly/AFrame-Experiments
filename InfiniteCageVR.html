@@ -354,10 +354,19 @@
           }
         });*/
       AFRAME.registerComponent('collider', {
-        schema: {},
+        schema: {
+            target: { default: ''}
+        },
           init: function () {
             const score = document.getElementById("score");
             const total = document.getElementById("totals");
+            
+            var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
+            this.targets = [];
+            for (var i = 0; i < targetEls.length; i++) {
+              this.targets.push(targetEls[i].object3D);
+            }
+            this.el.object3D.updateMatrixWorld();
           },
         tick: function (t) {
           var el = this.el;
