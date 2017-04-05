@@ -335,11 +335,12 @@
             var vertices = mesh.geometry.metadata.vertices;//mesh.geometry.vertices;
               
               console.log(mesh.geometry);
-              console.log(mesh.geometry.vertices);
               console.log(mesh.geometry.metadata);
-              console.log(mesh.geometry.metadata.vertices);
-            var bottomVertex = vertices[0].clone();
-            var topVertex = vertices[vertices.length - 1].clone();
+              console.log(mesh.geometry.metadata.parameters);
+              console.log(mesh.geometry.metadata.parameters.radialSegments);
+              console.log(mesh.geometry.metadata.parameters.radiusTop);
+            var bottomVertex = mesh.geometry.metadata.parameters.radialSegments;//vertices[0].clone();
+            var topVertex = mesh.geometry.metadata.parameters.radiusTop;//vertices[vertices.length - 1].clone();
 
             // Calculate absolute positions of start and end of entity.
             bottomVertex.applyMatrix4(object3D.matrixWorld);
