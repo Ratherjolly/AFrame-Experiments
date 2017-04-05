@@ -376,7 +376,7 @@
           var mesh = el.getObject3D('mesh');
           var object3D = el.object3D;
           var originPoint = el.object3D.position.clone();
-            console.log(object3D);
+            console.log(mesh.geometry.metadata.parameters.length);
           for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
             var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
