@@ -181,6 +181,7 @@
           },
           init: function(){
             setTimeout( function(){ 
+                console.log(this);
                 console.log(this.el);
                 console.log(this.el.target.parentElement);
                 var entity = this.el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
