@@ -179,13 +179,13 @@
           schema: {
             speed: { default: -0.4 }
           },
-
-          tick: function () {
-            //console.log(this.el); // console.log(this.el.object3D);
-              this.el.object3D.translateY( this.data.speed);
-            if(parseFloat(this.data.x)<20 && parseFloat(this.data.y)<20 & parseFloat(this.data.z)<20 ){
+          init: function(){
+            setTimeout( function(){ 
                 console.log("DESTROY/REUSE OBJECT");
-            }
+              }  , 4000 );
+          },
+          tick: function () {
+              this.el.object3D.translateY( this.data.speed);
           }
         });
         
