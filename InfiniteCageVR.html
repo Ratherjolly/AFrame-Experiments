@@ -181,7 +181,9 @@
           },
           init: function(){
             setTimeout( function(){ 
-                console.log("DESTROY/REUSE OBJECT");
+                console.log(this.el);
+                console.log(this.el.target.parentElement);
+                var entity = this.el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
               }  , 4000 );
           },
           tick: function () {
