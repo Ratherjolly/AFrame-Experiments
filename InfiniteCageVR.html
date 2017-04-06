@@ -177,12 +177,12 @@
         };
         AFRAME.registerComponent('projectile', {
           schema: {
-            speed: { default: -0.4 }
+            speed: { default: -0.3 }
           },
-          init: function(e){
-            setTimeout( function(e){ 
-                console.log(e);
-                console.log(this.el);
+          init: function(){
+              const el = this.el.
+            setTimeout( function(){ 
+                console.log(el);
                 console.log(this.el.target.parentElement);
                 var entity = this.el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
               }  , 4000 );
