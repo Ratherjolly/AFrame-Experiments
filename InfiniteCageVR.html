@@ -7,7 +7,7 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/ngokevin/aframe-look-at-component/master/dist/aframe-look-at-component.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.3.2/dist/aframe-physics-system.min.js"></script>
+    <!--<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.3.2/dist/aframe-physics-system.min.js"></script>-->
 
     <script>
         /*UTILITY FUNCTIONS*/
@@ -83,10 +83,10 @@
         function Init() {
             const mScene = document.getElementById('TheScene');
             const posArr = [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10];
-            const FarPosArr = [-20,-18,-16,-14,14,16,18,20];
+            const FarPosArr=[-28,-26,-24,-22,-20,-18,-16,-14,14,16,18,20,22,24,26,28];
             
             //var health = document.getElementById("health").innerHTML = parseFloat(100);
-            var catCnt = 6;
+            var catCnt = 10;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
             removeElementsByClass('cats');
             for(var i = 0; i<catCnt; i++){
@@ -144,8 +144,8 @@
                     "collect": points,
                     "class": "cats",
                     "scale":"1 1 1",
-                    "look-at":"#player",
-                    "dynamic-body":""
+                    "look-at":"#player"//,
+                    //"dynamic-body":""
                 });
                 mScene.appendChild(temp);
                 temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
@@ -194,7 +194,6 @@
             on: { default: 'click' },
             mixin: { default: '' }
           },
-
           //Update event listener
           update: function (oldData) {
             this.el.addEventListener(this.data.on, this.spawn.bind(this));
@@ -414,7 +413,8 @@
 </head>
 
 <body id="awesomes">
-    <a-scene id="TheScene" stats debug physics="debug: true; gravity: 0.0;">
+    <!--<a-scene id="TheScene" stats debug physics="debug: true; gravity: 0.0;">-->
+    <a-scene id="TheScene" stats debug physics="debug: true;">
         <a-assets>
             <img id="3dImage" src="./images/3dImage.png">
             <img id="fullscreen" src="./images/fullscreen.png">
@@ -427,11 +427,8 @@
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
                  projectile="speed: -0.4" collider="target: .cats" dynamic-body></a-mixin>
-            <a-mixin
-          id="textMarker"
-          geometry="primitive: plane; width: 0.02; height: 0.02"
-          material="color: red"
-        ></a-mixin>
+                 <!--projectile="speed: -0.4" collider="target: .cats" dynamic-body></a-mixin>-->
+            <a-mixin id="textMarker" geometry="primitive: plane; width: 0.02; height: 0.02" material="color: red"></a-mixin>
         </a-assets>
         <!--Sky-->
         <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
@@ -439,9 +436,7 @@
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener>
             <a-cursor color="black"></a-cursor>
             <a-entity position="0 0 -2" text="value: Infinite Cage1-1;color:red;"></a-entity>
-        </a-camera>
-        
-        <a-entity mixin="textMarker" position="-2.5 1 0.01"></a-entity>
+            <a-entity mixin="textMarker" position="-2.5 1 0.01"></a-entity>
       <a-entity position="-2.5 1 -2"
                 text="anchor: left; width: 1.5; color: blue; value: [LEFT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
       </a-entity>
@@ -453,7 +448,7 @@
       <a-entity position="2.5 1 -2"
                 text="anchor: right; width: 1.5; color: blue; value: [RIGHT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
       </a-entity>
-        
+        </a-camera>
     </a-scene>
 
     
