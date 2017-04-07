@@ -175,13 +175,23 @@
             document.getElementById('stats').style = "";
             countdown();
         };
-        AFRAME.registerComponent('projectile', {
+        AFRAME.registerComponent('laser', {
           schema: {
             speed: { default: -0.3 }
           },
           init: function(){
               const el = this.el;
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
+              
+              var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
+              var material = 'color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double';
+              var rotation = '90 0 0'
+              var collider = 'target: .cats';
+              el.setAttribute('geometry', geometry);
+              el.setAttribute('material', material);
+              el.setAttribute('rotation', rotation);
+              el.setAttribute('collider','collider');
+              
             setTimeout( function(){ 
                 //console.log(el);
                 sceneEl.components.pool.returnEntity(el);
@@ -427,11 +437,14 @@
             <img id="cat_md" src="./images/cat_md.gif">
             <img id="cat_lg" src="./images/cat_lg.gif">
             <img id="daytone" src="./images/daytone.gif">
+            <!--
             <a-mixin id="laser" laser
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
                  projectile="speed: -0.4" collider="target: .cats" dynamic-body></a-mixin>
+            -->
+            <a-mixin id="laser" laser></a-mixin>
                  <!--projectile="speed: -0.4" collider="target: .cats" dynamic-body></a-mixin>-->
             <a-mixin id="textMarker" geometry="primitive: plane; width: 0.02; height: 0.02" material="color: red"></a-mixin>
         </a-assets>
