@@ -116,7 +116,6 @@
                 //CHOOSE LOCATION TYPE==========================
                 var FarVect = Math.floor(Math.random() * 3)+1;
                 duration = parseFloat(FarPosArr[FarVect])*800;
-                //console.log(duration);
                 if(FarVect == 1){
                     var tempPos = FarPosArr[0]+' '+tempArr[1]+' '+tempArr[3];
                 }
@@ -191,11 +190,6 @@
           },
           tick: function () {
               this.el.object3D.translateY( this.data.speed);
-                 //sceneEl.components.pool.returnEntity(this);
-                //var el = this.el;
-                //var position = el.getAttribute('position');
-                //position.y += this.data.speed;
-                //el.setAttribute('position', position);
           }
         });
         
@@ -351,6 +345,10 @@
 			var initialOpacity = material.opacity;
 
 			// Set color using raycaster parent color.
+			  el.addEventListener('beginContact', function (evt) {
+			  console.log("Intersected: "+evt.detail.el);
+			});
+			  
 			el.addEventListener('raycaster-intersected', function (evt) {
 			  console.log("Intersected: "+evt.detail.el);
 				//var raycasterEl = evt.detail.el;
@@ -419,16 +417,6 @@
 		<a-entity class="collidable" geometry="primitive: box" position="0 4 0"></a-entity>
     </a-scene>
 
-    
-    
-    
-    	
-	
-    
-    
-    
-    
-    
     
     
     <div class="fixedCenter" id="winning" style="display:none;">
