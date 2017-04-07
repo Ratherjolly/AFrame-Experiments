@@ -405,8 +405,15 @@
           console.log("originPoint: "+originPoint);
           console.log("VertexLoop: "+mesh.geometry.metadata.parameters.length);
 	  console.log(parseFloat(mesh.geometry.metadata.parameters[vertexIndex]));
-		
-          for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
+	
+	    var localVertex = mesh.geometry.metadata.parameters.heightSegments; // [vertexIndex].clone();
+            var globalVertex = localVertex.applyMatrix4(object3D.matrix);
+            var directionVector = globalVertex.sub(object3D.rotation);                         
+            var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
+            var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
+            console.log(collisionResults.forEach(hit));
+            collisionResults.forEach(hit);
+          /*for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
             var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
             var directionVector = globalVertex.sub(object3D.rotation);                         
@@ -414,7 +421,7 @@
             var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
             console.log(collisionResults.forEach(hit));
             collisionResults.forEach(hit);
-          }
+          }*/
 
           function hit(collision) {
             if (collision.object === object3D) { return; }
