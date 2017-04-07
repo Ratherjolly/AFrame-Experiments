@@ -81,7 +81,7 @@
         function Init() {
             const mScene = document.getElementById('TheScene');
             const posArr = [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10];
-            const FarPosArr=[-40,-36,-32,-28,-24,-20,-16,16,20,24,28,32,36,40];
+            const FarPosArr=[-36,-32,-28,-24,-20,-16,16,20,24,28,32,36];
             var catCnt = 10;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
             removeElementsByClass('cats');
@@ -115,7 +115,7 @@
                 }
                 //CHOOSE LOCATION TYPE==========================
                 var FarVect = Math.floor(Math.random() * 3)+1;
-                duration = parseFloat(FarPosArr[FarVect])*500;
+                duration = parseFloat(FarPosArr[FarVect])*800;
                 console.log(duration);
                 if(FarVect == 1){
                     var tempPos = FarPosArr[0]+' '+tempArr[1]+' '+tempArr[3];
@@ -171,7 +171,7 @@
             countdown();
         };
         AFRAME.registerComponent('projectile', {
-          schema: {speed: { default: -0.5 }},
+          schema: {speed: { default: -0.1 }},
           init: function(){
               //const el = this.el;
               //const sceneEl = document.querySelector('a-scene');
@@ -229,7 +229,8 @@
 		    //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
-             	entity.innerHTML = "<a-entity raycaster='objects: .cats; far: 1' position='0 -1 0' rotation='90 0 0'>";
+             	//entity.innerHTML = "<a-entity raycaster='objects: .cats; far: 1' position='0 -1 0' rotation='90 0 0'>";
+		  entity.innerHTML = "<a-entity raycaster position='0 -1 0' rotation='90 0 0'>";
 		//entity.innerHTML = "<a-entity collider-check raycaster position='0 -0.5 0' rotation='90 0 0'></a-entity>";
 		el.sceneEl.appendChild(entity);
 		entity.play();
@@ -360,7 +361,7 @@
             <a-mixin id="laser"
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
-                 rotation="90 0 0" projectile="speed: -0.5" > 
+                 rotation="90 0 0" projectile="speed: -0.1" > 
 		</a-mixin>
                  <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
             <!--
@@ -387,7 +388,7 @@
                 text="anchor: right; width: 1.5; color: blue; value: [RIGHT ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
       </a-entity>-->
         </a-camera>
-	    	<a-entity class="cats" geometry="primitive: box" position="-4 0 "></a-entity>
+	    	<a-entity class="cats" geometry="primitive: box" position="-4 0 0 "></a-entity>
 		<a-entity class="collidable" geometry="primitive: box" position="4 0 0"></a-entity>
 		<a-entity class="cats" geometry="primitive: box" position="0 0 -4"></a-entity>
 		<a-entity class="collidable" geometry="primitive: box" position="0 0 4"></a-entity>
