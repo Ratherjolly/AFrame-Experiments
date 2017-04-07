@@ -182,9 +182,10 @@
           init: function(){
               const el = this.el;
             setTimeout( function(){ 
-                console.log(el);
-                el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
-              }  , 4000 );
+                //console.log(el);
+                sceneEl.components.pool__enemy.returnEntity(el);
+                //el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
+              }  , 3000 );
           },
           tick: function () {
               this.el.object3D.translateY( this.data.speed);
@@ -203,7 +204,7 @@
           //Spawn new entity at entity's current position.
           spawn: function () {
             var el = this.el;
-            var entity = document.createElement('a-entity');
+            var entity = sceneEl.components.pool__enemy.requestEntity();//document.createElement('a-entity');
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
             var position = new THREE.Vector3();
@@ -416,7 +417,7 @@
 
 <body id="awesomes">
     <!--<a-scene id="TheScene" stats debug physics="debug: true; gravity: 0.0;">-->
-    <a-scene id="TheScene" stats debug physics="debug: true;">
+    <a-scene id="TheScene" stats debug pool__enemy="mixin: laser; size : 15">
         <a-assets>
             <img id="3dImage" src="./images/3dImage.png">
             <img id="fullscreen" src="./images/fullscreen.png">
