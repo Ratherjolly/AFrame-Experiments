@@ -174,7 +174,6 @@
           schema: {speed: { default: -0.6 }},
           init: function(){
               const el = this.el;
-              console.log(el);
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
               
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
@@ -232,7 +231,8 @@
               //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
             el.sceneEl.appendChild(entity);
-              setTimeout( function(){
+              setTimeout( function(entity){
+                  console.log(entity);
                 sceneEl.components.pool.returnEntity(entity);
               }  , 3000 );
             //entity.play();
