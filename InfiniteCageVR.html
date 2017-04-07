@@ -190,6 +190,7 @@
               //}  , 3000 );
           },
           tick: function () {
+              /*
                 if(launched == null)
                     var launched = this.el.getAttribute('launched');
                 if(sceneEl == null);
@@ -202,6 +203,12 @@
                     if(launched != '0')
                         launched = '0';
                 }
+              */
+              this.el.object3D.translateY( this.data.speed);
+              console.log(this.el.object3D.x);
+              //if(this.el.object3D.y <=40;
+                 //sceneEl.components.pool.returnEntity(this);
+              
                 //var el = this.el;
                 //var position = el.getAttribute('position');
                 //position.y += this.data.speed;
