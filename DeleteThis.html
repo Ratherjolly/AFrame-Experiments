@@ -1,107 +1,137 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>A-INVADERS</title>
-    <meta name="description" content="A-INVADERS">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-    <script>
-     var bluelight = document.querySelector('#bluelight');
-     var molekules1 = document.querySelector('#molekules1');
-     var molekules2 = document.querySelector('#molekules2');
-     var molekules3 = document.querySelector('#molekules3');
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
+	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+	<!--<script src="./Scripts/aframe-particle-system-component.min.js"></script>-->
+	
+	<script>
+	// click-listener component to pass window clicks to an entity.
+	AFRAME.registerComponent('click-listener', {
+	  	init: function () {
+		var el = this.el;
+		const mdl = document.querySelector('#ModelId');
+		const _mdlCnt = 3;
+			  
+		window.addEventListener('click', function () {
+			var MI = document.getElementById('ModelIndex');
+			    var i = 0;
+			    i += parseFloat(MI.innerHTML);
+				i += 1;
 
-     var cursor = document.querySelector('#cursor')
-     var ball = document.querySelector('#ball');
-     var shoot = document.querySelector('#shoot');
+			    if (i > _mdlCnt)
+				i = 1;
+			    MI.innerHTML = i;
+			    if (i==1) {
+						mdl.setAttribute('obj-model', 'obj: #bear-obj;');
+						mdl.setAttribute('scale', '0.01 0.01 0.01');
+						mdl.setAttribute('position', '0 0 0');
+			    }
+			    else if (i==2) {
+						mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
+						mdl.setAttribute('scale', '0.25 0.25 0.25');
+						mdl.setAttribute('position', '0 0 0');
+			    }
+			    else if (i==3) {
+						mdl.setAttribute('obj-model', 'obj: #cube-obj;');
+						mdl.setAttribute('scale', '0.05 0.05 0.05');
+						//Init();
+			    }
+				else if (i==4) {
+						mdl.setAttribute('obj-loader', 'url(./Objects/DynamoSitting1.obj)');
+						mdl.setAttribute('scale', '0.05 0.05 0.05');
+						//removeElementsByClass('flames');
+			    }
+		    });
+		  }
+		});
+	</script>
+	<script>
+	//function Init() {
+        //    const mScene = document.getElementById('TheScene');
+        //    const posArr = [-10,-9,-8,-7,-6,-5,-4,4,5,6,7,8,9,10];
+        //   	var catCnt = 6;
+        //    //removeElementsByClass('flames');
 
-     function shootfkt() {
-
-       cursor.emit('cursorstart');
-
-       ball.emit('shoot');
-       ball.emit('visible');
-
-       setTimeout(function() {
-         bluelight.emit('startlicht');
-         bluelight.emit('visible');
-
-       }, 300);
-
-     }
-     molekules1.addEventListener('click', shootfkt);
-     molekules2.addEventListener('click', shootfkt);
-     molekules3.addEventListener('click', shootfkt);
-    </script>
-  </head>
-  <body>
-<a-scene>
-    <a-entity position="" scale="0.1 0.1 0.1">
-    <a-animation attribute="rotation" repeat="indefinite" easing="linear" dur="128000" to="0 360 0"></a-animation>
-    <a-animation fill="both" direction="alternate" repeat="indefinite" from="0 -0.6 -2" easing="ease" dur="300" to="0 -0.65 -2" attribute="position"></a-animation>
+ 	//	for(var i = 0; i<catCnt; i++){
+        //        var tempArr = shuffleArray(posArr);
+                
+        //        var temp = document.createElement('a-entity');
+        //        setAttributes(temp, {
+        //            "geometry": "'primitive:circle;segments:9;radius:3.0sawsaw;'",
+        //            "material": "'shader:gif;src:url(img/cat_lg.gif);opacity:.8'",
+        //            "class": "flames",
+        //            "scale":"1 1 1"
+        //        });
+        //        mScene.appendChild(temp);
+        //    }
+        //};
+	function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        };
+	function removeElementsByClass(className) {
+            var elements = document.getElementsByClassName(className);
+            while (elements.length > 0) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+        };
+	function setAttributes(el, attrs) {
+            for (var key in attrs) {
+                el.setAttribute(key, attrs[key]);
+            }
+        };
+	</script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+	<a-scene stats embedded id="TheScene" artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
+	<!--<a-scene embedded artoolkit='sourceType: webcam;' id="TheScene">-->
+	  <a-assets>
+		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
+		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
+	  	<a-asset-item id="cube-obj" src="./Objects/TheCube1.obj"></a-asset-item>
+	  </a-assets>
+		<!--
+		<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
+		<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
+		-->
+		<!--
+		<a-entity position="0 2.25 -15" particle-system="color: #EF0000,#44CC00"></a-entity>
+		<a-marker url='./markers/ARBattleRock7.png' id="modelMarker">-->
+		<!--	<a-entity position="1 2 -10" 
+                particle-system="color: #EF0000,#44CC00"></a-entity>
+      			<a-entity position="-1 -2 -10" 
+                particle-system="color: #EF0000,#44CC00"></a-entity>-->
   
-      <a-entity position="11 0 8" id="molekules2">
-      <a-animation direction="alternate" repeat="indefinite" begin="500" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
-      <a-sphere color="#ebebeb" radius="1.5"></a-sphere>
-      <a-cylinder color="#ebebeb" radius="0.075" height="4" position="0 2 0" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
-      <a-sphere color="#ebebeb" radius="1" material="color:#ebebeb" position="0 3 0"></a-sphere>
-    </a-entity>
-  
-          <a-entity position="15 -10 -7" id="molekules3">
-      <a-animation direction="alternate" repeat="indefinite" begin="50" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
-      <a-sphere color="#ebebeb" radius="1.5"></a-sphere>
-      <a-cylinder color="#ebebeb" radius="0.075" height="4" position="0 2 0" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
-      <a-sphere color="#ebebeb" radius="1" material="color:#ebebeb" position="0 3 0"></a-sphere>
-    </a-entity>
-  
-    </a-entity>
-
-
-  <a-entity position="0.3 -1.6 0" id="molekules1">
-    <a-event name="mouseenter" color="blue"></a-event>
-    <a-animation direction="alternate" repeat="indefinite" begin="150" dur="5000" to="45 100 100" attribute="rotation"></a-animation>
-    <a-sphere color="#ebebeb" radius="0.3" material="color:#ebebeb"></a-sphere>
-    <a-cylinder color="#ebebeb" radius="0.075" height="0.5" position="0 0.5 0" material="color:#ebebeb" geometry="primitive:cylinder;radius:0.075;height:2"></a-cylinder>
-    <a-sphere color="#ebebeb" radius="0.3" material="color:#ebebeb" position="0 0.7 0"></a-sphere>
-  </a-entity>
-  
-    </a-entity>
-  <a-sky color="#000000" id="environment">
-  </a-sky>
-  <!-- Camera -->
-  <a-entity position="0 0 0" id="camera" camera look-controls="enabled: true" cursor-visible="enabled: false" wasd-controls="enabled: false; acceleration: 1000">
-    <a-entity id="cursor" cursor="fuse: true;  maxDistance: 100000; timeout: 100" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: blue" opacity="0.7" position="0 0 -1">
-
-      <a-animation begin="cursorstart" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1.2 1.2 1.2" dur="300" sound="src: #clicksound; autoplay: false; on:click" end="fusing" repeat="1"></a-animation>
-  
-      </a-entity>
-    <a-ring position="0 0 -0.6" material="color: #ffffff" geometry="primitive:ring;radiusOuter:1.5;radiusInner:0.99;segments-theta:250;segments-phi:250" visible="true" id="kanone"></a-ring>
-
-
-    <a-sphere color="red" radius="0.3" id="ball">
-      <a-animation attribute="radius" from="1" to="0.0" begin="visible"></a-animation>
-      <a-animation begin="shoot" dur="500" from="-9 -6 -8" to="0 0 -8" attribute="position"></a-animation>
-    </a-sphere>
-    
-        <a-image position="0 1 -4" material="color:darkblue;shader:flat;" rotation="0 0 90" geometry="primitive:plane;width:2;height:0.3" id="bluelight" visible="false">
-      <a-animation attribute="position" from="0 1 -4" to="0 10 -4" dur="300" fill="forwards" direction="forward" begin="startlicht"></a-animation>
-      <a-animation attribute="visible" to="true" begin="visible"></a-animation>
-          
-              </a-image>
-
-  </a-entity>
-    
-  
-  
-    
-    
-    
-    
-    
-    
-    
-  
-  
-</a-scene>
-  </body>
+			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
+				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
+			</a-entity>
+			<div id="ModelIndex">0</div>
+		<!--</a-marker>-->
+		
+		<!-- handle unknown marker 
+		<a-marker type='unknown'>
+			<a-box depth="1" height="1" width="1" position='0 0 0.5' material='opacity: 0.5; side:double; color:blue;'></a-box>
+		</a-marker>-->
+		<!--<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #brawler-obj;"></a-entity>
+		<a-box position='0 0 0.5' material='opacity: 0.5;'></a-box>
+		<a-entity position='0 0 0.5' material='opacity: 0.5;' scale="0.01 0.01 0.01" obj-model="obj: #bear-obj;"></a-entity>
+		<a-marker-camera url='./markers/ARBattleRock.png' ></a-marker-camera>-->
+		
+		<!-- handle bear marker 
+		<a-marker url='./markers/ARBattleRock2.png'>
+			<a-entity position='0 0 0.5' rotation="0 180 0" material='opacity: 0.5;' scale="0.2 0.2 0.2" obj-model="obj: #bear-obj;"></a-entity>
+		</a-marker>-->
+		
+		<!--<a-entity id="camera" camera click-listener></a-entity>-->
+		<a-marker-camera url='./markers/ARBattleRock7.png' id="modelMarker" click-listener></a-marker-camera>
+		
+	</a-scene>
+</body>
 </html>
