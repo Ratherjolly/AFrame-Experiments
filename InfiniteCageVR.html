@@ -174,7 +174,7 @@
             countdown();
         };
         AFRAME.registerComponent('laser', {
-          schema: {speed: { default: -0.3 }},
+          schema: {speed: { default: -0.6 }},
           init: function(){
               const el = this.el;
               console.log(el);
@@ -236,7 +236,7 @@
             });
             el.sceneEl.appendChild(entity);
               setTimeout( function(){
-                sceneEl.components.pool.returnEntity(el);
+                sceneEl.components.pool.returnEntity(entity);
               }  , 3000 );
             //entity.play();
           }
