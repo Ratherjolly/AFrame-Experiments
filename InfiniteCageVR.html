@@ -190,13 +190,12 @@
               //}  , 3000 );
           },
           tick: function () {
-                
-                var launched = this.el.getAttribute('launched');
-                console.log(launched);
+                if(launched == null)
+                    var launched = this.el.getAttribute('launched');
+                if(sceneEl == null);
+                    var sceneEl = document.querySelector('a-scene');
                 if(launched == '1'){
-                    console.log("WACKA WACKA: "+this);
-                    setTimeout( function(){sceneEl.components.pool.returnEntity(el);}, 3000 );
-                    
+                    setTimeout( function(){sceneEl.components.pool.returnEntity(this);}, 3000 );
                 }
                 else{
                     this.el.object3D.translateY( this.data.speed);
