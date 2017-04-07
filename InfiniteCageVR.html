@@ -404,7 +404,6 @@
 	  console.log("object3D: "+object3D)
           console.log("originPoint: "+originPoint);
           console.log("VertexLoop: "+mesh.geometry.metadata.parameters.length);
-	  console.log(parseFloat(mesh.geometry.metadata.parameters[vertexIndex]));
 	
 	    var localVertex = mesh.geometry.metadata.parameters.heightSegments; // [vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
