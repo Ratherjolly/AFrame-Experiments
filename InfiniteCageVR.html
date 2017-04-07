@@ -176,9 +176,7 @@
             countdown();
         };
         AFRAME.registerComponent('laser', {
-          schema: {
-            speed: { default: -0.3 }
-          },
+          schema: {speed: { default: -0.3 }},
           init: function(){
               const el = this.el;
               console.log(el);
@@ -192,8 +190,6 @@
               el.setAttribute('material', material);
               el.setAttribute('rotation', rotation);
               el.setAttribute('collider','collider');
-             
-              
             setTimeout( function(){ 
                 //console.log(el);
                 sceneEl.components.pool.returnEntity(el);
@@ -219,6 +215,7 @@
           },
           //Spawn new entity at entity's current position.
           spawn: function () {
+              console.log("CALLED IN INIT?");
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
             var entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
