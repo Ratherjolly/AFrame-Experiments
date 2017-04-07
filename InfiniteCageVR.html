@@ -190,22 +190,6 @@
               //}  , 3000 );
           },
           tick: function () {
-              /*
-                if(launched == null)
-                    var launched = this.el.getAttribute('launched');
-                if(sceneEl == null);
-                    var sceneEl = document.querySelector('a-scene');
-                if(launched == '1'){
-                    setTimeout( function(){sceneEl.components.pool.returnEntity(this);}, 3000 );
-                }
-                else{
-                    this.el.object3D.translateY( this.data.speed);
-                    if(launched != '0')
-                        launched = '0';
-                }
-              */
-              //console.log(this.el.object3D.x);
-              console.log(this.el.getAttribute('position').y);
               this.el.object3D.translateY( this.data.speed);
               //if(this.el.object3D.y <=40;
                  //sceneEl.components.pool.returnEntity(this);
