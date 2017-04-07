@@ -188,10 +188,9 @@
               el.setAttribute('material', material);
               el.setAttribute('rotation', rotation);
               el.setAttribute('collider','collider');
-            setTimeout( function(){ 
-                //console.log(el);
-                sceneEl.components.pool.returnEntity(el);
-              }  , 3000 );
+            //setTimeout( function(){ 
+                //sceneEl.components.pool.returnEntity(el);
+              //}  , 3000 );
           },
           tick: function () {
                 //this.el.object3D.translateY( this.data.speed);
@@ -213,10 +212,10 @@
           },
           //Spawn new entity at entity's current position.
           spawn: function () {
-              console.log("CALLED IN INIT?");
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
             var entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
+              
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
             var position = new THREE.Vector3();
@@ -236,6 +235,9 @@
               //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
             el.sceneEl.appendChild(entity);
+              setTimeout( function(){
+                sceneEl.components.pool.returnEntity(el);
+              }  , 3000 );
             //entity.play();
           }
         });
