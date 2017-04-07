@@ -171,7 +171,7 @@
             countdown();
         };
         AFRAME.registerComponent('laser', {
-          schema: {speed: { default: -0.6 }},
+          schema: {speed: { default: -0.5 }},
           init: function(){
               const el = this.el;
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
@@ -211,6 +211,7 @@
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
             var entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
+            entity.setAttribute('position','0 0 0');
               
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
