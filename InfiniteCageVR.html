@@ -176,7 +176,7 @@
           init: function(){
               const el = this.el;
               const sceneEl = document.querySelector('a-scene');
-              
+              /*
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
               var material = 'color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double';
               var collider = 'target: .cats';
@@ -185,6 +185,7 @@
               el.setAttribute('collider',collider);
               el.setAttribute('rotation', '90 0 0');
               el.setAttribute('launched','0');
+	      */
             //setTimeout( function(){ 
                 //sceneEl.components.pool.returnEntity(el);
               //}  , 3000 );
@@ -213,9 +214,9 @@
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
             var entity;
-            if(sceneEl.components.pool.length<=0) return;
+            //if(sceneEl.components.pool.length<=0) return;
               
-            entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
+            entity = document.createElement('a-entity');//sceneEl.components.pool.requestEntity();
             //entity.setAttribute('position','0 0 0');
               
             var entityRotation;
@@ -236,9 +237,9 @@
               });//console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
-             entity.play();//el.sceneEl.appendChild(entity);
-              setTimeout(this.laserDestroyer(entity), 1000);
-          },
+             //entity.play();//el.sceneEl.appendChild(entity);
+              //setTimeout(this.laserDestroyer(entity), 1000);
+          }/*,
             laserDestroyer: function (el) {
 		    var laserEl = el;
 		    var component = this;
@@ -249,7 +250,7 @@
 		      }
 		      this.el.sceneEl.components.pool.returnEntity(laserEl);
 		    }.bind(this);
- 		},
+ 		},*/
         });
         /*
         AFRAME.registerComponent('collect', {
@@ -442,7 +443,7 @@
 
 <body id="awesomes">
     <!--<a-scene id="TheScene" stats debug physics="debug: true; gravity: 0.0;">-->
-    <a-scene id="TheScene" stats debug pool="mixin: laser; size: 10">
+    <a-scene id="TheScene" stats debug>  <!--pool="mixin: laser; size: 10">-->
         <a-assets>
             <img id="3dImage" src="./images/3dImage.png">
             <img id="fullscreen" src="./images/fullscreen.png">
@@ -450,14 +451,14 @@
             <img id="cat_md" src="./images/cat_md.gif">
             <img id="cat_lg" src="./images/cat_lg.gif">
             <img id="daytone" src="./images/daytone.gif">
-            <!--
+            
             <a-mixin id="laser" laser
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
                  projectile="speed: -0.4" collider="target: .cats"></a-mixin>
-            -->
-            <a-mixin id="laser" laser></a-mixin>
+            <!--
+            <a-mixin id="laser" laser></a-mixin>-->
                  <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
             <a-mixin id="textMarker" geometry="primitive: plane; width: 0.02; height: 0.02" material="color: red"></a-mixin>
         </a-assets>
