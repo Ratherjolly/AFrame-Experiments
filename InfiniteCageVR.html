@@ -191,6 +191,7 @@
               el.setAttribute('material', material);
               el.setAttribute('rotation', rotation);
               el.setAttribute('collider','collider');
+              console.log(el);
               
             setTimeout( function(){ 
                 //console.log(el);
@@ -198,7 +199,11 @@
               }  , 3000 );
           },
           tick: function () {
-              this.el.object3D.translateY( this.data.speed);
+                //this.el.object3D.translateY( this.data.speed);
+                var el = this.el;
+                var position = el.getAttribute('position');
+                position.y += this.data.speed;
+                el.setAttribute('position', position);
           }
         });
         
