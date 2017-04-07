@@ -72,7 +72,6 @@
                     var total = document.getElementById("totals");
                     var t = 0;
                     t += parseFloat(total.innerHTML);
-                    //console.log(t);
                     if (t > 0)
                         document.getElementById("losing").style = "";
                 }
@@ -191,11 +190,8 @@
               //}  , 3000 );
           },
           tick: function () {
-		  console.log(this);
               this.el.object3D.translateY( this.data.speed);
-              //if(this.el.object3D.y <=40;
                  //sceneEl.components.pool.returnEntity(this);
-
                 //var el = this.el;
                 //var position = el.getAttribute('position');
                 //position.y += this.data.speed;
@@ -229,7 +225,8 @@
                 x: entityRotation.x + rotation.x,
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
-              });//console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
+              });
+		    //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
              
@@ -401,7 +398,14 @@
           var mesh = el.getObject3D('mesh');
           var object3D = el.object3D;
           var originPoint = el.object3D.position.clone();
+		
+	  console.log("el: "+el);	
+	  console.log("mesh: "+mesh);
+	  console.log("object3D: "+object3D)
+          console.log("originPoint: "+originPoint);
           console.log("VertexLoop: "+mesh.geometry.metadata.parameters.length);
+	  console.log(parseFloat(mesh.geometry.metadata.parameters[vertexIndex]));
+		
           for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
             var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
