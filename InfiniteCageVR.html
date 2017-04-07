@@ -82,7 +82,7 @@
         function Init() {
             const mScene = document.getElementById('TheScene');
             const posArr = [-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10];
-            const FarPosArr=[-28,-26,-24,-22,-20,-18,-16,-14,14,16,18,20,22,24,26,28];
+            const FarPosArr=[-40,-36,-32,-28,-24,-20,-16,16,20,24,28,32,36,40];
             var catCnt = 10;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
             removeElementsByClass('cats');
@@ -175,7 +175,7 @@
           schema: {speed: { default: -0.5 }},
           init: function(){
               const el = this.el;
-              const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
+              const sceneEl = document.querySelector('a-scene');
               
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
               var material = 'color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double';
@@ -205,8 +205,7 @@
                 }
               */
               //console.log(this.el.object3D.x);
-              //console.log(this.el.getAttribute('position').y);
-              
+              console.log(this.el.getAttribute('position').y);
               this.el.object3D.translateY( this.data.speed);
               //if(this.el.object3D.y <=40;
                  //sceneEl.components.pool.returnEntity(this);
