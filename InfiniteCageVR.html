@@ -416,7 +416,7 @@
             <a-mixin id="laser"
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
-                 rotation="90 0 0" projectile="speed: -0.5">
+                 rotation="90 0 0" projectile="speed: -0.5" raycast-helper raycaster='objects: .cats; far: 0.1'>
 		</a-mixin>
                  <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
             <!--
