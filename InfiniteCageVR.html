@@ -229,8 +229,8 @@
 		    //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
-             	//entity.innerHTML = "<a-entity raycaster='objects: .cats; far: 1' position='0 -1 0' rotation='90 0 0'>";
-		  entity.innerHTML = "<a-entity raycaster position='0 -1 0' rotation='90 0 0'>";
+             	entity.innerHTML = "<a-entity raycaster='objects: .cats; far: 0.5' position='0 -1 0' rotation='90 0 0'>";
+		  //entity.innerHTML = "<a-entity raycaster position='0 -1 0' rotation='90 0 0'>";
 		//entity.innerHTML = "<a-entity collider-check raycaster position='0 -0.5 0' rotation='90 0 0'></a-entity>";
 		el.sceneEl.appendChild(entity);
 		entity.play();
