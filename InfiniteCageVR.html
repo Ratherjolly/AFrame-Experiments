@@ -222,15 +222,16 @@
             on: { default: 'click' },
             mixin: { default: '' }
           },
-          //Update event listener
           update: function (oldData) {
             this.el.addEventListener(this.data.on, this.spawn.bind(this));
           },
-          //Spawn new entity at entity's current position.
           spawn: function () {
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
-            var entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
+            var entity;
+            if(sceneEl.components.pool.length<=0) return;
+              
+            entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
             //entity.setAttribute('position','0 0 0');
               
             var entityRotation;
@@ -241,21 +242,30 @@
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
             entity.setAttribute('mixin', this.data.mixin);
-            //console.log(position);
+              
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');//entity.getComputedAttribute('rotation');
               entity.setAttribute('rotation', {
                 x: entityRotation.x + rotation.x,
                 y: entityRotation.y + rotation.y,
                 z: entityRotation.z + rotation.z
-              });
-              //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
+              });//console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
-             //entity.setAttribute('launched','1');
-            //el.sceneEl.appendChild(entity);
-             setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);
-             entity.play();
-          }
+             //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
+             entity.play();//el.sceneEl.appendChild(entity);
+              setTimeout(this.laserDestroyer(entity), 1000);
+          },
+            laserDestroyer: function (el) {
+		    var laserEl = el;
+		    var component = this;
+		    return function () {
+		      if (!laserEl.isPlaying) {
+                setTimeout(component.laserDestroyer(laserEl), 1000);
+                return;
+		      }
+		      this.el.sceneEl.components.pool.returnEntity(laserEl);
+		    }.bind(this);
+ 		},
         });
         /*
         AFRAME.registerComponent('collect', {
