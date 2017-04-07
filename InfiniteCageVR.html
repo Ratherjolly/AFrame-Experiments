@@ -140,7 +140,8 @@
                     "collect": points,
                     "class": "cats",
                     "scale":"1 1 1",
-                    "look-at":"#player"
+                    "look-at":"#player",
+                    "cats":""
                 });
                 mScene.appendChild(temp);
                 temp.innerHTML = "<a-animation attribute='position' to='0 0 0' dur='"+duration+"'></a-animation>";
@@ -191,7 +192,7 @@
           tick: function () {
                 
                 var launched = this.el.getAttribute('launched');
-                
+                console.log(launched);
                 if(launched == '1'){
                     console.log("WACKA WACKA: "+this);
                     setTimeout( function(){sceneEl.components.pool.returnEntity(el);}, 3000 );
