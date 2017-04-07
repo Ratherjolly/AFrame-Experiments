@@ -6,12 +6,8 @@
     <meta name="description" content="Pool - A-Frame">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
 	<script>
-	  
 		AFRAME.registerComponent('laser', {
-		  schema: {
-			speed: { default: 1 }
-		  },
-
+		  schema: {speed: { default: 1 }},
 		  init: function () {
 			var el = this.el;
 			var geometry = 'primitive: box; height: 2; width: 0.1; depth: 0.1';
@@ -27,55 +23,53 @@
 			el.setAttribute('position', position);
 		  }
 		});
+		
 		AFRAME.registerComponent('spaceship', {
-	  init: function () {
-		var el = this.el;
-		var geometry = 'primitive: box; height: 2; width: 2; depth: 2;';
-		var material = 'color: #167341; roughness: 1.0; metalness: 0.2;';
-		el.setAttribute('geometry', geometry);
-		el.setAttribute('material', material);
-		this.onKeyDown = this.onKeyDown.bind(this);
-	  },
+			  init: function () {
+				var el = this.el;
+				var geometry = 'primitive: box; height: 2; width: 2; depth: 2;';
+				var material = 'color: #167341; roughness: 1.0; metalness: 0.2;';
+				el.setAttribute('geometry', geometry);
+				el.setAttribute('material', material);
+				this.onKeyDown = this.onKeyDown.bind(this);
+			  },
 
-	  play: function () {
-		this.attachKeyEventListeners();
-	  },
+			  play: function () {
+				this.attachKeyEventListeners();
+			  },
 
-	  pause: function () {
-		this.removeKeyEventListeners();
-	  },
+			  pause: function () {
+				this.removeKeyEventListeners();
+			  },
 		  onKeyDown: function (evt) {
-    var el = this.el;
-    var laserEl;
-    var position;
-    if (evt.keyCode !== 32) { return; }
-    laserEl = el.sceneEl.components.pool.requestEntity();
-    if (!laserEl) { return; }
-    position = el.getAttribute('position');
-    laserEl.setAttribute('position', position);
-    laserEl.play();
-    setTimeout(this.laserDestroyer(laserEl), 1000);
-  },
-
-  laserDestroyer: function (el) {
-    var laserEl = el;
-    var component = this;
-    return function () {
-      if (!laserEl.isPlaying) {
-        setTimeout(component.laserDestroyer(laserEl), 1000);
-        return;
-      }
-      this.el.sceneEl.components.pool.returnEntity(laserEl);
-    }.bind(this);
-  },
-
-  attachKeyEventListeners: function () {
-    window.addEventListener('keydown', this.onKeyDown);
-  },
-
-  removeKeyEventListeners: function () {
-    window.removeEventListener('keydown', this.onKeyDown);
-  }
+		    var el = this.el;
+		    var laserEl;
+		    var position;
+		    if (evt.keyCode !== 32) { return; }
+		    laserEl = el.sceneEl.components.pool.requestEntity();
+		    if (!laserEl) { return; }
+		    position = el.getAttribute('position');
+		    laserEl.setAttribute('position', position);
+		    laserEl.play();
+		    setTimeout(this.laserDestroyer(laserEl), 1000);
+  		},
+		  laserDestroyer: function (el) {
+		    var laserEl = el;
+		    var component = this;
+		    return function () {
+		      if (!laserEl.isPlaying) {
+			setTimeout(component.laserDestroyer(laserEl), 1000);
+			return;
+		      }
+		      this.el.sceneEl.components.pool.returnEntity(laserEl);
+		    }.bind(this);
+ 		},
+		  attachKeyEventListeners: function () {
+		    window.addEventListener('keydown', this.onKeyDown);
+		  },
+		  removeKeyEventListeners: function () {
+		    window.removeEventListener('keydown', this.onKeyDown);
+		  }
 });
 	</script>
     <style>
@@ -94,7 +88,7 @@
   </head>
   <body>
     <div class="message"><p>Left and right arrows to move and space bar to shoot</p><p>Used Pool Entities</p></div>
-    <a-scene update-pool-message=".message" stats pool="mixin: laser; size: 10">
+    <a-scene stats pool="mixin: laser; size: 10">
       <a-assets>
         <a-mixin id="laser" laser></a-mixin>
       </a-assets>
@@ -107,16 +101,4 @@
       </a-entity>
     </a-scene>
   </body>
-  <script>
-    var message = '<p>Left and right arrows to move and space bar to shoot</p><p>Used Pool Entities ';
-    AFRAME.registerComponent('update-pool-message', {
-      schema: {type: 'selector'},
-      tick: function () {
-        var poolComponent = this.el.components.pool;
-        var poolSize = poolComponent.availableEls.length + poolComponent.usedEls.length;
-        var usedPoolEntities = this.el.components.pool.usedEls.length;
-        this.data.innerHTML = message + usedPoolEntities + '/' + poolSize + '</p>';
-      }
-    });
-  </script>
 </html>
