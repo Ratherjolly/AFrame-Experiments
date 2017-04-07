@@ -335,6 +335,8 @@
 	    this.el.addEventListener('raycaster-intersected', function () {
 	      	console.log('HIT: '+this);
 	      	console.log(this.components.raycaster);
+		console.log(this.components.raycaster.intersectedEls);
+		        
 		//console.log(this.components.raycaster);
 	    });
 	  }
