@@ -174,8 +174,8 @@
         AFRAME.registerComponent('laser', {
           schema: {speed: { default: -0.5 }},
           init: function(){
-              const el = this.el;
-              const sceneEl = document.querySelector('a-scene');
+              //const el = this.el;
+              //const sceneEl = document.querySelector('a-scene');
               /*
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
               var material = 'color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double';
@@ -212,12 +212,8 @@
           },
           spawn: function () {
             var el = this.el;
-            var sceneEl = document.querySelector('a-scene');
-            var entity;
-            //if(sceneEl.components.pool.length<=0) return;
-              
-            entity = document.createElement('a-entity');//sceneEl.components.pool.requestEntity();
-            //entity.setAttribute('position','0 0 0');
+            //var sceneEl = document.querySelector('a-scene');
+            var entity = document.createElement('a-entity');//sceneEl.components.pool.requestEntity();
               
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
@@ -226,7 +222,7 @@
 
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
-            //entity.setAttribute('mixin', this.data.mixin);
+            entity.setAttribute('mixin', this.data.mixin);
               
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');//entity.getComputedAttribute('rotation');
