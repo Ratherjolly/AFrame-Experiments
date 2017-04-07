@@ -178,12 +178,12 @@
               
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
               var material = 'color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double';
-              var rotation = '90 0 0'
               var collider = 'target: .cats';
               el.setAttribute('geometry', geometry);
               el.setAttribute('material', material);
-              el.setAttribute('rotation', rotation);
               el.setAttribute('collider',collider);
+              el.setAttribute('rotation', '90 0 0');
+              el.setAttribute('launched','0');
             //setTimeout( function(){ 
                 //sceneEl.components.pool.returnEntity(el);
               //}  , 3000 );
