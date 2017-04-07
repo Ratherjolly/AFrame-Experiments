@@ -86,7 +86,7 @@
             const FarPosArr=[-28,-26,-24,-22,-20,-18,-16,-14,14,16,18,20,22,24,26,28];
             
             //var health = document.getElementById("health").innerHTML = parseFloat(100);
-            var catCnt = 10;
+            var catCnt = 8;
             var totals = document.getElementById("totals").innerHTML = parseFloat(catCnt);
             removeElementsByClass('cats');
             for(var i = 0; i<catCnt; i++){
@@ -377,7 +377,7 @@
           var mesh = el.getObject3D('mesh');
           var object3D = el.object3D;
           var originPoint = el.object3D.position.clone();
-            console.log(mesh.geometry.metadata.parameters.length);
+          console.log("VertexLoop: "+mesh.geometry.metadata.parameters.length);
           for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
             var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(object3D.matrix);
