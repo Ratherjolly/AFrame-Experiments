@@ -231,12 +231,12 @@
               });
               //console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
-            el.sceneEl.appendChild(entity);
+            //el.sceneEl.appendChild(entity);
+              //entity.play();
               setTimeout( function(entity){
-                  console.log(entity);
+                  console.log("WACKA WACKA: "+entity);
                 sceneEl.components.pool.returnEntity(entity);
               }  , 3000 );
-            //entity.play();
           }
         });
         /*
