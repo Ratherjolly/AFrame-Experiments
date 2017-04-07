@@ -191,6 +191,7 @@
               //}  , 3000 );
           },
           tick: function () {
+		  console.log(this);
               this.el.object3D.translateY( this.data.speed);
               //if(this.el.object3D.y <=40;
                  //sceneEl.components.pool.returnEntity(this);
@@ -231,8 +232,9 @@
               });//console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
-             //entity.play();
+             
 		el.sceneEl.appendChild(entity);
+		entity.play();
               //setTimeout(this.laserDestroyer(entity), 1000);
           }/*,
             laserDestroyer: function (el) {
