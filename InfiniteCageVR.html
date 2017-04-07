@@ -184,7 +184,7 @@
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
             setTimeout( function(){ 
                 //console.log(el);
-                sceneEl.components.pool__laser.returnEntity(el);
+                sceneEl.components.pool.returnEntity(el);
               }  , 3000 );
           },
           tick: function () {
@@ -205,7 +205,7 @@
           spawn: function () {
             var el = this.el;
             var sceneEl = document.querySelector('a-scene');
-            var entity = sceneEl.components.pool__enemy.requestEntity();//document.createElement('a-entity');
+            var entity = sceneEl.components.pool.requestEntity();//document.createElement('a-entity');
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
             var position = new THREE.Vector3();
