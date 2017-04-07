@@ -225,7 +225,7 @@
 
             position.setFromMatrixPosition(matrixWorld);
             entity.setAttribute('position', position);
-            entity.setAttribute('mixin', this.data.mixin);
+            //entity.setAttribute('mixin', this.data.mixin);
               
             entity.addEventListener('loaded', function () {
               entityRotation = entity.getAttribute('rotation');//entity.getComputedAttribute('rotation');
@@ -462,7 +462,7 @@
             <a-mixin id="textMarker" geometry="primitive: plane; width: 0.02; height: 0.02" material="color: red"></a-mixin>
         </a-assets>
         <!--Sky-->
-        <a-sky src="./images/3dImage.png" rotation="0 -130 0" position="" scale="" visible="" geometry=""></a-sky>
+        <a-sky src="./images/3dImage.png" rotation="0 -130 0"></a-sky>
         <!--Camera-->
         <a-camera position="0 0 0" id="player" spawner="mixin: laser; on: click" click-listener far="8000" wasd-controls-enabled="false">
             <a-cursor color="black"></a-cursor>
