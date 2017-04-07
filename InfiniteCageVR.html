@@ -377,74 +377,15 @@
           }
         });*/
         
-      AFRAME.registerComponent('collider', {
-        schema: {
-            target: { default: ''}
-        },
-          init: function () {
-            const score = document.getElementById("score");
-            const total = document.getElementById("totals");
-            
-            /*var targetEls = this.el.sceneEl.querySelectorAll(this.data.target);
-            this.targets = [];
-            for (var i = 0; i < targetEls.length; i++) {
-              this.targets.push(targetEls[i].object3D);
-            }
-            this.el.object3D.updateMatrixWorld();*/
-          },
-        tick: function (t) {
-          var el = this.el;
-          var sceneEl = el.sceneEl;
-          var mesh = el.getObject3D('mesh');
-          var object3D = el.object3D;
-          var originPoint = el.object3D.position.clone();
-		
-	  console.log("el: "+el);	
-	  console.log("mesh: "+mesh);
-	  console.log("object3D: "+object3D)
-          console.log("originPoint: "+originPoint);
-          console.log("VertexLoop: "+mesh.geometry.metadata.parameters.length);
-	
-	    var localVertex = mesh.geometry.metadata.parameters.heightSegments; // [vertexIndex].clone();
-            var globalVertex = localVertex.applyMatrix4(object3D.matrix);
-            var directionVector = globalVertex.sub(object3D.rotation);                         
-            var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
-            var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
-            console.log(collisionResults.forEach(hit));
-            collisionResults.forEach(hit);
-          /*for (var vertexIndex = 0; vertexIndex < mesh.geometry.metadata.parameters.length; vertexIndex++) {
-            var localVertex = mesh.geometry.metadata.parameters[vertexIndex].clone();
-            var globalVertex = localVertex.applyMatrix4(object3D.matrix);
-            var directionVector = globalVertex.sub(object3D.rotation);                         
-            var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
-            var collisionResults = ray.intersectObjects(sceneEl.object3D.children);
-            console.log(collisionResults.forEach(hit));
-            collisionResults.forEach(hit);
-          }*/
+      AFRAME.registerComponent('collider-check', {
+	  dependencies: ['raycaster'],
 
-          function hit(collision) {
-            if (collision.object === object3D) { return; }
-            if (collision.distance < directionVector.length()) {
-              collision.object.el.emit('collider-hit', { target: collision.object });
-            }
-              //points
-              var p = 0;
-            p += parseFloat(score.innerHTML);
-            p += this.data;
-            score.innerHTML = p;
-            //total
-            var t = 0;
-            t += parseFloat(total.innerHTML);
-            t -= 1;
-            total.innerHTML = t;
-            if (t < 1) {
-                document.getElementById("winning").style = "";
-            }
-            var entity = this.el;
-            entity.parentNode.removeChild(entity);
-          }
-        }
-      });
+	  init: function () {
+	    this.el.addEventListener('raycaster-intersected', function () {
+	      console.log('Player hit something!');
+	    });
+	  }
+	});
     </script>
 </head>
 
@@ -462,8 +403,8 @@
             <a-mixin id="laser"
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
-                 rotation="90 0 0"
-                 projectile="speed: -0.4" collider="target: .cats"></a-mixin>
+                 rotation="90 0 0" projectile="speed: -0.5" collider-check></a-mixin>
+                 <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
             <!--
             <a-mixin id="laser" laser></a-mixin>-->
                  <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
