@@ -171,7 +171,7 @@
             document.getElementById('stats').style = "";
             countdown();
         };
-        AFRAME.registerComponent('laser', {
+        AFRAME.registerComponent('projectile', {
           schema: {speed: { default: -0.5 }},
           init: function(){
               //const el = this.el;
@@ -448,11 +448,11 @@
             <img id="cat_lg" src="./images/cat_lg.gif">
             <img id="daytone" src="./images/daytone.gif">
             
-            <a-mixin id="laser" laser
+            <a-mixin id="laser"
                  geometry="primitive: cylinder; height: 1; radius: 0.075"
                  material="color: red; metalness: 0.2; opacity: 0.4; roughness: 0.3; side: double"
                  rotation="90 0 0"
-                 laser="speed: -0.4" collider="target: .cats"></a-mixin>
+                 projectile="speed: -0.4" collider="target: .cats"></a-mixin>
             <!--
             <a-mixin id="laser" laser></a-mixin>-->
                  <!--projectile="speed: -0.4" collider="target: .cats"></a-mixin>-->
