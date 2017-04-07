@@ -189,16 +189,19 @@
               //}  , 3000 );
           },
           tick: function () {
-                this.el.object3D.translateY( this.data.speed);
+                
                 var launched = this.el.getAttribute('launched');
                 
-                if(launched == 1){
+                if(launched == '1'){
                     console.log("WACKA WACKA: "+this);
                     setTimeout( function(){sceneEl.components.pool.returnEntity(el);}, 3000 );
+                    
                 }
-              
-                if(launched != 0)
-                    launched = 0;
+                else{
+                    this.el.object3D.translateY( this.data.speed);
+                    if(launched != '0')
+                        launched = '0';
+                }
                 //var el = this.el;
                 //var position = el.getAttribute('position');
                 //position.y += this.data.speed;
