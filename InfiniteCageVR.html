@@ -212,9 +212,7 @@
           },
           spawn: function () {
             var el = this.el;
-            //var sceneEl = document.querySelector('a-scene');
-            var entity = document.createElement('a-entity');//sceneEl.components.pool.requestEntity();
-              
+            var entity = document.createElement('a-entity');//var sceneEl = document.querySelector('a-scene');//sceneEl.components.pool.requestEntity();
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
             var position = new THREE.Vector3();
@@ -233,7 +231,8 @@
               });//console.log("entityRotation: "+entityRotation+" getAttributeRotation: "+entity.getAttribute('rotation'));
             });
              //setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);//entity.setAttribute('launched','1');
-             //entity.play();//el.sceneEl.appendChild(entity);
+             //entity.play();
+		el.sceneEl.appendChild(entity);
               //setTimeout(this.laserDestroyer(entity), 1000);
           }/*,
             laserDestroyer: function (el) {
