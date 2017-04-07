@@ -205,7 +205,7 @@
                 }
               */
               //console.log(this.el.object3D.x);
-              console.log(this.el.getAttribute('position').y);
+              //console.log(this.el.getAttribute('position').y);
               
               this.el.object3D.translateY( this.data.speed);
               //if(this.el.object3D.y <=40;
@@ -255,6 +255,7 @@
              //entity.setAttribute('launched','1');
             //el.sceneEl.appendChild(entity);
              entity.play();
+             setTimeout(this.el.sceneEl.components.pool.returnEntity(entity), 1000);
           }
         });
         /*
