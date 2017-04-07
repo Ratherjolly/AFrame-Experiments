@@ -208,6 +208,7 @@
           //Spawn new entity at entity's current position.
           spawn: function () {
             var el = this.el;
+            var sceneEl = document.querySelector('a-scene');
             var entity = sceneEl.components.pool__enemy.requestEntity();//document.createElement('a-entity');
             var entityRotation;
             var matrixWorld = el.object3D.matrixWorld;
