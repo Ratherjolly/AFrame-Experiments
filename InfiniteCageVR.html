@@ -184,8 +184,7 @@
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
             setTimeout( function(){ 
                 //console.log(el);
-                sceneEl.components.pool__enemy.returnEntity(el);
-                //el.target.parentElement.parentNode.removeChild(entity);//console.log("DESTROY/REUSE OBJECT");
+                sceneEl.components.pool__laser.returnEntity(el);
               }  , 3000 );
           },
           tick: function () {
@@ -197,9 +196,6 @@
           schema: {
             on: { default: 'click' },
             mixin: { default: '' }
-          },
-          init: function(){
-          const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
           },
           //Update event listener
           update: function (oldData) {
@@ -422,7 +418,7 @@
 
 <body id="awesomes">
     <!--<a-scene id="TheScene" stats debug physics="debug: true; gravity: 0.0;">-->
-    <a-scene id="TheScene" stats debug pool__enemy="mixin: laser; size : 15">
+    <a-scene id="TheScene" stats debug pool__laser="mixin: laser; size : 15">
         <a-assets>
             <img id="3dImage" src="./images/3dImage.png">
             <img id="fullscreen" src="./images/fullscreen.png">
