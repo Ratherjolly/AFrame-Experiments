@@ -181,6 +181,7 @@
           },
           init: function(){
               const el = this.el;
+              console.log(el);
               const sceneEl = document.querySelector('a-scene');//document.getElementById("TheScene");
               
               var geometry = 'primitive: cylinder; height: 1; radius: 0.075'
@@ -191,7 +192,7 @@
               el.setAttribute('material', material);
               el.setAttribute('rotation', rotation);
               el.setAttribute('collider','collider');
-              console.log(el);
+             
               
             setTimeout( function(){ 
                 //console.log(el);
