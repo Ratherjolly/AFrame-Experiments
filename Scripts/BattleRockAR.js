@@ -18,7 +18,7 @@ AFRAME.registerComponent('click-listener', {
 				i = 1;
 			    MI.innerHTML = i;
 			    if (i==1) {
-				mdl.setAttribute('obj-model', 'obj: #bear-obj;');//'obj:Objects/LancerBear.obj');
+				mdl.setAttribute('obj-model', 'obj: #bear-obj;');
 				mdl.setAttribute('scale', '0.01 0.01 0.01');
 				//mdl.setAttribute('position', '0 0 0');
 			    	mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
