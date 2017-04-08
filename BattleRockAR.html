@@ -21,11 +21,10 @@
 		<a-marker type='pattern' url='./markers/br.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.05 0.05 0.05"> <!--obj-model="obj: #cube-obj; mtl: #cube-mtl;">-->
 				<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>
-				
+				<a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>
 			</a-entity>
-			<a-entity position="-2.5 1 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="value: Studios;" scale="" visible=""></a-entity>
+			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="value: Studios;" scale="" visible=""></a-entity>
 			<a-entity position="-1 1 1.5" rotation="-30 0 0" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="value: BATTLEROCK;" rotation="" visible=""></a-entity>
-			<a-entity id="makeitrain" position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>
 			<div id="ModelIndex">2</div>
 		</a-marker>
 		<a-entity camera click-listener></a-entity>
