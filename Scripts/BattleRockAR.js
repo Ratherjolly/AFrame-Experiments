@@ -29,7 +29,7 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 				//mdl.setAttribute('position', '0 0 0');
-				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
+				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 2 0' particle-system='preset: snow; color: #EF0000,#44CC00'></a-entity>";
 				txt.setAttribute('text-geometry', 'value: The Brawler');
 				txt.setAttribute('position', '-1.8 0 1.5');
 			    }
