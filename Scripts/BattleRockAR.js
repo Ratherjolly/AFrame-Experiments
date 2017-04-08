@@ -20,7 +20,7 @@ AFRAME.registerComponent('click-listener', {
 			    MI.innerHTML = i;
 			    if (i==1) {
 				mdl.setAttribute('obj-model', 'obj: #bear-obj;');//'obj:Objects/LancerBear.obj');
-				mdl.innerHTML = "<a-animation attribute="rotation" dur="10000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>";
+				mdl.innerHTML = "<a-animation attribute='rotation' dur='10000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
 				mdl.setAttribute('scale', '0.01 0.01 0.01');
 				mdl.setAttribute('position', '0 0 0');
 				txt.setAttribute('text-geometry', 'value: Bear Lancer');
@@ -41,7 +41,7 @@ AFRAME.registerComponent('click-listener', {
 				//mdl.setAttribute('position', '0 0 -2.5');
 				txt.setAttribute('text-geometry', 'value: BATTLEROCK STUDIOS');
 				txt.setAttribute('position', '-2.0 0 1.5');
-			    	mdl.innerHTML = "<a-animation attribute="rotation" dur="10000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>";
+			    	mdl.innerHTML = "<a-animation attribute='rotation' dur='10000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
 				
 			    }
 		    });
