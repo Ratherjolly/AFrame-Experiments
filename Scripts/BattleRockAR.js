@@ -5,7 +5,6 @@ AFRAME.registerComponent('click-listener', {
 	    	const mdl = document.querySelector('#ModelId');
 		const txt = document.querySelector('#ModelTxt');
                 const sTxt = document.querySelector('#StartTxt');
-		const prts = document.querySelector('#makeitrain');
 		const _mdlCnt = 3;
 			  
 		window.addEventListener('click', function () {
@@ -22,7 +21,7 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('obj-model', 'obj: #bear-obj;');
 				mdl.setAttribute('scale', '0.01 0.01 0.01');
 				//mdl.setAttribute('position', '0 0 0');
-			    	prts.innerHTML = "<a-entity position='0 2 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
+			    	mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 2 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
 				txt.setAttribute('text-geometry', 'value: Bear Lancer');
 				txt.setAttribute('position', '-1.5 0 1.5');
 			    }
@@ -30,7 +29,7 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 				//mdl.setAttribute('position', '0 0 0');
-				prts.innerHTML = "<a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
+				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
 				txt.setAttribute('text-geometry', 'value: The Brawler');
 				txt.setAttribute('position', '-1.8 0 1.5');
 			    }
@@ -39,7 +38,7 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('scale', '0.05 0.05 0.05');
 				txt.setAttribute('text-geometry', 'value: The Cube');
 				txt.setAttribute('position', '-1.4 0 1.5');
-			    	prts.innerHTML = "<a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity><a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>";
+			    	mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity><a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>";
 			    }
 		    });
 		  }
