@@ -39,8 +39,8 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('obj-model', 'obj: #cube-obj; mtl: #cube-mtl;');
 				mdl.setAttribute('scale', '0.05 0.05 0.05');
 				//mdl.setAttribute('position', '0 0 -2.5');
-				txt.setAttribute('text-geometry', 'value: KCCD');
-				txt.setAttribute('position', '-1.5 0 1.5');
+				txt.setAttribute('text-geometry', 'value: BATTLEROCK STUDIOS');
+				txt.setAttribute('position', '-2.0 0 1.5');
 			    }
 		    });
 		  }
