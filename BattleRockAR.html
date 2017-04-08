@@ -6,6 +6,7 @@
 	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
 	<script src="https://unpkg.com/aframe-text-geometry-component@0.5.x/dist/aframe-text-geometry-component.min.js" data-component-description="Geometry-based text for A-Frame" data-component-names="text-geometry" data-component-url="https://npmjs.com/package/aframe-text-geometry-component" data-package-name="aframe-text-geometry-component"></script>
 	<script src="./Scripts/BattleRockAR.js"></script>
+	<script src="./Scripts/aframe-particle-system-component.min.js"></script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene fog embedded artoolkit='sourceType: webcam;'>
@@ -14,15 +15,12 @@
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
 	  	<a-asset-item id="cube-obj" src="./Objects/TheCubeFull.obj"></a-asset-item>
 		<a-asset-item id="cube-mtl" src="./Objects/TheCubeFull.mtl"></a-asset-item>
-		<img id="marker" src='./markers/ARBattleRock7.png'>
+		<img id="sharpie" src='./markers/ARBattleRock7.png'>
 	  </a-assets>
-		<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
-		<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
-		
-		<!-- handle brawler marker -->
-		<a-marker url='#marker'>
+		<!--Marker World!-->
+		<a-marker url='#sharpie'>
 			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
-				<a-animation attribute="rotation" dur="6000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
+				<a-animation attribute="rotation" dur="10000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
 			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 			<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
