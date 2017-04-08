@@ -9,7 +9,7 @@
 	<script src="./Scripts/aframe-particle-system-component.min.js"></script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene fog embedded artoolkit='sourceType: webcam;'>
+	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
 		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
@@ -19,22 +19,21 @@
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker url='#sharpie'>
-			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.25 0.25 0.25" obj-model="obj: #brawler-obj;">
+			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.05 0.05 0.05" obj-model="obj: #cube-obj; mtl: #cube-mtl;">
 				<a-animation attribute="rotation" dur="10000" easing="linear" repeat="indefinite" to="0 360 0"></a-animation>
 			</a-entity>
 			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="" scale="" visible=""></a-entity>
 			<a-entity position="-1 1 1.5" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="" rotation="" visible=""></a-entity>
 			<a-entity position="0 0 -2" text="value: Infinite Cage1-1;color:red;"></a-entity>
 			
-
 			<a-entity position="0 1 -2" rotation="90 0 0"
-			text="anchor: center; width: 1.5; color: blue; value: [CENTER ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+			text="anchor: center; width: 1.5; color: blue; value: BATTLEROCK 90 0 0">
 			</a-entity>
 			<a-entity position="0 1 -2" rotation="180 0 0"
-			text="anchor: center; width: 1.5; color: blue; value: [CENTER ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+			text="anchor: center; width: 1.5; color: blue; value: BATTLEROCK 180 0 0">
 			</a-entity>
 			<a-entity position="0 0 0" rotation="0 0 0"
-			text="anchor: center; width: 1.5; color: blue; value: [CENTER ANCHOR] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam">
+			text="anchor: center; width: 1.5; color: blue; value: BATTLEROCK 0 0 0">
 			</a-entity>
 
 			<div id="ModelIndex">2</div>
