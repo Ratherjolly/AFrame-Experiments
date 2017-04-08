@@ -10,7 +10,7 @@ AFRAME.registerComponent('click-listener', {
 		window.addEventListener('click', function () {
 			console.log("CLICK!!!");
 			var MI = document.getElementById('ModelIndex');
-                    	sTxt.setAttribute('text-geometry', 'value:');
+                    	sTxt.setAttribute('text-geometry', 'value: TAP!');
 			
 			    var i = 0;
 			    i += parseFloat(MI.innerHTML);
