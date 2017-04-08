@@ -37,7 +37,7 @@ AFRAME.registerComponent('click-listener', {
 				mdl.setAttribute('obj-model', 'obj: #cube-obj; mtl: #cube-mtl;');
 				mdl.setAttribute('scale', '0.05 0.05 0.05');
 				txt.setAttribute('text-geometry', 'value: The Cube');
-				//txt.setAttribute('position', '-2.0 0 1.5');
+				txt.setAttribute('position', '-1.0 0 1.5');
 			    	mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity><a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>";
 			    }
 		    });
