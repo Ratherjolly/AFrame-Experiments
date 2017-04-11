@@ -10,7 +10,7 @@
 		padding: 0;
 		position: fixed;
 		width: 100%; height: 80px;
-		line-height: 80px;
+		line-height: 40px;
 		text-align: center;
 		background: white;
 		top: 0px; left: 0px;
@@ -72,7 +72,17 @@
 			header
 		</div>
 		<div id="gallery">
-			header
+		  <div class="w3-row-padding w3-section">
+		    <div class="w3-col s4">
+		      <img class="demo w3-opacity w3-hover-opacity-off" src="./Assets/img/chair.png" style="width:100%" onclick="currentDiv(1)">
+		    </div>
+		    <div class="w3-col s4">
+		      <img class="demo w3-opacity w3-hover-opacity-off" src="./Assets/img/chair.png" style="width:100%" onclick="currentDiv(2)">
+		    </div>
+		    <div class="w3-col s4">
+		      <img class="demo w3-opacity w3-hover-opacity-off" src="./Assets/img/chair.png" style="width:100%" onclick="currentDiv(3)">
+		    </div>
+		  </div>
 		</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
