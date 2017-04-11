@@ -4,42 +4,77 @@
 	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>		
  	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
-<script>
-	AFRAME.registerComponent('click-listener', {
-	  init: function () {
+	<style>
+	#Desc {
+		margin: 0;
+		padding: 0;
+		position: fixed;
+		width: 100%; height: 100px;
+		line-height: 100px;
+		text-align: center;
+		background: white;
+		top: 0px; left: 0px;
+		border-bottom: 1px solid #00899f;
+		z-index: 80;
+	}
+	#gallery {
+		margin: 0;
+		padding: 0;
+		position: fixed;
+		width: 100%; height: 100px;
+		line-height: 100px;
+		text-align: center;
+		background: white;
+		bottom: 0px; left: 0px;
+		border-top: 1px solid #00899f;
+		z-index: 80;
+	}
+	</style>
+	<script>
+		AFRAME.registerComponent('click-listener', {
+		  init: function () {
 
-	var el = this.el;
-	const mdl = document.querySelector('#ModelId');
-	const _mdlCnt = 3;
+		var el = this.el;
+		const mdl = document.querySelector('#ModelId');
+		const _mdlCnt = 3;
 
-	window.addEventListener('click', function () {
-	    var MI = document.getElementById('ModelIndex');
-
-	    var i = 0;
-	    i += parseFloat(MI.innerHTML);
-		i += 1;
-	    if (i > _mdlCnt)
-		i = 1;
-	    MI.innerHTML = i;
-	    if (i==1) {
-			mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
-			mdl.setAttribute('scale', '2.01 2.01 2.01');
-	    }
-	    else if (i==2) {
-			mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
-			mdl.setAttribute('position', '0 -2 0');
-		    	mdl.setAttribute('scale', '2.25 2.25 2.25');
-	    }
-	    else if (i==3) {
-			mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
-			mdl.setAttribute('scale', '2.05 2.05 2.05');
-	    }
-	    });
-	  }
-	});
-</script>
+		window.addEventListener('click', function () {
+			var MI = document.getElementById('ModelIndex');
+			var DESC = document.getElementById("Desc");
+			var i = 0;
+			i += parseFloat(MI.innerHTML);
+			i += 1;
+			if (i > _mdlCnt)
+			i = 1;
+			MI.innerHTML = i;
+			if (i==1) {
+				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
+				mdl.setAttribute('scale', '2.01 2.01 2.01');
+				DESC.innerHTML = "<b>"+"Chair"+"</b>";
+			}
+			else if (i==2) {
+				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
+				mdl.setAttribute('scale', '2.25 2.25 2.25');
+				DESC.innerHTML = "<b>"+"office-chair"+"</b>";
+			}
+			else if (i==3) {
+				mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
+				mdl.setAttribute('scale', '2.05 2.05 2.05');
+				DESC.innerHTML = "<b>"+"office-guy"+"</b>";
+			}
+			});
+		  }
+		});
+	</script>
+	
 </head>
 <body style='margin : 0px; overflow: hidden;'>
+		<div id="Desc">
+			header
+		</div>
+		<div id="gallery">
+			header
+		</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		  
