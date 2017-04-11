@@ -45,6 +45,7 @@
 		img{ margin: 0; padding: 0; }
 	</style>
 	<script>
+		
 		var slideIndex = 1;
 		function currentSlide(n) {
 		  showSlides(slideIndex = n);
@@ -74,12 +75,52 @@
 				mdl.setAttribute('scale', '0.1 0.1 0.1');
 			}
 		}
+		function animate(){
+			var mdl = document.querySelector('#ModelId');
+			var action = "";
+			
+			if(mdl.innerHTML == "")
+				action = "animate"
+			else{ action = "justDont";}
+			
+			if(action = "animate")
+				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
+			else{ mdl.innerHTML = ""; }
+		}
+		function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {               // current working methods
+            if (document.documentElement.requestFullScreen) {
+                document.documentElement.requestFullScreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullScreen) {
+                document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+            } else {
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+            }
+        };
 		window.onload = function() {
 			showSlides(slideIndex);
 		}
 	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
+	<a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
+        <img src="./Assets/img/fullscreen.png" style="width:100%;" />
+    </a>
+	
+	<a class="button" onclick="animate()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px;">
+		<b>A</b>
+    </a>
+	
 	<div id="Desc">NBF HEADER</div>
 
 	<div id="gallery">
