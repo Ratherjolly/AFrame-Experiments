@@ -83,20 +83,20 @@
 		</script>
 		<script>
 
-var slideIndex = 1;
-showSlides(slideIndex);
+		var slideIndex = 1;
+		showSlides(slideIndex);
 
-function currentSlide(n) {
-	console.log("currentSlide");
-  showSlides(slideIndex = n);
-}
+		function currentSlide(n) {
+			console.log("currentSlide");
+		  showSlides(slideIndex = n);
+		}
 
-function showSlides(n) {
-	console.log("showSlides");
+		function showSlides(n) {
+			console.log("showSlides");
 			var MI = document.getElementById('ModelIndex');
 			var DESC = document.getElementById("Desc");
 			const descArr = ["Chair","office-chair","office-guy"];
-	
+
 			DESC.innerHTML = "<H1>"+descArr[i]+"</H1>";
 			if (i==1) {
 				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
@@ -110,8 +110,7 @@ function showSlides(n) {
 				mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
 				mdl.setAttribute('scale', '2.05 2.05 2.05');
 			}
-			});
-}
+		}
 </script>
 	
 	
@@ -131,7 +130,7 @@ function showSlides(n) {
 		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(3)">
 		  </div>
 		</div>
-	</div
+	</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		  
