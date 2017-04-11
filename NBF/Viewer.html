@@ -82,14 +82,10 @@
 		});*/
 		</script>
 		<script>
-		window.onload = function() {
 			var slideIndex = 1;
-			showSlides(slideIndex);
-
 			function currentSlide(n) {
 			  showSlides(slideIndex = n);
 			}
-
 			function showSlides(i) {
 				var MI = document.getElementById('ModelIndex');
 				var mdl = document.querySelector('#ModelId');
@@ -113,10 +109,10 @@
 					mdl.setAttribute('scale', '2.05 2.05 2.05');
 				}
 			}
+		window.onload = function() {
+			showSlides(slideIndex);
 		}
-</script>
-	
-	
+	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
 	<div id="DescDiv">NBF HEADER</div>
@@ -139,7 +135,6 @@
 	</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
-		  
 		<a-asset-item id="chair-obj" src="./Assets/chair.obj"></a-asset-item>
 		<a-asset-item id="chair-mtl" src="./Assets/chair.mtl"></a-asset-item>
 		  
@@ -151,7 +146,6 @@
 		  
 		  <a-asset-item id="chair-test-obj" src="./Assets/chair-test.obj"></a-asset-item>
 		<a-asset-item id="chair-test-mtl" src="./Assets/chair-test.mtl"></a-asset-item>
-		  
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/nbfi.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
