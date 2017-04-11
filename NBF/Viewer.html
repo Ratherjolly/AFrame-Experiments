@@ -44,7 +44,6 @@
 		}
 		img{ margin: 0; padding: 0; }
 		A {
-			padding-top: 10px;
 			border-radius: 15px;
 		    border: 2px solid black;
 		    padding: 20px; 
@@ -83,7 +82,7 @@
 				mdl.setAttribute('scale', '0.1 0.1 0.1');
 			}
 		}
-		function animate(){
+		function animateMdl(){
 			var mdl = document.querySelector('#ModelId');
 			var action = "";
 			
@@ -125,8 +124,8 @@
         <img src="./Assets/img/fullscreen.png" style="width:100%;" />
     </a>
 	<!--ANIMATE -->
-	<a class="button" onclick="animate()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px; z-index: 100;">
-		<b>A</b>
+	<a class="button" onclick="animateMdl()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px; z-index: 100;">
+		<img src="./Assets/img/rotate.png" style="width:100%;" />
 	</a>
 	
 	<div id="Desc">NBF HEADER</div>
