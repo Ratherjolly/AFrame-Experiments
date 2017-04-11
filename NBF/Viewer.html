@@ -87,7 +87,6 @@
 		showSlides(slideIndex);
 
 		function currentSlide(n) {
-			console.log("currentSlide");
 		  showSlides(slideIndex = n);
 		}
 
@@ -106,7 +105,11 @@
 				mdl.setAttribute('scale', '2.25 2.25 2.25');
 			}
 			else if (i==3) {
-				mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
+				mdl.setAttribute('obj-model', 'obj: #furniture-obj; mtl: #furniture-mtl;');
+				mdl.setAttribute('scale', '2.05 2.05 2.05');
+			}
+			else if (i==4) {
+				mdl.setAttribute('obj-model', 'obj: #chair-test-obj; mtl: #chair-test-mtl;');
 				mdl.setAttribute('scale', '2.05 2.05 2.05');
 			}
 		}
@@ -123,10 +126,13 @@
 		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(1)">
 		  </div>
 		  <div class="column">
-		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(2)">
+		    <img src="./Assets/img/office-chair.png" style="width:100%" onclick="currentSlide(2)">
 		  </div>
 		  <div class="column">
 		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(3)">
+		  </div>
+		<div class="column">
+		    <img src="./Assets/img/chair-test.png" style="width:100%" onclick="currentSlide(4)">
 		  </div>
 		</div>
 	</div>
@@ -139,8 +145,11 @@
 	  	<a-asset-item id="office-chair-obj" src="./Assets/office-chair.obj"></a-asset-item>
 		<a-asset-item id="office-chair-mtl" src="./Assets/office-chair.mtl"></a-asset-item>
 		  
-	  	<a-asset-item id="office-guy-obj" src="./Assets/office-guy.obj"></a-asset-item>
-		<a-asset-item id="office-guy-mtl" src="./Assets/office-guy.mtl"></a-asset-item>
+	  	<a-asset-item id="furniture-obj" src="./Assets/furniture.obj"></a-asset-item>
+		<a-asset-item id="furniture-mtl" src="./Assets/furniture.mtl"></a-asset-item>
+		  
+		  <a-asset-item id="chair-test-obj" src="./Assets/chair-test.obj"></a-asset-item>
+		<a-asset-item id="chair-test-mtl" src="./Assets/chair-test.mtl"></a-asset-item>
 		  
 	  </a-assets>
 		<!--Marker World!-->
