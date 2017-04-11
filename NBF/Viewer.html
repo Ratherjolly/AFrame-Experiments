@@ -60,8 +60,8 @@
 			document.getElementById("Desc").innerHTML = "<H2>"+descArr[i]+"</H2><p>"+descDetail[i]+"</p>";
 
 			if (i==1) {
-				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
-				mdl.setAttribute('scale', '2.01 2.01 2.01');
+				mdl.setAttribute('obj-model', 'obj: #cush-obj; mtl: #cush-mtl;');
+				mdl.setAttribute('scale', '0.5 0.5 0.5');
 			}
 			else if (i==2) {
 				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
@@ -87,7 +87,7 @@
 	<div id="gallery">
 		<div class="row">
 		  <div class="column">
-		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(1)">
+		    <img src="./Assets/img/cush.png" style="width:100%" onclick="currentSlide(1)">
 		  </div>
 		  <div class="column">
 		    <img src="./Assets/img/chair.png" style="width:100%" onclick="currentSlide(2)">
@@ -117,6 +117,9 @@
 		  
 		  <a-asset-item id="lazy-obj" src="./Assets/lazy.obj"></a-asset-item>
 		<a-asset-item id="lazy-mtl" src="./Assets/lazy.mtl"></a-asset-item>
+		  
+		  <a-asset-item id="cush-obj" src="./Assets/cush.obj"></a-asset-item>
+		<a-asset-item id="cush-mtl" src="./Assets/cush.mtl"></a-asset-item>
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/nbfi.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
