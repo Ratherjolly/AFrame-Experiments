@@ -18,35 +18,24 @@
 		var MI = document.getElementById('ModelIndex');
 		sTxt.setAttribute('text-geometry', 'value:');
 
-		    var i = 0;
-		    i += parseFloat(MI.innerHTML);
-			i += 1;
-		    if (i > _mdlCnt)
-			i = 1;
-		    MI.innerHTML = i;
-		    if (i==1) {
-			mdl.setAttribute('obj-model', 'obj: #bear-obj;');
-			mdl.setAttribute('scale', '0.01 0.01 0.01');
-			//mdl.setAttribute('position', '0 0 0');
-			mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
-			txt.setAttribute('text-geometry', 'value:');
-			txt.setAttribute('position', '-1.5 0 1.5');
-		    }
-		    else if (i==2) {
-			mdl.setAttribute('obj-model', 'obj: #brawler-obj;');
-			mdl.setAttribute('scale', '0.25 0.25 0.25');
-			//mdl.setAttribute('position', '0 0 0');
-			mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity>";
-			txt.setAttribute('text-geometry', 'value:');
-			txt.setAttribute('position', '-1.8 0 1.5');
-		    }
-		    else if (i==3) {
-			mdl.setAttribute('obj-model', 'obj: #cube-obj; mtl: #cube-mtl;');
-			mdl.setAttribute('scale', '0.05 0.05 0.05');
-			txt.setAttribute('text-geometry', 'value:');
-			txt.setAttribute('position', '-1.4 0 1.5');
-			mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation><a-entity position='0 0 0' particle-system='preset: rain; color: #EF0000,#44CC00'></a-entity><a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>";
-		    }
+	    var i = 0;
+	    i += parseFloat(MI.innerHTML);
+		i += 1;
+	    if (i > _mdlCnt)
+		i = 1;
+	    MI.innerHTML = i;
+	    if (i==1) {
+			mdl.setAttribute('obj-model', 'obj: #desk-obj; mtl: #desk-mtl;');
+			//mdl.setAttribute('scale', '0.01 0.01 0.01');
+	    }
+	    else if (i==2) {
+			mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
+			//mdl.setAttribute('scale', '0.25 0.25 0.25');
+	    }
+	    else if (i==3) {
+			mdl.setAttribute('obj-model', 'obj: #chairBrownSeat-obj; mtl: #chairBrownSeat-mtl;');
+			//mdl.setAttribute('scale', '0.05 0.05 0.05');
+	    }
 	    });
 	  }
 	});
@@ -55,10 +44,18 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
-		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
-		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
-	  	<a-asset-item id="cube-obj" src="./Objects/TheCubeFull.obj"></a-asset-item>
-		<a-asset-item id="cube-mtl" src="./Objects/TheCubeFull.mtl"></a-asset-item>
+		  
+		  
+		<a-asset-item id="desk-obj" src="./Assets/desk.obj"></a-asset-item>
+		<a-asset-item id="desk-mtl" src="./Assets/desk.mtl"></a-asset-item>
+		  
+	  	<a-asset-item id="office-chair-obj" src="./Assets/office-chair.obj"></a-asset-item>
+		<a-asset-item id="office-chair-mtl" src="./Assets/office-chair.mtl"></a-asset-item>
+		  
+	  	<a-asset-item id="chairBrownSeat-obj" src="./Assets/chairBrownSeat.obj"></a-asset-item>
+		<a-asset-item id="chairBrownSeat-mtl" src="./Assets/chairBrownSeat.mtl"></a-asset-item>
+		  
+		  
 		<img id="sharpie" src='./markers/ARBattleRock7.png'>
 	  </a-assets>
 		<!--Marker World!-->
