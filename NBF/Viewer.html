@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>		
+ -	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
+	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+	<script src="./Scripts/BattleRockAR.js"></script>
+	<script src="./Scripts/aframe-particle-system-component.min.js"></script>
+	<script src="https://unpkg.com/aframe-text-geometry-component@0.5.x/dist/aframe-text-geometry-component.min.js" data-component-description="Geometry-based text for A-Frame" data-component-names="text-geometry" data-component-url="https://npmjs.com/package/aframe-text-geometry-component" data-package-name="aframe-text-geometry-component"></script>
+</head>
+<body style='margin : 0px; overflow: hidden;'>
+	<a-scene embedded artoolkit='sourceType: webcam;'>
+	  <a-assets>
+		<a-asset-item id="brawler-obj" src="./Objects/BrawlerSmoothFists.obj"></a-asset-item>
+		<a-asset-item id="bear-obj" src="./Objects/LancerBear.obj"></a-asset-item>
+	  	<a-asset-item id="cube-obj" src="./Objects/TheCubeFull.obj"></a-asset-item>
+		<a-asset-item id="cube-mtl" src="./Objects/TheCubeFull.mtl"></a-asset-item>
+		<img id="sharpie" src='./markers/ARBattleRock7.png'>
+	  </a-assets>
+		<!--Marker World!-->
+		<a-marker type='pattern' url='./markers/briii.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
+			<a-entity id="ModelId" material='opacity: 0.8; color: red' scale="0.05 0.05 0.05"> <!--obj-model="obj: #cube-obj; mtl: #cube-mtl;">-->
+				<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>
+				<a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>
+			</a-entity>
+			<a-entity position="-2.5 0 1.5" rotation="-30 0 0" color="black" id="ModelTxt" text-geometry="value: Studios;" scale="" visible=""></a-entity>
+			<a-entity position="-1 1 1.5" rotation="-30 0 0" scale="0.5 0.5 0.5" color="black" id="StartTxt" text-geometry="value: BATTLEROCK;" rotation="" visible=""></a-entity>
+			<div id="ModelIndex">2</div>
+		</a-marker>
+		<a-entity camera click-listener></a-entity>
+	</a-scene>
+</body>
+</html>
