@@ -85,15 +85,16 @@
 		}
 		function animateMdl(){
 			var mdl = document.querySelector('#ModelId');
-			
-			if(rotate = 0){
+			var tempRotate = 0;
+			if(rotate == 0){
 				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
-				rotate = 1
+				tempRotate = 1
 			}
 			else{ 
 				mdl.innerHTML = "";
-				rotate = 0;
+				tempRotate = 0;
 			}
+			rotate = tempRotate;
 		}
 		function toggleFullScreen() {
             if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method
