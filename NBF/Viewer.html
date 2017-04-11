@@ -32,13 +32,11 @@
 		.row > .column {
 		  padding: 0 8px;
 		}
-
 		.row:after {
 		  content: "";
 		  display: table;
 		  clear: both;
 		}
-
 		.column {
 		  float: left;
 		  width: 19.2%;
@@ -61,7 +59,7 @@
 
 			if (i==1) {
 				mdl.setAttribute('obj-model', 'obj: #cush-obj; mtl: #cush-mtl;');
-				mdl.setAttribute('scale', '0.5 0.5 0.5');
+				mdl.setAttribute('scale', '0.02 0.02 0.02');
 			}
 			else if (i==2) {
 				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
@@ -115,11 +113,14 @@
 		<a-asset-item id="chair-test-obj" src="./Assets/chair-test.obj"></a-asset-item>
 		<a-asset-item id="chair-test-mtl" src="./Assets/chair-test.mtl"></a-asset-item>
 		  
-		  <a-asset-item id="lazy-obj" src="./Assets/lazy.obj"></a-asset-item>
+	  	<a-asset-item id="lazy-obj" src="./Assets/lazy.obj"></a-asset-item>
 		<a-asset-item id="lazy-mtl" src="./Assets/lazy.mtl"></a-asset-item>
 		  
-		  <a-asset-item id="cush-obj" src="./Assets/cush.obj"></a-asset-item>
+	  	<a-asset-item id="cush-obj" src="./Assets/cush.obj"></a-asset-item>
 		<a-asset-item id="cush-mtl" src="./Assets/cush.mtl"></a-asset-item>
+		  
+		<a-asset-item id="basic-obj" src="./Assets/basic.obj"></a-asset-item>
+		<a-asset-item id="basic-mtl" src="./Assets/basic.mtl"></a-asset-item>
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/nbfi.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
