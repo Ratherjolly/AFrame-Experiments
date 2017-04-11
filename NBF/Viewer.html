@@ -59,7 +59,6 @@
 		  showSlides(slideIndex = n);
 		}
 		function showSlides(i) {
-			var MI = document.getElementById('ModelIndex');
 			var mdl = document.querySelector('#ModelId');
 			var descArr = ["","The lounger","The Professional","The Modest","Chair 4"];
 			var descDetail = ["","Sit in your comfort zone!","Get down to business!","Simple, efficient, affordable...why not?","Increase productivity!"];
@@ -78,6 +77,7 @@
 				mdl.setAttribute('obj-model', 'obj: #basic-obj; mtl: #basic-mtl;');
 				mdl.setAttribute('scale', '0.06 0.06 0.06');
 			}
+			mdl.setAttribute('rotation','0 0 0');
 			/*else if (i==4) {
 				mdl.setAttribute('obj-model', 'obj: #simple-obj; mtl: #simple-mtl;');
 				mdl.setAttribute('scale', '2 2 2');
@@ -184,7 +184,6 @@
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/markers/nbfiii.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
 			<a-entity id="ModelId" material='opacity: 0.8;' scale="1 1 1"></a-entity>
-			<div id="ModelIndex">0</div>
 		</a-marker>
 		<a-entity camera click-listener></a-entity>
 	</a-scene>
