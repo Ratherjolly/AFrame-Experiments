@@ -87,6 +87,7 @@
 			var mdl = document.querySelector('#ModelId');
 			var tempRotate = 0;
 			if(rotate == 0){
+				mdl.setAttribute('rotation','0 0 0');
 				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
 				tempRotate = 1
 			}
