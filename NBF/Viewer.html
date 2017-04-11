@@ -64,16 +64,60 @@
 			});
 		  }
 		});
-	</script>
+		</script>
+		<script>
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function currentSlide(n) {
+	console.log("currentSlide");
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+	console.log("showSlides");
+			var MI = document.getElementById('ModelIndex');
+			var DESC = document.getElementById("Desc");
+			const descArr = ["Chair","office-chair","office-guy"];
+	
+			DESC.innerHTML = "<H1>"+descArr[i]+"</H1>";
+			if (i==1) {
+				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
+				mdl.setAttribute('scale', '2.01 2.01 2.01');
+			}
+			else if (i==2) {
+				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
+				mdl.setAttribute('scale', '2.25 2.25 2.25');
+			}
+			else if (i==3) {
+				mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
+				mdl.setAttribute('scale', '2.05 2.05 2.05');
+			}
+			});
+}
+</script>
+	
 	
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-		<div id="Desc">
-			header
-		</div>
+		<div id="Desc">header</div>
+	
 		<div id="gallery">
-		  <div class="w3-row-padding w3-section">
-		    <div class="w3-col s4">
+<div class="row">
+  <div class="column">
+    <img src="./Assets/img/chair.png" style="width:100%" onclick="openModal();currentSlide(1)">
+  </div>
+  <div class="column">
+    <img src="./Assets/img/chair.png" style="width:100%" onclick="openModal();currentSlide(2)">
+  </div>
+  <div class="column">
+    <img src="./Assets/img/chair.png" style="width:100%" onclick="openModal();currentSlide(3)">
+  </div>
+</div>
+			
+			
+			
 		      <img class="demo w3-opacity w3-hover-opacity-off" src="./Assets/img/chair.png" style="width:100%" onclick="currentDiv(1)">
 		    </div>
 		    <div class="w3-col s4">
