@@ -113,13 +113,11 @@
 	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-	<a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
+	<a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px; z-index: 100;">
         <img src="./Assets/img/fullscreen.png" style="width:100%;" />
     </a>
-	
-	<a class="button" onclick="animate()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px;">
-		<b>A</b>
-    </a>
+	<!--ANIMATE -->
+	<a class="button" onclick="animate()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px; z-index: 100;"><b>A</b></a>
 	
 	<div id="Desc">NBF HEADER</div>
 
