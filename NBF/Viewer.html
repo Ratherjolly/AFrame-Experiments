@@ -9,8 +9,8 @@
 		margin: 0;
 		padding: 0;
 		position: fixed;
-		width: 100%; height: 100px;
-		line-height: 100px;
+		width: 100%; height: 80px;
+		line-height: 80px;
 		text-align: center;
 		background: white;
 		top: 0px; left: 0px;
@@ -41,26 +41,25 @@
 		window.addEventListener('click', function () {
 			var MI = document.getElementById('ModelIndex');
 			var DESC = document.getElementById("Desc");
+			const descArr = ["Chair","office-chair","office-guy"];
 			var i = 0;
 			i += parseFloat(MI.innerHTML);
 			i += 1;
 			if (i > _mdlCnt)
 			i = 1;
 			MI.innerHTML = i;
+			DESC.innerHTML = "<H1>"+descArr[i]+"</H1>";
 			if (i==1) {
 				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
 				mdl.setAttribute('scale', '2.01 2.01 2.01');
-				DESC.innerHTML = "<b>"+"Chair"+"</b>";
 			}
 			else if (i==2) {
 				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
 				mdl.setAttribute('scale', '2.25 2.25 2.25');
-				DESC.innerHTML = "<b>"+"office-chair"+"</b>";
 			}
 			else if (i==3) {
 				mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
 				mdl.setAttribute('scale', '2.05 2.05 2.05');
-				DESC.innerHTML = "<b>"+"office-guy"+"</b>";
 			}
 			});
 		  }
