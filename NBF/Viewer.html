@@ -82,35 +82,36 @@
 		});*/
 		</script>
 		<script>
+		window.onload = function() {
+			var slideIndex = 1;
+			showSlides(slideIndex);
 
-		var slideIndex = 1;
-		showSlides(slideIndex);
-
-		function currentSlide(n) {
-		  showSlides(slideIndex = n);
-		}
-
-		function showSlides(i) {
-			var MI = document.getElementById('ModelIndex');
-			//var DESC = document.getElementById('Desc');
-			const descArr = ["Chair 1","Chair 2","Chair 3","Chair 4"];
-
-			document.getElementById("DescDiv").innerHTML = "<H1>"+descArr[i]+"</H1>";
-			if (i==1) {
-				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
-				mdl.setAttribute('scale', '2.01 2.01 2.01');
+			function currentSlide(n) {
+			  showSlides(slideIndex = n);
 			}
-			else if (i==2) {
-				mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
-				mdl.setAttribute('scale', '2.25 2.25 2.25');
-			}
-			else if (i==3) {
-				mdl.setAttribute('obj-model', 'obj: #furniture-obj; mtl: #furniture-mtl;');
-				mdl.setAttribute('scale', '2.05 2.05 2.05');
-			}
-			else if (i==4) {
-				mdl.setAttribute('obj-model', 'obj: #chair-test-obj; mtl: #chair-test-mtl;');
-				mdl.setAttribute('scale', '2.05 2.05 2.05');
+
+			function showSlides(i) {
+				var MI = document.getElementById('ModelIndex');
+				//var DESC = document.getElementById('Desc');
+				const descArr = ["Chair 1","Chair 2","Chair 3","Chair 4"];
+
+				document.getElementById("DescDiv").innerHTML = "<H1>"+descArr[i]+"</H1>";
+				if (i==1) {
+					mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
+					mdl.setAttribute('scale', '2.01 2.01 2.01');
+				}
+				else if (i==2) {
+					mdl.setAttribute('obj-model', 'obj: #office-chair-obj; mtl: #office-chair-mtl;');
+					mdl.setAttribute('scale', '2.25 2.25 2.25');
+				}
+				else if (i==3) {
+					mdl.setAttribute('obj-model', 'obj: #furniture-obj; mtl: #furniture-mtl;');
+					mdl.setAttribute('scale', '2.05 2.05 2.05');
+				}
+				else if (i==4) {
+					mdl.setAttribute('obj-model', 'obj: #chair-test-obj; mtl: #chair-test-mtl;');
+					mdl.setAttribute('scale', '2.05 2.05 2.05');
+				}
 			}
 		}
 </script>
