@@ -91,7 +91,7 @@
 				var mdl = document.querySelector('#ModelId');
 				const descArr = ["Chair 1","Chair 2","Chair 3","Chair 4"];
 
-				document.getElementById("DescDiv").innerHTML = "<H1>"+descArr[i]+"</H1>";
+				document.getElementById("Desc").innerHTML = "<H1>"+descArr[i]+"</H1>";
 				if (i==1) {
 					mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
 					mdl.setAttribute('scale', '2.01 2.01 2.01');
@@ -115,7 +115,7 @@
 	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-	<div id="DescDiv">NBF HEADER</div>
+	<div id="Desc">NBF HEADER</div>
 
 	<div id="gallery">
 		<div class="row">
