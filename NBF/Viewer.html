@@ -10,7 +10,7 @@
 			padding: 0;
 			position: fixed;
 			width: 100%; height: 80px;
-			line-height: 40px;
+			line-height: 20px;
 			text-align: center;
 			background: white;
 			top: 0px; left: 0px;
@@ -89,9 +89,11 @@
 			function showSlides(i) {
 				var MI = document.getElementById('ModelIndex');
 				var mdl = document.querySelector('#ModelId');
-				const descArr = ["Chair 1","Chair 2","Chair 3","Chair 4"];
+				var descArr = ["Chair 1","Chair 2","Chair 3","Chair 4"];
+				var descDetail = ["Perfect for a good sit","All the support you'll ever need!","Happy Posture, Happy Life","Increase productivity!"];
 
-				document.getElementById("Desc").innerHTML = "<H1>"+descArr[i]+"</H1>";
+				document.getElementById("Desc").innerHTML = "<H1>"+descArr[i]+"</H1><br><p>"+descDetail[i]+"</p>";
+				
 				if (i==1) {
 					mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
 					mdl.setAttribute('scale', '2.01 2.01 2.01');
