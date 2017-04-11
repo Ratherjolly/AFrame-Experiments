@@ -54,6 +54,7 @@
 	<script>
 		
 		var slideIndex = 1;
+		var rotate = 0;
 		function currentSlide(n) {
 		  showSlides(slideIndex = n);
 		}
@@ -84,15 +85,15 @@
 		}
 		function animateMdl(){
 			var mdl = document.querySelector('#ModelId');
-			var action = "";
 			
-			if(mdl.innerHTML == "")
-				action = "animate"
-			else{ action = "justDont";}
-			
-			if(action = "animate")
+			if(rotate = 0){
 				mdl.innerHTML = "<a-animation attribute='rotation' dur='8000' easing='linear' repeat='indefinite' to='0 360 0'></a-animation>";
-			else{ mdl.innerHTML = ""; }
+				rotate = 1
+			}
+			else{ 
+				mdl.innerHTML = "";
+				rotate = 0;
+			}
 		}
 		function toggleFullScreen() {
             if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method
