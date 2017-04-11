@@ -71,7 +71,7 @@
 				mdl.setAttribute('scale', '0.15 0.15 0.15');
 			}
 			else if (i==2) {
-				mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
+				mdl.setAttribute('obj-model', 'obj: #simple-obj; mtl: #simple-mtl;');
 				mdl.setAttribute('scale', '0.25 0.25 0.25');
 			}
 			else if (i==3) {
@@ -153,8 +153,8 @@
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		
-		<a-asset-item id="chair-obj" src="./Assets/chair.obj"></a-asset-item>
-		<a-asset-item id="chair-mtl" src="./Assets/chair.mtl"></a-asset-item>
+		<a-asset-item id="simple-obj" src="./Assets/simple.obj"></a-asset-item>
+		<a-asset-item id="simple-mtl" src="./Assets/simple.mtl"></a-asset-item>
 		  
 		<a-asset-item id="chair-test-obj" src="./Assets/chair-test.obj"></a-asset-item>
 		<a-asset-item id="chair-test-mtl" src="./Assets/chair-test.mtl"></a-asset-item>
@@ -167,6 +167,10 @@
 		  
 	  	<!--
 		THESE ARE ALL CHAIRS THAT WORK, but are not on Zero/Zero
+		mdl.setAttribute('scale', '1 1 1');
+		<a-asset-item id="chair-obj" src="./Assets/chair.obj"></a-asset-item>
+		<a-asset-item id="chair-mtl" src="./Assets/chair.mtl"></a-asset-item>
+
 		mdl.setAttribute('scale', '2.25 2.25 2.25');
 		<a-asset-item id="office-chair-obj" src="./Assets/office-chair.obj"></a-asset-item>
 		<a-asset-item id="office-chair-mtl" src="./Assets/office-chair.mtl"></a-asset-item>
