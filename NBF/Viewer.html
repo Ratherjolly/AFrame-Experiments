@@ -22,7 +22,7 @@
 		i = 1;
 	    MI.innerHTML = i;
 	    if (i==1) {
-			mdl.setAttribute('obj-model', 'obj: #desk-obj; mtl: #desk-mtl;');
+			mdl.setAttribute('obj-model', 'obj: #chair-obj; mtl: #chair-mtl;');
 			mdl.setAttribute('scale', '2.01 2.01 2.01');
 	    }
 	    else if (i==2) {
@@ -31,7 +31,7 @@
 		    	mdl.setAttribute('scale', '2.25 2.25 2.25');
 	    }
 	    else if (i==3) {
-			mdl.setAttribute('obj-model', 'obj: #chairBrownSeat-obj; mtl: #chairBrownSeat-mtl;');
+			mdl.setAttribute('obj-model', 'obj: #office-guy-obj; mtl: #office-guy-mtl;');
 			mdl.setAttribute('scale', '2.05 2.05 2.05');
 	    }
 	    });
@@ -43,14 +43,14 @@
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
 		  
-		<a-asset-item id="desk-obj" src="./Assets/desk.obj"></a-asset-item>
-		<a-asset-item id="desk-mtl" src="./Assets/desk.mtl"></a-asset-item>
+		<a-asset-item id="chair-obj" src="./Assets/chair.obj"></a-asset-item>
+		<a-asset-item id="chair-mtl" src="./Assets/chair.mtl"></a-asset-item>
 		  
 	  	<a-asset-item id="office-chair-obj" src="./Assets/office-chair.obj"></a-asset-item>
 		<a-asset-item id="office-chair-mtl" src="./Assets/office-chair.mtl"></a-asset-item>
 		  
-	  	<a-asset-item id="chairBrownSeat-obj" src="./Assets/chairBrownSeat.obj"></a-asset-item>
-		<a-asset-item id="chairBrownSeat-mtl" src="./Assets/chairBrownSeat.mtl"></a-asset-item>
+	  	<a-asset-item id="office-guy-obj" src="./Assets/office-guy.obj"></a-asset-item>
+		<a-asset-item id="office-guy-mtl" src="./Assets/office-guy.mtl"></a-asset-item>
 		  
 	  </a-assets>
 		<!--Marker World!-->
