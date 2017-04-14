@@ -18,11 +18,11 @@
         document.addEventListener("DOMContentLoaded", function (event) {
             // An array containing all the projects with their information
             var projects = [
-              new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random','1'),
-              new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random','2'),
-              new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random','3'),
-              new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random','4'),
-              new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random','5')
+              new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random','-1','1'),
+              new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random','1',2'),
+              new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random','2','3'),
+              new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random','3','4'),
+              new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random','4','5')
             ];
 
             // Cacheing HTML elements
@@ -30,13 +30,15 @@
             var projName   = document.querySelector('#proj_name');
             var projDescr  = document.querySelector('#proj_description');
             var projImg    = document.querySelector('#proj_img');
-            var projButton = document.querySelector('#proj_switcher');
+            var projBtn1 = document.querySelector('#proj_btn1');
+            var projBtn2 = document.querySelector('#proj_btn2');
 
-            function Project(name, description, img, btnInd) {
+            function Project(name, description, img, btnInd1,btnInd2) {
               this.name = name;
               this.description = description;
               this.img = img;
-              this.btnInd = btnInd;
+              this.btnInd1 = btnInd1;
+              this.btnInd2 = btnInd2;
             }
 
             function LoadDialogue(e){
@@ -45,7 +47,8 @@
                   setTimeout(function(){ 			// Fade in 
                       projName.innerHTML = projects[e].name;
                       projDescr.innerHTML = projects[e].description;
-                      projButton.setAttribute('data-index',projects[e].btnInd);
+                      projBtn1.setAttribute('data-index',projects[e].btnInd1);
+                      projBtn2.setAttribute('data-index',projects[e].btnInd2);
                       projImg.src = projects[e].img;
                       projImg.style.width = '250px';
                       projImg.style.height = '150px';
@@ -54,8 +57,8 @@
               }
             };
             //SET BTN EVENTS
-            projButton.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
-            
+            projBtn1.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
+            projBtn2.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
             //Load Initial Dialogue
             LoadDialogue("0");
         //};
@@ -68,7 +71,10 @@
         <div id="proj_name"></div>
         <div id="proj_description"></div>
         <img id="proj_img" src=""><br>
-        <button id="proj_switcher" data-index="1">Next Project</button>
+        <div style="display:inline-block;">
+            <button id="proj_btn1" data-index="1">Next Project</button>
+            <button id="proj_btn2" data-index="-1">Next Project</button>
+        </div>
     </div>
 </body>
 
