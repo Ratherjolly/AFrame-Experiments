@@ -45,6 +45,7 @@
                   setTimeout(function(){ 			// Fade in 
                       projName.innerHTML = projects[e].name;
                       projDescr.innerHTML = projects[e].description;
+                      projButton.setAttribute('data-index',projects[e].btnInd);
                       projImg.src = projects[e].img;
                       projImg.style.width = '250px';
                       projImg.style.height = '150px';
