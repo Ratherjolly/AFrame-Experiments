@@ -210,13 +210,7 @@
     </script>
 </head>
 
-<body>
-    <audio autoplay loop>
-        <source src="song.wav" type="audio/ogg">
-        <source src="song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
+<body>    
     <div id="myNav" class="overlay">
         <h1 style="padding-top:0px; text-align:center; left:50%; top:0%; color:white;">BattleRockStudios</h1>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -229,6 +223,23 @@
                     <button class="btn" id="proj_btn1" data-index="-1">Next Project</button>
                     <button class="btn" id="proj_btn2" data-index="1">Next Project</button>
                 </div>
+                
+                    <audio autoplay loop>
+                        <source src="./Audio/ThemeWav.ogg" type="audio/ogg">
+                        <source src="./Audio/ThemeWav.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <!--<audio autoplay loop>
+                        <source src="./Audio/GGJ2015_Rough4.ogg" type="audio/ogg">
+                        <source src="./Audio/GGJ2015_Rough4.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <audio autoplay loop>
+                        <source src="./Audio/song.ogg" type="audio/ogg">
+                        <source src="./Audio/song.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>-->
+                
             </div>
             <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
                 <img src="./images/fullscreen.png" style="width:100%;" />
