@@ -15,11 +15,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
             var projects = [
-              new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random','-1','1'),
-              new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random','1',2'),
-              new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random','2','3'),
-              new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random','3','4'),
-              new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random','4','5')
+              new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random','-1','1','Exit','Proceed'),
+              new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random','1','2','Previous','Next'),
+              new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random','2','3','Previous','Next'),
+              new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random','3','4','Previous','Next'),
+              new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random','4','-1','Previous','Next')
             ];
 
             // Cacheing HTML elements
@@ -30,25 +30,30 @@
             var projBtn1 = document.querySelector('#proj_btn1');
             var projBtn2 = document.querySelector('#proj_btn2');
 
-            function Project(name, description, img, btnInd1,btnInd2) {
+            function Project(name, description, img, btnInd1,btnInd2,btnTxt1,btnTxt2) {
               this.name = name;
               this.description = description;
               this.img = img;
               this.btnInd1 = btnInd1;
               this.btnInd2 = btnInd2;
+              this.btnTxt1 = btnTxt1;
+              this.btnTxt2 = btnTxt2;
             }
 
             function LoadDialogue(e){
-              if(e != null && e != ""){
-                  project.style.opacity = 0;	// Fade out
-                  setTimeout(function(){ 			// Fade in 
+                if(e != null && e != ""){
+                    project.style.opacity = 0;	// Fade out
+                    setTimeout(function(){ 			// Fade in 
                       projName.innerHTML = projects[e].name;
                       projDescr.innerHTML = projects[e].description;
                       projBtn1.setAttribute('data-index',projects[e].btnInd1);
                       projBtn2.setAttribute('data-index',projects[e].btnInd2);
+                      projBtn1.innerHTML = projects[e].btnTxt1;
+                      projBtn2.innerHTML = projects[e].btnTxt2;
+                      projBtn2.setAttribute('data-index',projects[e].btnInd2);
                       projImg.src = projects[e].img;
-                      projImg.style.width = '250px';
-                      projImg.style.height = '150px';
+                      //projImg.style.width = '250px';
+                      //projImg.style.height = '150px';
                       project.style.opacity = 1;
                   },600);
               }
