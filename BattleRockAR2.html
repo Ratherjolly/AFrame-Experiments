@@ -13,10 +13,7 @@
         }
     </style>
     <script>
-        //window.onload = function() {
-    
         document.addEventListener("DOMContentLoaded", function (event) {
-            // An array containing all the projects with their information
             var projects = [
               new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random','-1','1'),
               new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random','1',2'),
@@ -56,12 +53,10 @@
                   },600);
               }
             };
-            //SET BTN EVENTS
+            //SET BTN EVENTS and First Dialogue==========
             projBtn1.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
             projBtn2.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
-            //Load Initial Dialogue
             LoadDialogue("0");
-        //};
         });
     </script>
 </head>
@@ -72,8 +67,8 @@
         <div id="proj_description"></div>
         <img id="proj_img" src=""><br>
         <div style="display:inline-block;">
-            <button id="proj_btn1" data-index="1">Next Project</button>
-            <button id="proj_btn2" data-index="-1">Next Project</button>
+            <button id="proj_btn1" data-index="-1">Next Project</button>
+            <button id="proj_btn2" data-index="1">Next Project</button>
         </div>
     </div>
 </body>
