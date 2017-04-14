@@ -170,10 +170,16 @@
                       }
                       
                       //IMG====================================================
-                      projImg.src = projects[e].img;
-                      projImg.style.width = '256px';
-                      projImg.style.height = '256px';
-                        
+                      if(projects[e].img == ""){
+                        projImg.src = "";
+                        projImg.style.width = "";
+                        projImg.style.height = "";
+                      }
+                      else{
+                        projImg.src = projects[e].img;
+                        projImg.style.width = '256px';
+                        projImg.style.height = '256px';
+                      }
                       project.style.opacity = 1;
                   },600);
               }
