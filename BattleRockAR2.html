@@ -16,6 +16,22 @@
         //window.onload = function() {
     
         document.addEventListener("DOMContentLoaded", function (event) {
+            // An array containing all the projects with their information
+            var projects = [
+              new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random'),
+              new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random'),
+              new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random'),
+              new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random'),
+              new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random')
+            ];
+
+            // Cacheing HTML elements
+            var project    = document.querySelector('#project');
+            var projName   = document.querySelector('#proj_name');
+            var projDescr  = document.querySelector('#proj_description');
+            var projImg    = document.querySelector('#proj_img');
+            var projButton = document.querySelector('#proj_switcher');
+
             //Load Initial Dialogue
             LoadDialogue(0);
             //SET BTN EVENTS
@@ -31,21 +47,7 @@
           this.img = img;
         }
 
-        // An array containing all the projects with their information
-        var projects = [
-          new Project('Project 1', 'Project 1 Description', 'https://unsplash.it/200/?random'),
-          new Project('Project 2', 'Project 2 Description', 'https://unsplash.it/200/?random'),
-          new Project('Project 3', 'Project 3 Description', 'https://unsplash.it/200/?random'),
-          new Project('Project 4', 'Project 4 Description', 'https://unsplash.it/200/?random'),
-          new Project('Project 5', 'Project 5 Description', 'https://unsplash.it/200F/?random')
-        ];
-
-        // Cacheing HTML elements
-        var project    = document.querySelector('#project');
-        var projName   = document.querySelector('#proj_name');
-        var projDescr  = document.querySelector('#proj_description');
-        var projImg    = document.querySelector('#proj_img');
-        var projButton = document.querySelector('#proj_switcher');
+        
 
         function LoadDialogue(e){
           if(e != null && e != ""){
