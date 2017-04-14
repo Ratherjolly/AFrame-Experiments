@@ -126,6 +126,10 @@
 
             function LoadDialogue(e){
                 if(e != null && e != ""){
+                    
+                    if(e == "-1")
+                        window.close();
+                    
                     project.style.opacity = 0;	// Fade out
                     setTimeout(function(){ 			// Fade in 
                       projName.innerHTML = projects[e].name;
@@ -209,7 +213,6 @@
                     <button class="btn" id="proj_btn2" data-index="1">Next Project</button>
                 </div>
             </div>
-            <button class="btn" type="button" onclick="closeNav()">Lock n Load!</button>
             <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
                 <img src="./images/fullscreen.png" style="width:100%;" />
             </a>
