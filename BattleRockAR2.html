@@ -32,16 +32,7 @@
             var projImg    = document.querySelector('#proj_img');
             var projButton = document.querySelector('#proj_switcher');
 
-            //Load Initial Dialogue
-            LoadDialogue(0);
-            //SET BTN EVENTS
-            projButton.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
-        //};
-        });
-        
-        
-        
-        function Project(name, description, img) {
+            function Project(name, description, img) {
           this.name = name;
           this.description = description;
           this.img = img;
@@ -62,6 +53,14 @@
               },500);
           }
         };
+            //SET BTN EVENTS
+            projButton.addEventListener('click', function() {LoadDialogue(this.getAttribute('data-index'));});
+            
+            
+            //Load Initial Dialogue
+            LoadDialogue(0);
+        //};
+        });
     </script>
 </head>
 
