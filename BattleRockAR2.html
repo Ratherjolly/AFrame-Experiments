@@ -4,6 +4,28 @@
     <meta charset="utf-8">
     <title>BR AR-DEMO</title>
     <style>
+        background: linear-gradient(30deg, #f28d09, #f24f09, #f2ca09);
+        background-size: 600% 600%;
+
+        -webkit-animation: Flame 1s ease infinite;
+        -moz-animation: Flame 1s ease infinite;
+        animation: Flame 1s ease infinite;
+
+        @-webkit-keyframes Flame {
+            0%{background-position:30% 0%}
+            50%{background-position:71% 100%}
+            100%{background-position:30% 0%}
+        }
+        @-moz-keyframes Flame {
+            0%{background-position:30% 0%}
+            50%{background-position:71% 100%}
+            100%{background-position:30% 0%}
+        }
+        @keyframes Flame { 
+            0%{background-position:30% 0%}
+            50%{background-position:71% 100%}
+            100%{background-position:30% 0%}
+        }
         #project {
            -webkit-transition: opacity .5s ease-in-out;
            -moz-transition: opacity .5s ease-in-out;
