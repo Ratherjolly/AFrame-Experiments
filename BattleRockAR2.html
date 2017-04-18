@@ -3,151 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>BR AR-DEMO</title>
-    <style>
-        #project {
-           -webkit-transition: opacity .5s ease-in-out;
-           -moz-transition: opacity .5s ease-in-out;
-           -ms-transition: opacity .5s ease-in-out;
-           -o-transition: opacity .5s ease-in-out;
-           transition: opacity .5s ease-in-out;
-        }
-        .btn {
-            background-color: #e7e7e7;
-            border: 1px solid black;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 12px;
-        }
-        div.fixed {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 200px;
-            border-radius: 25px;
-            border: 4px solid black;
-            background-color: rgb(255, 255, 255);
-        }
-        div.fixedCenter {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            border-radius: 25px;
-            border: 4px solid black;
-            background-color: rgb(255, 255, 255);
-        }
-        body {
-            margin: 0;
-            font-family: 'Lato', sans-serif;
-        }
-        .overlay {
-            height: 0%;
-            width: 100%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            /*background-color: rgb(0,0,0);*/
-            background-color: #808080;
-            background-color: rgba(0,0,0, 0.8);
-            overflow-y: hidden;
-            transition: 0.5s;
-        }
-        .overlay-content {
-            position: relative;
-            top: 1%;
-            width: 100%;
-            text-align: center;
-            margin-top: 30px;
-        }
-        /*
-        .overlay a {
-            padding: 8px;
-            text-decoration: none;
-            font-size: 36px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-            .overlay a:hover, .overlay a:focus {
-                color: #f1f1f1;
-            }*/
-        .overlay .closebtn {
-            position: absolute;
-            top: 20px;
-            right: 45px;
-            font-size: 60px;
-        }
-        @media screen and (max-height: 450px) {
-            .overlay {
-                overflow-y: auto;
-            }
-            /*.overlay a {
-                font-size: 20px;
-            }
-            .overlay .closebtn {
-                font-size: 40px;
-                top: 15px;
-                right: 35px;
-            }*/
-        }
-        A{color:white;}
-    </style>
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./styles/BattleRock2Style.css">
+	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
     <script src="./Scripts/aframe-particle-system-component.min.js"></script>
     <script>
-        /*
-Hello There!<br/>This is an AR demo!
-This requires no app, but is free to use from your smartphone or desktop browser!
-[next]
-
-What you will need:
-x1 BattleRock Marker
-(Don't have our Business Card? No problem! Print image off from HERE)
-x1 WEBVR capable Device W/ Camera
-(Currently working best w/ <a href="https://www.google.com/chrome/">Chrome</a> on Windows/Android)
-(<a href="https://webvr.info/">what is WebVR?</a>)
-[previous] [next]
-
-SO! You ready?
-[No] [Yes]
-
-Okay, well, uhmmm...
-Back to the beginning?
-[No] [Yes]
-
-(What do you want gif)
-[Show me AR]
-[Say nothing]
-
-(Blank Stare gif)
-[What's with the Sass?]
-[Rage Quit]
-
-Sorry, It's been a long time since I've made such a basic
-dialogue tree in Javascript.
-I will... remove the sass.
-*hugs*
-I'm ready for the demo if you are :]
-[See Demo]
-[Exit]
-
-Awesome! So, you ready to try some AR?
-[Let's do this!] [Exit]
-
-[Toggle infinite flame]
-[Rotate]
-[fullscreen]
-
-        */
         document.addEventListener("DOMContentLoaded", function (event) {
             var projects = [
               new Project('Welcome to our AR Demo!', 
@@ -175,7 +36,6 @@ Awesome! So, you ready to try some AR?
                           '-1','-2','EXIT','START')
             ];
 
-            // Cacheing HTML elements
             var project    = document.querySelector('#project');
             var projName   = document.querySelector('#proj_name');
             var projDescr  = document.querySelector('#proj_description');
@@ -206,7 +66,6 @@ Awesome! So, you ready to try some AR?
                         setTimeout(function(){ 			// Fade in 
                         projName.innerHTML = projects[e].name;
                         projDescr.innerHTML = projects[e].description;
-                      
                         //BTN_ONE===============================================
                         projBtn1.setAttribute('data-index',projects[e].btnInd1);  
                         projBtn1.innerHTML = projects[e].btnTxt1;
@@ -215,7 +74,6 @@ Awesome! So, you ready to try some AR?
                         else{
                             projBtn1.setAttribute('style','');
                         }
-                      
                         //BTN_TWO===============================================
                         projBtn2.setAttribute('data-index',projects[e].btnInd2);  
                         projBtn2.innerHTML = projects[e].btnTxt2;
@@ -224,7 +82,6 @@ Awesome! So, you ready to try some AR?
                         else{
                             projBtn2.setAttribute('style','');
                         }
-                      
                         //IMG====================================================
                         if(projects[e].img == ""){
                             projImg.src = "";
@@ -306,16 +163,6 @@ Awesome! So, you ready to try some AR?
                     <button class="btn" id="proj_btn1" data-index="-1">Next Project</button>
                     <button class="btn" id="proj_btn2" data-index="1">Next Project</button>
                 </div>
-                
-                    <!--<audio autoplay loop controls>
-                        <source src="./Audio/ThemeWav.ogg" type="audio/ogg"><source src="./Audio/ThemeWav.mp3" type="audio/mpeg">Your browser does not support the audio element.
-                    </audio>-->
-                    <!--<audio autoplay loop>
-                        <source src="./Audio/GGJ2015_Rough4.ogg" type="audio/ogg"><source src="./Audio/GGJ2015_Rough4.mp3" type="audio/mpeg">Your browser does not support the audio element.
-                    </audio>-->
-                    <!--<audio autoplay loop>
-                        <source src="./Audio/song.ogg" type="audio/ogg"><source src="./Audio/song.mp3" type="audio/mpeg">Your browser does not support the audio element.
-                    </audio>-->
             </div>
             <a class="button" onclick="toggleFullScreen()" style="position: fixed; top: 0; left: 0; width:32px; height:32px; padding: 5px;">
                 <img src="./images/fullscreen.png" style="width:100%;" />
