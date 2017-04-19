@@ -5,8 +5,8 @@
 	<title>BR AR-DEMO</title>
 	<link rel="stylesheet" type="text/css" href="./styles/BattleRock2Style.css">
 	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-	<script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
-	<script>THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>
+	<script id ="AR1"></script>
+	<script id ="AR2"></script>
 	<script src="./Scripts/aframe-particle-system-component.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
@@ -64,6 +64,15 @@
 			var sceneEl = document.querySelector('a-scene');
 			sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
 			sceneEl.setAttribute('embedded', '');
+			
+			//<script id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
+			//<script id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'</script>		
+	
+			var AR1 = document.getElementById("AR1");
+			AR1.SetAttribute('src','https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js');    
+			var AR2 = document.getElementById("AR2");
+			AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+			    
                     }
                     else{
                         project.style.opacity = 0;	// Fade out
