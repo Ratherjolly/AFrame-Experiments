@@ -60,23 +60,23 @@
                     else if(e == "-2"){
                         closeNav();
 			
-				var script = document.createElement('script');
-				script.src = "https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js";
-				script.onload = function () {
-					var sceneEl = document.querySelector('a-scene');
-					sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
-					sceneEl.setAttribute('embedded', '');
-				};
+						var AR1 = document.createElement('script');
+						AR1.src = "https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js";
 
-				var script = document.createElement('script');
-				script.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+						var AR2 = document.createElement('script');
+						AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+						
+						
+						var sceneEl = document.querySelector('a-scene');
+						sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
+						sceneEl.setAttribute('embedded', '');
 
-				/*
-				id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"
-				id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'		
-				*/
-				//var AR2 = document.getElementById("AR2");
-				//AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+						/*
+						id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"
+						id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'		
+						*/
+						//var AR2 = document.getElementById("AR2");
+						//AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
 
                     }
                     else{
