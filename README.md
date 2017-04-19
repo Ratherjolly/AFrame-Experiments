@@ -5,4 +5,4 @@ InfiniteCageVR:
 https://ratherjolly.github.io/AFrame-Experiments/InfiniteCageVR.html
 
 BusinessCard:
-https://ratherjolly.github.io/AFrame-Experiments/BattleRockAR.html
+https://ratherjolly.github.io/AFrame-Experiments/BattleRockAR2.html
