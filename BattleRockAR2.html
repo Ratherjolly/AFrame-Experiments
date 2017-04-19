@@ -5,8 +5,6 @@
 	<title>BR AR-DEMO</title>
 	<link rel="stylesheet" type="text/css" href="./styles/BattleRock2Style.css">
 	<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-	<script id ="AR1"></script>
-	<script id ="AR2"></script>
 	<script src="./Scripts/aframe-particle-system-component.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
@@ -61,19 +59,25 @@
                         window.close();
                     else if(e == "-2"){
                         closeNav();
-			var sceneEl = document.querySelector('a-scene');
-			sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
-			sceneEl.setAttribute('embedded', '');
 			
-			/*
-			id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"
-			id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'		
-			*/
-			var AR1 = document.getElementById("AR1");
-			AR1.SetAttribute('src','https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js');    
-			var AR2 = document.getElementById("AR2");
-			AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
-			    
+				var script = document.createElement('script');
+				script.src = "https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js";
+				script.onload = function () {
+					var sceneEl = document.querySelector('a-scene');
+					sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
+					sceneEl.setAttribute('embedded', '');
+				};
+
+				var script = document.createElement('script');
+				script.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+
+				/*
+				id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"
+				id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'		
+				*/
+				//var AR2 = document.getElementById("AR2");
+				//AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
+
                     }
                     else{
                         project.style.opacity = 0;	// Fade out
