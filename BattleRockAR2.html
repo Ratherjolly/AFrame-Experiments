@@ -15,7 +15,7 @@
                           'Using the Glory of WebVR, this demo requires no app to run apart from your web browser!<br/>(<a href="https://webvr.info/">what is WebVR?</a>)', 
                           '','-1','1','','Continue'),
               new Project('What you will need:', 
-                          'x1 BattleRock AR Marker<br/><br/>(Available on our Business card OR this <a href="#">LINK</a>)',//'x1 BattleRock Marker<br/>(Use our Business Card/Image Below!)<br/>x1 Capable Device W/ Camera<br/>(Currently best w/ <a href="https://www.google.com/chrome/">Chrome</a> on Windows/Android)',
+                          'x1 BattleRock AR Marker<br/><br/>(Available on our Business card OR this <a href="#" onclick="printImg()">LINK</a>)',//'x1 BattleRock Marker<br/>(Use our Business Card/Image Below!)<br/>x1 Capable Device W/ Camera<br/>(Currently best w/ <a href="https://www.google.com/chrome/">Chrome</a> on Windows/Android)',
                           '',//'./markers/ARBattleRock5.png',
 			  '','2','','Continue'),
               new Project('SO... You ready?', 
@@ -72,14 +72,6 @@
 						var sceneEl = document.querySelector('a-scene');
 						sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
 						sceneEl.setAttribute('embedded', '');
-
-						/*
-						id ="AR1" src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"
-						id ="AR2">THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'		
-						*/
-						//var AR2 = document.getElementById("AR2");
-						//AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
-
                     }
                     else{
                         project.style.opacity = 0;	// Fade out
@@ -167,6 +159,12 @@
                 }
                 }
             };
+			function printImg() {
+				//var theImg = document.createElement("img");
+			 	//theImg.src = './markers/ARBattleRock5.png';
+			  	pwin = window.open('./markers/ARBattleRock5.png',"_blank");
+			  	pwin.onload = function () {window.print();}
+			}
     </script>
 </head>
 
