@@ -16,25 +16,15 @@
                           '','-1','1','','Continue'),
               new Project('What you will need:', 
                           'x1 BattleRock AR Marker<br/><br/>(Available on our Business card OR this <a href="#" onclick="openMarker()">LINK</a>)',//'x1 BattleRock Marker<br/>(Use our Business Card/Image Below!)<br/>x1 Capable Device W/ Camera<br/>(Currently best w/ <a href="https://www.google.com/chrome/">Chrome</a> on Windows/Android)',
-                          '',//'./markers/ARBattleRock5.png',
-			  '','2','','Continue'),
-              new Project('SO... You ready?', 
-                          '', 
-                          '',
-                          '4','3','NO','YES'),
-              new Project('Awesome!<br/>Lets do this!', 
-                          '', 
-                          '',
-                          '','-2','','Im IN!'),
-                
-              new Project('Okay, well, uhmmm...<br/>Need to see the details again?',
-                          '', 
-                          '',
-                          '5','1','No','Sure'),
-              new Project('',
-                          '', 
-                          './images/headshake.gif',
-                          '-1','-2','EXIT','START')
+                          '','','2','','Continue'),
+              new Project('SO, Are ou ready?', '', 
+                          '','4','3','NO','YES'),
+              new Project('Awesome!<br/>Lets do this!','',
+						  '','','-2','','Im IN!'),
+              new Project('Okay, well, uhmmm...<br/>Need to see the details again?','', 
+                          '','5','1','No','Sure'),
+              new Project('','', 
+                          './images/headshake.gif','-1','-2','EXIT','START')
             ];
 
             var project    = document.querySelector('#project');
@@ -61,17 +51,6 @@
                         window.close();
                     else if(e == "-2"){
                         closeNav();
-			
-						var AR1 = document.createElement('script');
-						AR1.src = "https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js";
-
-						var AR2 = document.createElement('script');
-						AR2.innerHTML = "THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'";
-						
-						
-						var sceneEl = document.querySelector('a-scene');
-						sceneEl.setAttribute('artoolkit', 'sourceType: webcam');
-						sceneEl.setAttribute('embedded', '');
                     }
                     else{
                         project.style.opacity = 0;	// Fade out
@@ -183,17 +162,17 @@
         </div>
     </div>
     
-    <a-scene>
+    <a-scene embedded artoolkit="sourceType: webcam">
 	  <a-assets>
 	  	<a-asset-item id="cube-obj" src="./Objects/TheCubeFull.obj"></a-asset-item>
 		<a-asset-item id="cube-mtl" src="./Objects/TheCubeFull.mtl"></a-asset-item>
 	  </a-assets>
 		<!--Marker-->
-		<!--<a-marker type='pattern' url='./markers/briii.patt'>
-			<a-entity id="ModelId" look-controls material='opacity: 0.8; color: red' scale="0.05 0.05 0.05" obj-model="obj: #cube-obj; mtl: #cube-mtl;">
-				<a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>
+		<a-marker type='pattern' url='./markers/briii.patt'>
+			<a-entity id="ModelId" look-controls scale="0.05 0.05 0.05" obj-model="obj: #cube-obj; mtl: #cube-mtl;">
+				<!--<a-entity position='0 0 0' particle-system='color: #EF0000,#44CC00'></a-entity>-->
 			</a-entity>
-		</a-marker>-->
+		</a-marker>
 		<a-entity camera click-listener></a-entity>
 	</a-scene>
     
