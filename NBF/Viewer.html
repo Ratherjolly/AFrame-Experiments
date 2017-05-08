@@ -153,7 +153,6 @@
 	</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
 	  <a-assets>
-		
 		<a-asset-item id="chair-test-obj" src="./Assets/chair-test.obj"></a-asset-item>
 		<a-asset-item id="chair-test-mtl" src="./Assets/chair-test.mtl"></a-asset-item>
 		  
@@ -162,28 +161,10 @@
 		  
 		<a-asset-item id="basic-obj" src="./Assets/basic.obj"></a-asset-item>
 		<a-asset-item id="basic-mtl" src="./Assets/basic.mtl"></a-asset-item>
-		  
-	  	<!--
-		<a-asset-item id="simple-obj" src="./Assets/simple.obj"></a-asset-item>
-		<a-asset-item id="simple-mtl" src="./Assets/simple.mtl"></a-asset-item>
-
-		THESE ARE ALL CHAIRS THAT WORK, but are not on Zero/Zero
-		mdl.setAttribute('scale', '1 1 1');
-		<a-asset-item id="chair-obj" src="./Assets/chair.obj"></a-asset-item>
-		<a-asset-item id="chair-mtl" src="./Assets/chair.mtl"></a-asset-item>
-
-		mdl.setAttribute('scale', '2.25 2.25 2.25');
-		<a-asset-item id="office-chair-obj" src="./Assets/office-chair.obj"></a-asset-item>
-		<a-asset-item id="office-chair-mtl" src="./Assets/office-chair.mtl"></a-asset-item>
-
-		mdl.setAttribute('scale', '1 1 1');
-		<a-asset-item id="lazy-obj" src="./Assets/lazy.obj"></a-asset-item>
-		<a-asset-item id="lazy-mtl" src="./Assets/lazy.mtl"></a-asset-item>-->
-		  
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/markers/nbfiii.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
-			<a-entity id="ModelId" material='opacity: 0.8;' scale="1 1 1"></a-entity>
+			<a-entity id="ModelId" look-controls material='opacity: 0.8;' scale="1 1 1"></a-entity>
 		</a-marker>
 		<a-entity camera click-listener></a-entity>
 	</a-scene>
