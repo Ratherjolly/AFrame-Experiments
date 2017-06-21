@@ -78,13 +78,25 @@
 				mdl.setAttribute('scale', '0.06 0.06 0.06');
 			}
 			mdl.setAttribute('rotation','0 0 0');
-			/*else if (i==4) {
-				mdl.setAttribute('obj-model', 'obj: #simple-obj; mtl: #simple-mtl;');
-				mdl.setAttribute('scale', '2 2 2');
-			}*/
+			
+		var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+		var isFirefox = typeof InstallTrigger !== 'undefined';
+		var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+		var isIE = /*@cc_on!@*/false || !!document.documentMode;
+		var isEdge = !isIE && !!window.StyleMedia;
+		var isChrome = !!window.chrome && !!window.chrome.webstore;
+		
+		if(isFirefox == true)
+			mdl.setAttribute('rotation','0 90 0');
+		else if(isChrome == true)
+		{
+			mdl.setAttribute('rotation','0 180 0');
 		}
-		function animateMdl(){
-			var mdl = document.querySelector('#ModelId');
+			
+		}
+		function switchCamera(){
+			
+			/*var mdl = document.querySelector('#ModelId');
 			var tempRotate = 0;
 			if(rotate == 0){
 				mdl.setAttribute('rotation','0 0 0');
@@ -96,6 +108,7 @@
 				tempRotate = 0;
 			}
 			rotate = tempRotate;
+			*/
 		}
 		function toggleFullScreen() {
             if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // alternative standard method
@@ -128,7 +141,7 @@
         <img src="./Assets/img/fullscreen.png" style="width:100%;" />
     </a>
 	<!--ANIMATE -->
-	<a class="button" onclick="animateMdl()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px; z-index: 100;">
+	<a class="button" onclick="switchCamera()" style="position: fixed; top: 0; right: 0; width:32px; height:32px; padding: 5px; z-index: 100;">
 		<img src="./Assets/img/rotate.png" style="width:100%;" />
 	</a>
 	
@@ -145,10 +158,6 @@
 		  <div class="column">
 		    <img src="./Assets/img/basic.png" style="width:100%" onclick="currentSlide(3)">
 		  </div>
-			<!--
-		<div class="column">
-		    <img src="./Assets/img/simple.png" style="width:100%" onclick="currentSlide(4)">
-		  </div>-->
 		</div>
 	</div>
 	<a-scene embedded artoolkit='sourceType: webcam;'>
