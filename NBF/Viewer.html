@@ -56,7 +56,6 @@
 		var slideIndex = 1;
 		var rotate = 0;
 		function currentSlide(n) {
-		  document.querySelector('#cameraWrapper').emit('resetorientation');
 		  showSlides(slideIndex = n);
 		}
 		function showSlides(i) {
@@ -136,18 +135,9 @@
             }
             }
         };
-		window.onload = function() {
-			showSlides(slideIndex);
-		}
-		AFRAME.registerComponent('resetorientation', {
-		  init: function () {
-			var el = this.el;
-			el.addEventListener('resetorientation', function () {
-			  var y = el.querySelector('[camera]').getAttribute('rotation').y;
-			  el.setAttribute('rotation', {y: -1 * y});
-			});
-		  }
-		});
+	window.onload = function() {
+		showSlides(slideIndex);
+	}
 	</script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
@@ -188,7 +178,7 @@
 	  </a-assets>
 		<!--Marker World!-->
 		<a-marker type='pattern' url='./Assets/markers/nbfiii.patt'>
-			<a-entity id="ModelId" look-controls material='opacity: 0.8;' resetorientation></a-entity>
+			<a-entity id="ModelId" look-controls material='opacity: 0.8;' ></a-entity>
 		</a-marker>
 		<a-entity camera click-listener></a-entity>
 	</a-scene>
