@@ -87,10 +87,14 @@
 			var isChrome = !!window.chrome && !!window.chrome.webstore;
 
 			if(isFirefox == true)
+			{
 				mdl.setAttribute('rotation','90 0 270');
+				document.getElementById("Desc").innerHTML = "<H2>Firefox - 90 0 270 </H2>";
+			}
 			else if(isChrome == true)
 			{
 				mdl.setAttribute('rotation','90 0 270');
+				document.getElementById("Desc").innerHTML = "<H2>Chrome - 90 0 270 </H2>";
 			}
 			mdl.setAttribute('scale', '0.1 0.1 0.1');
 			
