@@ -87,6 +87,7 @@
 			var isChrome = !!window.chrome && !!window.chrome.webstore;
 			
 			var b = navigator.userAgent;
+			document.getElementById("Desc").innerHTML = "<p>"+b+"</p>";//"<p>"+navigator.appCodeName+"</p><p>"+navigator.appName+"</p><p>"+navigator.appVersion+"</p><p>"+navigator.userAgent+"</p>";
 			
 			if(b.indexOf("Firefox") != -1)
 			{
@@ -101,8 +102,6 @@
 			else{
 				//document.getElementById("Desc").innerHTML = "<H2>NEITHER</H2>";
 			}
-			document.getElementById("Desc").innerHTML = "<p>"+b+"</p>";//"<p>"+navigator.appCodeName+"</p><p>"+navigator.appName+"</p><p>"+navigator.appVersion+"</p><p>"+navigator.userAgent+"</p>";
-			
 			
 		}
 		function switchCamera(){
