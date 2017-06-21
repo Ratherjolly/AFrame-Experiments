@@ -88,12 +88,12 @@
 			
 			var b = navigator.userAgent;
 			
-			if(b.includes("firefox"))
+			if(b.indexOf("firefox") != -1)
 			{
 				mdl.setAttribute('rotation','90 0 270');
 				document.getElementById("Desc").innerHTML = "<H2>Firefox - 90 0 270 </H2>";
 			}
-			else if(b.includes("chrome"))
+			else if(b.indexOf("chrome") != -1)
 			{
 				mdl.setAttribute('rotation','90 0 270');
 				document.getElementById("Desc").innerHTML = "<H2>Chrome - 90 0 270 </H2>";
@@ -101,7 +101,7 @@
 			else{
 				//document.getElementById("Desc").innerHTML = "<H2>NEITHER</H2>";
 			}
-			document.getElementById("Desc").innerHTML = "<p>"+b+"</p>";//"<p>"+navigator.appCodeName+"</p><p>"+navigator.appName+"</p><p>"+navigator.appVersion+"</p><p>"+navigator.userAgent+"</p>";
+			//document.getElementById("Desc").innerHTML = "<p>"+b+"</p>";//"<p>"+navigator.appCodeName+"</p><p>"+navigator.appName+"</p><p>"+navigator.appVersion+"</p><p>"+navigator.userAgent+"</p>";
 			
 			
 		}
