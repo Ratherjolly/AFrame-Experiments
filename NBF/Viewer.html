@@ -85,8 +85,8 @@
 			if(b.indexOf("Firefox") != -1)
 			{
 				//mdl.setAttribute('rotation','90 0 270'); //stomach facing user
-				mdl.setAttribute('rotation','180 0 0');
-				document.getElementById("Desc").innerHTML = "<H2>Firefox - 180 0 0 </H2>";
+				mdl.setAttribute('rotation','0 0 180');
+				document.getElementById("Desc").innerHTML = "<H2>Firefox - 0 0 180 </H2>";
 			}
 			else if(b.indexOf("Chrome") != -1)
 			{
@@ -177,8 +177,9 @@
 		<a-asset-item id="basic-mtl" src="./Assets/basic.mtl"></a-asset-item>
 	  </a-assets>
 		<!--Marker World!-->
-		<a-marker type='pattern' url='./Assets/markers/nbfiii.patt'><!--<a-marker type='unknown' url='#sharpie'>-->
-			<a-entity id="ModelId" look-controls material='opacity: 0.8;' scale="1 1 1"></a-entity>
+		<a-marker type='pattern' url='./Assets/markers/nbfiii.patt'>
+			<!--<a-entity id="ModelId" look-controls material='opacity: 0.8;' scale="1 1 1"></a-entity>-->
+			<a-entity id="ModelId" material='opacity: 0.8;' scale="1 1 1"></a-entity>
 		</a-marker>
 		<a-entity camera click-listener></a-entity>
 	</a-scene>
