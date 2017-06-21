@@ -86,8 +86,6 @@
 			var isEdge = !isIE && !!window.StyleMedia;
 			var isChrome = !!window.chrome && !!window.chrome.webstore;
 			
-			
-
 			if(isFirefox == 'true')
 			{
 				mdl.setAttribute('rotation','90 0 270');
@@ -101,7 +99,7 @@
 			else{
 				//document.getElementById("Desc").innerHTML = "<H2>NEITHER</H2>";
 			}
-			document.getElementById("Desc").innerHTML = "<H2>"+navigator.appCodeName+"</H2><H2>"+navigator.appName+navigator.appVersion+"</H2><H2>"+navigator.userAgent+"</H2>";
+			document.getElementById("Desc").innerHTML = "<p>"+navigator.appCodeName+"</p><p>"+navigator.appName+"</p><p>"+navigator.appVersion+"</p><p>"+navigator.userAgent+"</p>";
 			
 		}
 		function switchCamera(){
